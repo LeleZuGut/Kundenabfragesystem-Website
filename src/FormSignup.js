@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import validate from './validateInfo';
 import useForm from './useForm';
 import'./Form.css';
