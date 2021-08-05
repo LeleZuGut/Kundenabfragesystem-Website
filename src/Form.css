@@ -1,13 +1,13 @@
 .form-container {
   width: 1920px;
-  position: relative;
+  position: flex;
   height: 937px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
   
   .close-btn {
-    position: absolute;
+    position: flex;
     top: 2%;
     right: 3%;
     font-size: 1.5rem;
@@ -22,16 +22,16 @@
       rgb(44,39,60) 0%,
       rgb(31,28,38) 100%
     );
-    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .form-img {
     width: 20%;
     height: 20%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    
   }
 
 
@@ -55,6 +55,9 @@
   .form-content-right {
     position: relative;
     background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .form {
