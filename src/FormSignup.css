@@ -1,8 +1,4 @@
 
-body{
-
-}
-
 .form-container {
   width: 100%;
   position: flex;
@@ -178,8 +174,8 @@ body{
     
 
     .form-img {
-      width: 35%;
-      height: 45%;
+      width: 25%;
+      height: 25%;
       
     }
 

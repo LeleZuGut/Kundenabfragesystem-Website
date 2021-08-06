@@ -1,7 +1,8 @@
 import React from 'react';
 import validate from './validateInfo';
 import useForm from './useForm';
-import'./Form.css';
+import'./FormSignup.css';
+import FormLogin from './FormLogin';
 
 const FormSignup = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(
@@ -13,7 +14,7 @@ const FormSignup = ({ submitForm }) => {
     <div className='form-content-right'>
       <form onSubmit={handleSubmit} className='form' noValidate>
         <h1>
-          Starten Sie noch heute mit uns! Erstellen Sie ihr Koto, 
+          Starten Sie noch heute mit uns! Erstellen Sie ihr Konto, 
           indem Sie die Informationen darunter ausfüllen
         </h1>
         <div className='form-inputs'>
@@ -68,7 +69,7 @@ const FormSignup = ({ submitForm }) => {
           Sign up
         </button>
         <span className='form-input-login'>
-          Haben Sie bereits ein Konto? Login <a href='#'>hier</a>
+          Haben Sie bereits ein Konto? Login <a href='login'>hier</a>
         </span>
       </form>
     </div>

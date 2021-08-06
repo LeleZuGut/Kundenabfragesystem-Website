@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './FormSignup.css';
-import FormSignup from './FormSignup';
+import './FormLogin';
+import FormLogin from './FormLogin';
 import FormSuccess from './FormSuccess';
 
-const Form = () => {
+const Form_Log = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   function submitForm() {
@@ -13,12 +13,12 @@ const Form = () => {
   
   return (
     <>
-      <div className='form-container'>
-        <div className='form-content-left'>
-          <img className='form-img' src='Logo.png' alt='' />
+      <div className='Login-form-container'>
+        <div className='Login-form-content-left'>
+          <img className='Login-form-img' src='Logo.png' alt='' />
         </div>
         {!isSubmitted ? (
-          <FormSignup submitForm={submitForm} />
+          <FormLogin submitForm={submitForm} />
         ) : (
           <FormSuccess />
         )}
@@ -27,4 +27,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Form_Log;
