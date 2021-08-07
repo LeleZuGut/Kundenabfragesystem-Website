@@ -3,6 +3,7 @@ import validate from './validateInfo';
 import useForm from './useForm';
 import'./FormSignup.css';
 import FormLogin from './FormLogin';
+import LoginvalidateInfo from './LoginvalidateInfo';
 
 const FormSignup = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(
