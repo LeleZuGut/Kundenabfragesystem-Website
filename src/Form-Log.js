@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './FormLogin';
 import FormLogin from './FormLogin';
-import FormSuccess from './FormSuccess';
+import FormSuccess from './FormFragenKatalog-Main';
 
 const Form_Log = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -20,7 +20,7 @@ const Form_Log = () => {
         {!isSubmitted ? (
           <FormLogin submitForm={submitForm} />
         ) : (
-          <FormSuccess />
+          <FormSuccess/>
         )}
       </div>
     </>
