@@ -15,7 +15,7 @@ const FormLogin = ({ submitForm }) => {
   
     return (
       <div className='Login-form-content-right'>
-        <form onSubmit={handleSubmit} className='Login-form' noValidate>
+        <form onSubmit={handleSubmit} className='Login-form' noValidate onSubmit={() => history.push("/main")}>
           <h1>
             Melden Sie sich an oder man wird älter!
           </h1>

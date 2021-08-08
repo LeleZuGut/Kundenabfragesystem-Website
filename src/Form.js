@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import './FormSignup.css';
 import FormSignup from './FormSignup';
 import FormSuccess from './FormFragenKatalog-Main';
+
+
+
 
 const Form = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -10,7 +13,7 @@ const Form = () => {
     setIsSubmitted(true);
   }
 
-  
+
   return (
     <>
       <div className='form-container'>
@@ -20,7 +23,7 @@ const Form = () => {
         {!isSubmitted ? (
           <FormSignup submitForm={submitForm} />
         ) : (
-             null
+            null
         )}
       </div>
     </>

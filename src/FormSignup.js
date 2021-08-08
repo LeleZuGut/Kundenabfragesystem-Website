@@ -18,7 +18,7 @@ const FormSignup = ({ submitForm }) => {
 
   return (
     <div className='form-content-right'>
-      <form onSubmit={handleSubmit} className='form' noValidate>
+      <form onSubmit={handleSubmit} className='form' noValidate onSubmit={() => history.push("/main")}>
         <h1>
           Starten Sie noch heute mit uns! Erstellen Sie ihr Konto, 
           indem Sie die Informationen darunter ausfüllen
@@ -71,7 +71,7 @@ const FormSignup = ({ submitForm }) => {
           />
           {errors.password2 && <p>{errors.password2}</p>}
         </div>
-        <button className='form-input-btn' type='submit'onClick= {()=>history.push('/main')}>
+        <button className='form-input-btn' type='submit'>
           Sign up
         </button>
         <span className='form-input-login'>
