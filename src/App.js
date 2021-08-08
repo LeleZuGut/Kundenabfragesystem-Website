@@ -1,10 +1,9 @@
 import { Route, BrowserRouter as Router, Switch, BrowserRouter} from 'react-router-dom';
 import './App.css';
 import Form from './Form';
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Form_Log from './Form-Log';
-import FormFragenKatalog_Main from './FormFragenKatalog-Main'
-
+import FragenMainNavbar from './FormFragenKatalog-Main'; 
 export default class App extends Component {
   render() {
     return (
@@ -14,7 +13,7 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={Form} />
           <Route exact path="/login" component={Form_Log} />
-          <Route exact path="/main" component={FormFragenKatalog_Main} />
+          <Route exact path="/main" component={FragenMainNavbar} />
 
         </Switch>
 
