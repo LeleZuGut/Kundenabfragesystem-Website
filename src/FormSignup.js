@@ -2,14 +2,19 @@ import React from 'react';
 import validate from './validateInfo';
 import useForm from './useForm';
 import'./FormSignup.css';
-import FormLogin from './FormLogin';
-import LoginvalidateInfo from './LoginvalidateInfo';
+import { useHistory } from 'react-router-dom';
+
+
 
 const FormSignup = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate
   );
+
+
+  const history = useHistory();
+
 
   return (
     <div className='form-content-right'>
@@ -66,7 +71,7 @@ const FormSignup = ({ submitForm }) => {
           />
           {errors.password2 && <p>{errors.password2}</p>}
         </div>
-        <button className='form-input-btn' type='submit'>
+        <button className='form-input-btn' type='submit'onClick= {()=>history.push('/main')}>
           Sign up
         </button>
         <span className='form-input-login'>

@@ -1,13 +1,17 @@
 import React from 'react';
-import validate from './validateInfo';
-import useForm from './useForm';
 import'./FormLogin.css';
+import Login_useForm from './Login_useForm';
+import LoginvalidateInfo from './LoginvalidateInfo';
+import { useHistory } from 'react-router-dom';
+
 
 const FormLogin = ({ submitForm }) => {
-    const { handleChange, handleSubmit, values, errors } = useForm(
+    const { handleChange, handleSubmit, values, errors } = Login_useForm(
       submitForm,
-      validate
+      LoginvalidateInfo
     );
+
+    const history = useHistory();
   
     return (
       <div className='Login-form-content-right'>
@@ -41,11 +45,11 @@ const FormLogin = ({ submitForm }) => {
             {errors.password && <p>{errors.password}</p>}
           </div>
           
-          <button className='Login-form-input-btn' type='submit'>
+          <button className='Login-form-input-btn' type='submit' onClick= {()=>history.push('/main')}>
             Sign up
           </button>
           <span className='Login-form-input-login'>
-            Möchten Sie ein Konto erstellen? Login <a href='/'>hier</a>
+            Möchten Sie ein Konto erstellen? Zur Registrierung <a href='/'>hier</a>
           </span>
         </form>
       </div>

@@ -15,12 +15,12 @@ const Form_Log = () => {
     <>
       <div className='Login-form-container'>
         <div className='Login-form-content-left'>
-          <img className='Login-form-img' src='Logo.png' alt='' />
+          <img className='Login-form-img' src='fertiges_logo.png' alt='' />
         </div>
         {!isSubmitted ? (
           <FormLogin submitForm={submitForm} />
         ) : (
-          <FormSuccess/>
+          null
         )}
       </div>
     </>
