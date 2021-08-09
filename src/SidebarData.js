@@ -9,7 +9,7 @@ import React from 'react';
 export const SidebarData = [
     {
         title: 'Home',
-        path: '/Hauptfragen',
+        path: '/main',
         icon: <AiIcons.AiFillHome/>,
         cName: 'nav-text'
     },
@@ -23,7 +23,7 @@ export const SidebarData = [
 
     {
         title: 'Abmelden',
-        path: '/logout',
+        path: '/',
         icon: <BiIcons.BiLogOut/>,
         cName: 'nav-text'
     }

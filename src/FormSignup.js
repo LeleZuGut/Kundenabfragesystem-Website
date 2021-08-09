@@ -1,16 +1,12 @@
 import React from 'react';
-import validate from './validateInfo';
-import useForm from './useForm';
 import'./FormSignup.css';
 import { useHistory } from 'react-router-dom';
 
 
 
+
 const FormSignup = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    submitForm,
-    validate
-  );
+  
 
 
   const history = useHistory();
@@ -18,7 +14,7 @@ const FormSignup = ({ submitForm }) => {
 
   return (
     <div className='form-content-right'>
-      <form onSubmit={handleSubmit} className='form' noValidate onSubmit={() => history.push("/main")}>
+      <form action="" method=""  className='form' onSubmit={() => history.push("/main")}>
         <h1>
           Starten Sie noch heute mit uns! Erstellen Sie ihr Konto, 
           indem Sie die Informationen darunter ausfüllen
@@ -30,10 +26,12 @@ const FormSignup = ({ submitForm }) => {
             type='text'
             name='username'
             placeholder='Enter your username'
-            value={values.username}
-            onChange={handleChange}
-          />
-          {errors.username && <p>{errors.username}</p>}
+            required = "Lele du brauchst des"
+            >
+            
+          
+            </input>
+            
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Email</label>
@@ -42,10 +40,9 @@ const FormSignup = ({ submitForm }) => {
             type='email'
             name='email'
             placeholder='Enter your email'
-            value={values.email}
-            onChange={handleChange}
+            required
+            
           />
-          {errors.email && <p>{errors.email}</p>}
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Password</label>
@@ -54,10 +51,8 @@ const FormSignup = ({ submitForm }) => {
             type='password'
             name='password'
             placeholder='Enter your password'
-            value={values.password}
-            onChange={handleChange}
+            required
           />
-          {errors.password && <p>{errors.password}</p>}
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Confirm Password</label>
@@ -66,10 +61,9 @@ const FormSignup = ({ submitForm }) => {
             type='password'
             name='password2'
             placeholder='Confirm your password'
-            value={values.password2}
-            onChange={handleChange}
+            required
+            
           />
-          {errors.password2 && <p>{errors.password2}</p>}
         </div>
         <button className='form-input-btn' type='submit'>
           Sign up

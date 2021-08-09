@@ -1,7 +1,6 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import './FormSignup.css';
 import FormSignup from './FormSignup';
-import FormSuccess from './FormFragenKatalog-Main';
 
 
 
@@ -13,6 +12,8 @@ const Form = () => {
     setIsSubmitted(true);
   }
 
+  
+
 
   return (
     <>
@@ -23,7 +24,9 @@ const Form = () => {
         {!isSubmitted ? (
           <FormSignup submitForm={submitForm} />
         ) : (
+
             null
+
         )}
       </div>
     </>
