@@ -126,12 +126,8 @@
 
   @media only screen and (max-width: 1024px){
 
-    .Main-Fragen-Heading{
-      justify-content: start;
-      align-items: center;
-      margin-top: 12%;
-      margin-left: 23%;
-  
+    body{
+      color: white;
     }
 
     .main_logo{
@@ -149,8 +145,7 @@
       display: flex;
       align-items: center;
       justify-content: start;
-      margin-top: 50%;
-      margin-left: 10%;
+      margin-top: 70%;
   }
 
     .Wandern-Img{

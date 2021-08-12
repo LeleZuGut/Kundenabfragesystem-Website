@@ -4,7 +4,7 @@ import Form from './Form';
 import React, { Component } from 'react';
 import Form_Log from './Form-Log';
 import Navbar from './FormFragenKatalog-Main'; 
-import FormFragenkatalog from './FormFragenkatalog'; 
+import Klettern from './FormFragenkatalog';
 export default class App extends Component {
   render() {
     return (
@@ -15,7 +15,7 @@ export default class App extends Component {
           <Route exact path="/" component={Form} />
           <Route exact path="/login" component={Form_Log} />
           <Route exact path="/main" component={Navbar} />
-          <Route exact path="/fragen" component={FormFragenkatalog} />
+          <Route exact path="/fragen/Wandern" component={Klettern} />
           
 
 
