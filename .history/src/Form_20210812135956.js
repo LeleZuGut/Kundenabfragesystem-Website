@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Styles/FormSignup.css';
+import './FormSignup.css';
 import FormSignup from './Pages/FormSignup';
 import Hauptlogo from './Images/fertiges_logo.png';
 

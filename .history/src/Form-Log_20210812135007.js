@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import './Pages/FormLogin';
-import './Styles/FormLogin.css';
-import FormLogin from './Pages/FormLogin';
-import Hauptlogo from './Images/fertiges_logo.png';
+import './FormLogin';
+import FormLogin from './FormLogin';
+import Hauptlogo from './Images/fertiges_logo';
 
 
 const Form_Log = () => {

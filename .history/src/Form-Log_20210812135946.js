@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Pages/FormLogin';
-import './Styles/FormLogin.css';
 import FormLogin from './Pages/FormLogin';
 import Hauptlogo from './Images/fertiges_logo.png';
 

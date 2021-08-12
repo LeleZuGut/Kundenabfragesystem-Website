@@ -1,14 +1,12 @@
-import "./FormFragenkatalog.css";
+import "../FormFragenkatalog.css";
 
 import React, { Component } from 'react'
-import { useHistory } from 'react-router-dom';
 
 
 export default class FormFragenkatalog extends Component {
 
    
     render() {
-        const history = useHistory();
 
         function Klettern() {
             
@@ -23,6 +21,7 @@ export default class FormFragenkatalog extends Component {
         }
         
         return (
+
             <div>
                 <p>Lele</p>
             </div>
