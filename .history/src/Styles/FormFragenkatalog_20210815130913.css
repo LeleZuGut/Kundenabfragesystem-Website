@@ -5,7 +5,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    margin-top: 26.6%;
+    margin-top: 32%;
     
 }
 
@@ -15,14 +15,14 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 7%;
-    margin-left: 5%;
-    height: 8px;
+    margin-top: 10%;
+
+    height: 10px;
     width: 80%;
 }
 
 .Wandern_main_heading{
-    margin-bottom: 10%;
+    margin-bottom: 15%;
     display: flex;
     justify-content: start;
     align-items: center;

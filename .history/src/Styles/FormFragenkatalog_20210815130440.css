@@ -5,26 +5,18 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    margin-top: 26.6%;
+    margin-top: 34%;
     
 }
 
 .Wandern_main_Strich{
 
-    background: black;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-top: 7%;
-    margin-left: 5%;
-    height: 8px;
-    width: 80%;
+
 }
 
 .Wandern_main_heading{
-    margin-bottom: 10%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
