@@ -16,10 +16,6 @@ export default class App extends Component {
           <Route exact path="/login" component={Form_Log} />
           <Route exact path="/main" component={Navbar} />
           <Route exact path="/fragen/Wandern" component={FormFragenkatalog} />
-          <Route exact path="/fragen/Ski" component={FormFragenkatalog} />
-          <Route exact path="/fragen/Klettern" component={FormFragenkatalog} />
-
-
           
 
 

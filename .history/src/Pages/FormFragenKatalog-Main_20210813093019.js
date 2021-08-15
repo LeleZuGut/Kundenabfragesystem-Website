@@ -49,10 +49,10 @@ function Navbar() {
         <h1>Herzlich willkommen in deinem Basecamp</h1>
         <p>Bitte wähle eine Kategorie</p>
         <div className="Main-Fragen-Img">
-          <FaIcons.FaHiking className="Wandern-Img" onClick={() => history.push("/fragen/Wandern")}/>
+          <FaIcons.FaHiking className="Wandern-Img" onClick={() => history.push("/fragen")} />
           
-          <FaIcons.FaSkiingNordic className="Ski-Img" onClick={() => history.push("/fragen/Ski")} />
-          <FaIcons.FaMountain className="Klettern-Img" onClick={() => history.push("/fragen/Klettern")}/>
+          <FaIcons.FaSkiingNordic className="Ski-Img" onClick="" />
+          <FaIcons.FaMountain className="Klettern-Img" onClick="" />
 
         </div>
       </div>

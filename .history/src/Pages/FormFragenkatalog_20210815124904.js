@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { SidebarData } from '../SidebarData';
-import Logo_MainPage from '../Images/Main-FragenPageLogo.PNG';
-import '../Styles/FormFragenkatalog.css';
-
 
 
 
@@ -17,12 +14,12 @@ const FormFragenKatalog = () => {
     const KletternURL = "/fragen/Klettern";
     const currentURL = window.location.pathname;
     const [sidebar, setSidebar] = useState(false);
-
+  
     const showSidebar = () => setSidebar(!sidebar);
 
     if (currentURL == WandernURL) {
 
-
+      
 
         return (
             <>
@@ -53,18 +50,9 @@ const FormFragenKatalog = () => {
                     </nav>
                 </IconContext.Provider>
 
-                <div className="Wandern_main_Strich">
-                    <h1 className="Wandern_main_heading">Meine Erfahrung</h1>
-                </div>
-
-                <div className="Wandern_main_logo">
-                    <img className='logobild' src={Logo_MainPage} alt='' />
-
-                </div>
-            </>
 
 
-
+            </div>
         );
 
     } else if (currentURL == SkiURL) {

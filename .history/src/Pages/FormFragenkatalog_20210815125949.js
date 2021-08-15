@@ -53,10 +53,6 @@ const FormFragenKatalog = () => {
                     </nav>
                 </IconContext.Provider>
 
-                <div className="Wandern_main_Strich">
-                    <h1 className="Wandern_main_heading">Meine Erfahrung</h1>
-                </div>
-
                 <div className="Wandern_main_logo">
                     <img className='logobild' src={Logo_MainPage} alt='' />
 
