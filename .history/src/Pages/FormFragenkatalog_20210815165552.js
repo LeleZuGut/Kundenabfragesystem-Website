@@ -87,25 +87,26 @@ const FormFragenKatalog = () => {
                 </IconContext.Provider>
 
                 <div className="Fragen-Selection">
-                    <div className="Wandern_main_Strich">
-
+                <div className="Wandern_main_Strich">
+                    
 
 
                         <h1 className="Wandern_main_heading">{Wquestions[currentQuestion].questionText}</h1>
 
-                    </div>
 
-
-                    <div className="Wandern_main_button">
-                    <button className="Wandern_main_button_weiter">
-                    Bergauf
-                    <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
- 
                         
-                    </button>
+
+
+                            <button className="Wandern_main_button_weiter">
+                                Bergauf
+                                <br></br>
+
+                                <span className="Wandern_main_button_weiter_span">(Weiter)</span>
+
+                                <HiIcons.HiArrowCircleRight className="Wandern_main_button_weiter_icon"></HiIcons.HiArrowCircleRight>
+                            </button>
                     </div>
                 </div>
-
 
                 <div className="Wandern_main_logo">
                     <img className='Wandern_main_logobild' src={Logo_MainPage} alt='' />

@@ -25,20 +25,20 @@ const FormFragenKatalog = () => {
     const Wquestions = [
         {
             questionText: "Wie erfahren Sind Sie beim wandern?",
-            answerOptions: [
-                { answerText: "Anfänger" },
-                { answerText: "Fortgeschritten" },
-                { answerText: "Profi" },
+            answerOptions:[
+                {answerText: "Anfänger"},
+                {answerText: "Fortgeschritten"},
+                {answerText: "Profi"},
 
             ],
         },
 
         {
             questionText: "Welche Schuhgröße haben Sie?",
-            answerOptions: [
-                { answerText: "40" },
-                { answerText: "41" },
-                { answerText: "42" },
+            answerOptions:[
+                {answerText: "40"},
+                {answerText: "41"},
+                {answerText: "42"},
 
             ],
         },
@@ -46,15 +46,15 @@ const FormFragenKatalog = () => {
     ];
     const [currentQuestion, setCurrentQuestion] = useState(0);
 
-    const handleAnswerButtonClick = () => {
+    const handleAnswerButtonClick = () =>{
         const nextquestion = currentQuestion + 1;
         setCurrentQuestion(nextquestion);
     }
-
+    
 
     if (currentURL == WandernURL) {
 
-
+        
 
 
         return (
@@ -86,29 +86,24 @@ const FormFragenKatalog = () => {
                     </nav>
                 </IconContext.Provider>
 
-                <div className="Fragen-Selection">
-                    <div className="Wandern_main_Strich">
+                <div className="Wandern_main_Strich">
+                    <div className = "Fragen-Selection">
 
+                    
+                    <h1 className="Wandern_main_heading">{Wquestions[currentQuestion].questionText}</h1>
 
-
-                        <h1 className="Wandern_main_heading">{Wquestions[currentQuestion].questionText}</h1>
-
-                    </div>
-
-
-                    <div className="Wandern_main_button">
                     <button className="Wandern_main_button_weiter">
-                    Bergauf
-                    <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
- 
-                        
+                        Bergauf
+                        <br></br>
+                        (Weiter)
+                        <HiIcons.HiArrowCircleRight className="Wandern_main_button_weiter_icon"></HiIcons.HiArrowCircleRight>
                     </button>
+
                     </div>
                 </div>
 
-
                 <div className="Wandern_main_logo">
-                    <img className='Wandern_main_logobild' src={Logo_MainPage} alt='' />
+                    <img className='logobild' src={Logo_MainPage} alt='' />
 
                 </div>
             </>

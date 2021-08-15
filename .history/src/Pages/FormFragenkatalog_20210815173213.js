@@ -98,8 +98,8 @@ const FormFragenKatalog = () => {
 
                     <div className="Wandern_main_button">
                     <button className="Wandern_main_button_weiter">
-                    Bergauf
-                    <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
+
+                    <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon">Bergauf</HiIcons.HiArrowCircleRight>
  
                         
                     </button>

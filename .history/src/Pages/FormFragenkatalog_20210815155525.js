@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import * as HiIcons from 'react-icons/hi';
-
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { SidebarData } from '../SidebarData';
@@ -25,36 +23,31 @@ const FormFragenKatalog = () => {
     const Wquestions = [
         {
             questionText: "Wie erfahren Sind Sie beim wandern?",
-            answerOptions: [
-                { answerText: "Anfänger" },
-                { answerText: "Fortgeschritten" },
-                { answerText: "Profi" },
+            answerOptions:[
+                {answerText: "Anfänger"},
+                {answerText: "Fortgeschritten"},
+                {answerText: "Profi"},
 
             ],
         },
 
         {
             questionText: "Welche Schuhgröße haben Sie?",
-            answerOptions: [
-                { answerText: "40" },
-                { answerText: "41" },
-                { answerText: "42" },
+            answerOptions:[
+                {answerText: "40"},
+                {answerText: "41"},
+                {answerText: "42"},
 
             ],
         },
 
     ];
-    const [currentQuestion, setCurrentQuestion] = useState(0);
 
-    const handleAnswerButtonClick = () => {
-        const nextquestion = currentQuestion + 1;
-        setCurrentQuestion(nextquestion);
-    }
-
+    
 
     if (currentURL == WandernURL) {
 
-
+        
 
 
         return (
@@ -86,29 +79,12 @@ const FormFragenKatalog = () => {
                     </nav>
                 </IconContext.Provider>
 
-                <div className="Fragen-Selection">
-                    <div className="Wandern_main_Strich">
-
-
-
-                        <h1 className="Wandern_main_heading">{Wquestions[currentQuestion].questionText}</h1>
-
-                    </div>
-
-
-                    <div className="Wandern_main_button">
-                    <button className="Wandern_main_button_weiter">
-                    Bergauf
-                    <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
- 
-                        
-                    </button>
-                    </div>
+                <div className="Wandern_main_Strich">
+                    <h1 className="Wandern_main_heading">{questions.questionText}</h1>
                 </div>
 
-
                 <div className="Wandern_main_logo">
-                    <img className='Wandern_main_logobild' src={Logo_MainPage} alt='' />
+                    <img className='logobild' src={Logo_MainPage} alt='' />
 
                 </div>
             </>
