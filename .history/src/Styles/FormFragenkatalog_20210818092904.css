@@ -1,0 +1,132 @@
+.Wandern_main_logo{
+    background:black;
+    height: 204px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 3.5%;
+    
+}
+
+.Wandern_main_Strich{
+
+    background: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 7%;
+    margin-left: 5%;
+    height: 8px;
+    width: 80%;
+}
+
+.Wandern_main_heading{
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+.Wandern_main_button{
+    margin-top: 20%;
+    margin-left: 75%;
+}
+.Wandern_main_button_weiter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32%;
+    height: 59px;
+    border-color: black;
+    background: black;
+    outline: none;
+    border: none;
+    color:white;
+    font-size: 1.2rem;
+}
+
+.Wandern_main_button_icon{
+    margin-left: 7%;
+    width: 70%;
+    height: 60%;
+}
+
+
+
+.Wandern_main_logobild{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 75%;   
+    margin-bottom: 7%;
+    width: 20%;
+    height: 100%;
+}
+
+.Ski_main_logo{
+    background:black;
+    height: 204px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 3.5%;
+    
+}
+
+.Ski_main_Strich{
+
+    background: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 7%;
+    margin-left: 5%;
+    height: 8px;
+    width: 80%;
+}
+
+.Ski_main_heading{
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+.Ski_main_button{
+    margin-top: 20%;
+    margin-left: 75%;
+}
+.Ski_main_button_weiter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32%;
+    height: 59px;
+    border-color: black;
+    background: black;
+    outline: none;
+    border: none;
+    color:white;
+    font-size: 1.2rem;
+}
+
+.Ski_main_button_icon{
+    margin-left: 7%;
+    width: 70%;
+    height: 60%;
+}
+
+
+
+.Wandern_main_logobild{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 75%;   
+    margin-bottom: 2%;
+    width: 20%;
+    height: 100%;
+}
+

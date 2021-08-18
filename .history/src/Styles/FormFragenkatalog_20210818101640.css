@@ -1,0 +1,222 @@
+.Wandern_main_logo{
+    background:black;
+    height: 184px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 3.5%;
+    
+}
+
+.Wandern_main_Strich{
+
+    background: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 7%;
+    margin-left: 5%;
+    height: 8px;
+    width: 80%;
+}
+
+.Wandern_main_heading{
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+
+.Wandern_main_button{
+    margin-top: 20%;
+    margin-left: 75%;
+}
+.Wandern_main_button_weiter{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 25%;
+    height: 54px;
+    background-color: white;
+    outline: none;
+    border: 2px solid #C0C0C0;
+    color:black;
+    font-size: 1.25rem;
+}
+
+.Wandern_main_button_z{
+    
+
+}
+
+.Wandern_main_button_zurück{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 7%;
+    height: 59px;
+    background-color: white;
+    outline: none;
+    border: 2px solid #C0C0C0;
+    color:black;
+    font-size: 1.25rem;
+}
+
+.Wandern_main_button_icon_zurück{
+    margin-left: 10%;
+    width: 70%;
+    height: 60%; 
+}
+
+.Wandern_main_button_icon{
+    margin-left: 10%;
+    width: 70%;
+    height: 60%;
+}
+
+
+
+.Wandern_main_logobild{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 75%;   
+    margin-bottom: 2%;
+    width: 20%;
+    height: 100%;
+}
+
+.Ski_main_logo{
+    background:black;
+    height: 204px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 3.5%;
+    
+}
+
+.Ski_main_Strich{
+
+    background: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 7%;
+    margin-left: 5%;
+    height: 8px;
+    width: 80%;
+}
+
+.Ski_main_heading{
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+.Ski_main_button{
+    margin-top: 20%;
+    margin-left: 75%;
+}
+.Ski_main_button_weiter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 59px;
+    background-color: white;
+    outline: none;
+    border: 2px solid #C0C0C0;
+    color:black;
+    font-size: 1.25rem;
+}
+
+.Ski_main_button_icon{
+    margin-left: 10%;
+    width: 70%;
+    height: 60%;
+}
+
+
+
+.Ski_main_logobild{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 75%;   
+    margin-bottom: 7%;
+    width: 20%;
+    height: 100%;
+}
+
+
+
+.Klettern_main_logo{
+    background:black;
+    height: 204px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 3.5%;
+    
+}
+
+.Klettern_main_Strich{
+
+    background: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 7%;
+    margin-left: 5%;
+    height: 8px;
+    width: 80%;
+}
+
+.Klettern_main_heading{
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+.Klettern_main_button{
+    margin-top: 20%;
+    margin-left: 75%;
+}
+.Klettern_main_button_weiter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 59px;
+    background-color: white;
+    outline: none;
+    border: 2px solid #C0C0C0;
+    color:black;
+    font-size: 1.25rem;
+}
+
+.Klettern_main_button_icon{
+    margin-left: 10%;
+    width: 70%;
+    height: 60%;
+}
+
+
+
+.Klettern_main_logobild{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 75%;   
+    margin-bottom: 7%;
+    width: 20%;
+    height: 100%;
+}
+
