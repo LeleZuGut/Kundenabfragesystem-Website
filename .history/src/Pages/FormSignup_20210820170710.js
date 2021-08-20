@@ -56,7 +56,6 @@ const FormSignup = ({ submitForm }) => {
       Name: username,
       Password: password
     }
-    console.log("User", user);
     let data = await axios.post('http://localhost:5000/api/Customer/insert', user)
     .then(response => {
       console.log(response)

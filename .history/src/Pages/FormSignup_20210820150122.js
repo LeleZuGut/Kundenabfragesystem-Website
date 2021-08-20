@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import '../Styles/FormSignup.css';
 import { useHistory } from 'react-router-dom';
 import Recaptcha from 'react-recaptcha';
@@ -24,18 +23,32 @@ const FormSignup = ({ submitForm }) => {
 
   function onSubmitChange() {
 
+    let user={
+      username,
+      email,
+      password,
+      confirmpassword
+    }
+    
 
-
-    if (captcha == " ") {
-      setCaptcha(" ");
-
-    } else {
-      setCaptcha("Bitte das auch noch bestätigen");
-
-
+    if (username == "" || email == "" || password == "" || confirmpassword == "" || password != confirmpassword) {
+    }
+    else {
+      alert("DB Speichern");
     }
 
+    if (captcha ==" ") {
+      setCaptcha(" ");
 
+    }else
+    {
+       setCaptcha("Bitte das auch noch bestätigen");
+
+      
+    }
+
+   
+    console.log("User",user);
 
   }
 
@@ -50,35 +63,9 @@ const FormSignup = ({ submitForm }) => {
   }
   const history = useHistory();
 
-  const postData = async() =>{
-    let user = {
-      Email: email,
-      Name: username,
-      Password: password
-    }
-    console.log("User", user);
-    let data = await axios.post('http://localhost:5000/api/Customer/insert', user)
-    .then(response => {
-      console.log(response)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    console.log(data);
-  }
-
   const submitHandler = (e) => {
 
     if (error == "" & captcha == " ") {
-      
-
-      if (username == "" || email == "" || password == "" || confirmpassword == "" || password != confirmpassword) {
-
-
-      } else {
-        postData();
-      }
-
       history.push("/main");
     } else {
       e.preventDefault();
@@ -179,8 +166,8 @@ const FormSignup = ({ submitForm }) => {
             sitekey="6LegDPMbAAAAANZWpLaRCJ1dgTG9wC2bplGQz9xy"
             render="explicit"
             onloadCallback={recaptchaloaded}
-            verifyCallback={(e) => setCaptcha(" ")}
-
+            verifyCallback= {(e) => setCaptcha(" ")}
+            
           />
         </div>
         <p className="errorvalidation">{captcha}</p>
