@@ -99,28 +99,27 @@ const FormFragenKatalog = () => {
                     </nav>
                 </IconContext.Provider>
 
+                <div className="Wandern_main_Strich">
+                    <h1 className="Wandern_main_heading">{userarr[useseitenanzahl].question}</h1>
+                </div>
+
                 <div className="liste_seitennummerierung">
 
                 {userarr.map((usear, index) =>
                     (
                         <div key={index}>
                             <div>
-                                
-                            <span>{index+1}</span> 
+                                <ul>
+                                    <br></br>
+                                {index+1}
+                                    
 
-                                  
-                                
+                                </ul>
                             </div>
                         </div>
                     )
                     )}
                 </div>
-
-                <div className="Wandern_main_Strich">
-                    <h1 className="Wandern_main_heading">{userarr[useseitenanzahl].question}</h1>
-                </div>
-
-                
 
 
 

@@ -106,7 +106,7 @@ const FormFragenKatalog = () => {
                         <div key={index}>
                             <div>
                                 
-                            <span>{index+1}</span> 
+                            <p>{index+1+ ","}</p> 
 
                                   
                                 

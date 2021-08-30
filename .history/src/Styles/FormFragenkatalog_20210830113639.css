@@ -5,7 +5,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    margin-top: 4.51%;
+    margin-top: 5.5%;
     
 }
 
@@ -15,20 +15,16 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 3.8%;
+    margin-top: 7%;
     margin-left: 5%;
     height: 8px;
     width: 80%;
 }
 
 .liste_seitennummerierung{
-    
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-left: 90%;
-    margin-top: 2%;
-    font-size: 35px;
 }
 
 .Wandern_main_heading{
