@@ -56,32 +56,22 @@ const FormFragenKatalog = () => {
         else {
 
         }
-      
+        function SeitenanzahlDesign() {
+            var c = document.getElementById(useseitenanzahl + 1).style.font;
+
+            return c;
+        }
         const button_weiter = () => {
-            if(userarr.length == useseitenanzahl+1)
-            {
-                alert("kannst nicht mehr weitergehen");
-            }
-            else
-            {
-                setUseseitenanzahl(useseitenanzahl + 1);
-
-            }
-
+            setUseseitenanzahl(useseitenanzahl + 1);
+            SeitenanzahlDesign()
         }
 
         const button_zurück = () => {
-            if(useseitenanzahl-1 < 0)
-            {
-                alert("kannst nicht mehr zurückgehen");
-            }
-            else
-            {
-                setUseseitenanzahl(useseitenanzahl - 1);
-
-            }
+            setUseseitenanzahl(useseitenanzahl - 1);
+            SeitenanzahlDesign();
 
         }
+
 
 
         return (

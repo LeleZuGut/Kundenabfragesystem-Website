@@ -60,7 +60,7 @@ const FormFragenKatalog = () => {
         const button_weiter = () => {
             if(userarr.length == useseitenanzahl+1)
             {
-                alert("kannst nicht mehr weitergehen");
+                alert("keine Fragen mehr");
             }
             else
             {

@@ -58,31 +58,15 @@ const FormFragenKatalog = () => {
         }
       
         const button_weiter = () => {
-            if(userarr.length == useseitenanzahl+1)
-            {
-                alert("kannst nicht mehr weitergehen");
-            }
-            else
-            {
-                setUseseitenanzahl(useseitenanzahl + 1);
-
-            }
-
+            setUseseitenanzahl(useseitenanzahl + 1);
         }
 
         const button_zurück = () => {
-            if(useseitenanzahl-1 < 0)
-            {
-                alert("kannst nicht mehr zurückgehen");
-            }
-            else
-            {
-                setUseseitenanzahl(useseitenanzahl - 1);
-
-            }
+            setUseseitenanzahl(useseitenanzahl - 1);
 
         }
 
+        console.log(userarr.length);
 
         return (
             <>

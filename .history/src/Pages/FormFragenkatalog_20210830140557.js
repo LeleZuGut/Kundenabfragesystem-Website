@@ -42,8 +42,18 @@ const FormFragenKatalog = () => {
             })
 
     }
+   
 
+    const button_weiter = ()=>{
+        setUseseitenanzahl(useseitenanzahl+1);
+        document.getElementById(useseitenanzahl).style.font;
+    }
 
+    const button_zurück = ()=>{
+        setUseseitenanzahl(useseitenanzahl-1);
+        document.getElementById(useseitenanzahl).style.font;
+
+    }
 
 
     if (currentURL == WandernURL) {
@@ -54,32 +64,6 @@ const FormFragenKatalog = () => {
 
         }
         else {
-
-        }
-      
-        const button_weiter = () => {
-            if(userarr.length == useseitenanzahl+1)
-            {
-                alert("kannst nicht mehr weitergehen");
-            }
-            else
-            {
-                setUseseitenanzahl(useseitenanzahl + 1);
-
-            }
-
-        }
-
-        const button_zurück = () => {
-            if(useseitenanzahl-1 < 0)
-            {
-                alert("kannst nicht mehr zurückgehen");
-            }
-            else
-            {
-                setUseseitenanzahl(useseitenanzahl - 1);
-
-            }
 
         }
 
@@ -115,15 +99,15 @@ const FormFragenKatalog = () => {
 
                 <div className="liste_seitennummerierung">
 
-                    {userarr.map((usear, index) =>
+                {userarr.map((usear, index) =>
                     (
                         <div key={index}>
                             <div>
+                                
+                            <span id={index+1}>{index+1}</span> 
 
-                                <span id={index + 1}>{index + 1}</span>
-
-
-
+                                  
+                                
                             </div>
                         </div>
                     )
@@ -134,7 +118,7 @@ const FormFragenKatalog = () => {
                     <h1 className="Wandern_main_heading">{userarr[useseitenanzahl].question}</h1>
                 </div>
 
-
+                
 
 
 
