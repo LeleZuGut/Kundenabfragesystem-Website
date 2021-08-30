@@ -49,14 +49,6 @@ const FormFragenKatalog = () => {
         setCurrentQuestion(nextquestion);
     }
 
-    const button_weiter = ()=>{
-        setUseseitenanzahl(useseitenanzahl+1);
-    }
-
-    const button_zurück = ()=>{
-        setUseseitenanzahl(useseitenanzahl-1);
-    }
-
 
     if (currentURL == WandernURL) {
 
@@ -110,7 +102,7 @@ const FormFragenKatalog = () => {
 
 
                     <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück}>
+                        <button className="Wandern_main_button_zurück">
                             <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
                             Bergab
 
@@ -119,7 +111,7 @@ const FormFragenKatalog = () => {
 
                     </div>
                     <div className="Wandern_main_button">
-                        <button className="Wandern_main_button_weiter" onClick={button_weiter}>
+                        <button className="Wandern_main_button_weiter">
                             Bergauf
                             <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
 

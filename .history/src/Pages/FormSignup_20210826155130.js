@@ -69,6 +69,7 @@ const FormSignup = ({ submitForm }) => {
     .catch(error => {
       console.log(error)
     })
+    console.log(data);
   }
   
 

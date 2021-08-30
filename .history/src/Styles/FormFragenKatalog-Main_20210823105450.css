@@ -129,10 +129,6 @@
 
   @media only screen and (max-width: 1024px){
 
-    body{
-      background-color: white;
-    }
-
     .Main-Fragen-Heading{
       justify-content: start;
       align-items: center;
@@ -179,4 +175,52 @@
     }
   }
 
- 
+  @media (orientation: landscape){
+
+    .Main-Fragen-Heading{
+      justify-content: start;
+      align-items: center;
+      margin-top: 12%;
+      margin-left: 15%;
+  
+    }
+
+    .main_logo{
+      background:black;
+      height: 204px;
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      margin-top: 39.5%;
+      
+    }
+
+    .Main-Fragen-Img{
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      margin-top: 10%;
+      margin-left: 13%;
+  }
+
+    .Wandern-Img{
+      width: 15%;
+      height: 15%;
+    }
+  
+    .Ski-Img{
+      margin-left: 5%;
+      width: 15%;
+      height: 15%;
+      
+    }
+  
+    .Klettern-Img{
+      margin-left: 5%;
+      width: 15%;
+      height: 15%;
+    }
+  }
+  
+

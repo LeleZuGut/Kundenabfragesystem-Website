@@ -1,6 +1,6 @@
 .Wandern_main_logo{
     background:black;
-    height: 194px;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: end;
@@ -21,16 +21,8 @@
     width: 80%;
 }
 
-.liste_seitennummerierung{
-
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
 .Wandern_main_heading{
-    
-    margin-bottom: 18%;
+    margin-bottom: 10%;
     display: flex;
     justify-content: start;
     align-items: center;

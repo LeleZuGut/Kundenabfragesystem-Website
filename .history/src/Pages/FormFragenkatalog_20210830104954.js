@@ -22,13 +22,13 @@ const FormFragenKatalog = () => {
     const KletternURL = "/fragen/Klettern";
     const currentURL = window.location.pathname;
     const [sidebar, setSidebar] = useState(false);
-    const [useseitenanzahl, setUseseitenanzahl] = useState(0);
 
     const showSidebar = () => setSidebar(!sidebar);
 
-
-
-
+  
+    const userquestions =  userarr.map((usear,index) =>
+    <li key= {index}>{userarr.question}</li>)
+    
 
     const getData = async () => {
 
@@ -47,14 +47,6 @@ const FormFragenKatalog = () => {
     const handleAnswerButtonClick = () => {
         const nextquestion = currentQuestion + 1;
         setCurrentQuestion(nextquestion);
-    }
-
-    const button_weiter = ()=>{
-        setUseseitenanzahl(useseitenanzahl+1);
-    }
-
-    const button_zurück = ()=>{
-        setUseseitenanzahl(useseitenanzahl-1);
     }
 
 
@@ -99,18 +91,32 @@ const FormFragenKatalog = () => {
                     </nav>
                 </IconContext.Provider>
 
-                <div className="Wandern_main_Strich">
-                    <h1 className="Wandern_main_heading">{userarr[useseitenanzahl].question}</h1>
-                </div>
 
+                
+                    {userarr.map((usear, index) =>
+                    (
+                        <div key={index}>
+                            <div className="Wandern_main_Strich"> 
+                            <h1 className="Wandern_main_heading">{usear.question}</h1>
+                            </div>
+                            <div className="liste_seitennummerierung">
+                                <ul>
+                                    <li>
+                                        {index + 1}
+                                    </li>
 
+                                </ul>
+                            </div>
+                        </div>
+                    )
+                    )}
 
                 <div className="Fragen-Selection">
 
 
 
                     <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück}>
+                        <button className="Wandern_main_button_zurück">
                             <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
                             Bergab
 
@@ -119,7 +125,7 @@ const FormFragenKatalog = () => {
 
                     </div>
                     <div className="Wandern_main_button">
-                        <button className="Wandern_main_button_weiter" onClick={button_weiter}>
+                        <button className="Wandern_main_button_weiter">
                             Bergauf
                             <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
 
@@ -178,7 +184,7 @@ const FormFragenKatalog = () => {
 
 
 
-                    <h1 className="Ski_main_heading"></h1>
+                    <h1 className="Ski_main_heading">{Squestions[currentQuestion].questionText}</h1>
 
                 </div>
 
@@ -252,7 +258,7 @@ const FormFragenKatalog = () => {
 
 
 
-                    <h1 className="Klettern_main_heading"></h1>
+                    <h1 className="Klettern_main_heading">{Kquestions[currentQuestion].questionText}</h1>
 
                 </div>
 

@@ -21,16 +21,8 @@
     width: 80%;
 }
 
-.liste_seitennummerierung{
-
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
 .Wandern_main_heading{
-    
-    margin-bottom: 18%;
+    margin-bottom: 15%;
     display: flex;
     justify-content: start;
     align-items: center;

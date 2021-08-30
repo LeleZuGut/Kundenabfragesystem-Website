@@ -57,18 +57,14 @@ const FormSignup = ({ submitForm }) => {
       Password: password
     }
     console.log("User", user);
-    await axios.post('http://localhost:8080/api/Customer/insert', user,{
-      auth:{
-        username:"lele",
-        password:"123"
-      }
-    })
+    let data = await axios.post('http://localhost:5000/api/Customer/insert', user)
     .then(response => {
       console.log(response)
     })
     .catch(error => {
       console.log(error)
     })
+    console.log(data);
   }
   
 
@@ -81,7 +77,7 @@ const FormSignup = ({ submitForm }) => {
 
 
       } else {
-        postData();
+        //postData();
       }
 
       history.push("/main");

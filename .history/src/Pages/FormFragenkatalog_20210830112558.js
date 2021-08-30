@@ -53,10 +53,6 @@ const FormFragenKatalog = () => {
         setUseseitenanzahl(useseitenanzahl+1);
     }
 
-    const button_zurück = ()=>{
-        setUseseitenanzahl(useseitenanzahl-1);
-    }
-
 
     if (currentURL == WandernURL) {
 
@@ -110,7 +106,7 @@ const FormFragenKatalog = () => {
 
 
                     <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück}>
+                        <button className="Wandern_main_button_zurück">
                             <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
                             Bergab
 
