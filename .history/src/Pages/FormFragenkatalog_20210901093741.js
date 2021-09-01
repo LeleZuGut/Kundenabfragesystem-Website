@@ -32,15 +32,15 @@ const FormFragenKatalog = () => {
     const check_Nummerierung = () => {
 
         for (var i = 1; i < questionarr.length; i++) {
-            if (questionarr[useseitenanzahl].id == i) {
+            if (questionarr[useseitenanzahl].question == i) {
                 var r = document.getElementById(i).style.fontWeight.bold;
                 var r = document.getElementById(i).style.color = "blue";
 
                
             }
             else {
-                var r = document.getElementById(i).style.fontWeight = "normal";
-                var r = document.getElementById(i).style.color = "red";
+                var r = document.getElementById(i).style.fontWeight.bold;
+                var r = document.getElementById(i).style.color = "black";
 
                 
             }

@@ -32,20 +32,18 @@ const FormFragenKatalog = () => {
     const check_Nummerierung = () => {
 
         for (var i = 1; i < questionarr.length; i++) {
-            if (questionarr[useseitenanzahl].id == i) {
+            if (questionarr[useseitenanzahl].question == i) {
                 var r = document.getElementById(i).style.fontWeight.bold;
                 var r = document.getElementById(i).style.color = "blue";
 
-               
+                return r;
             }
             else {
-                var r = document.getElementById(i).style.fontWeight = "normal";
-                var r = document.getElementById(i).style.color = "red";
+                var r = document.getElementById(i).style.fontWeight.bold;
+                var r = document.getElementById(i).style.color = "black";
 
-                
+                return r;
             }
-
-            return r;
 
         }
 
@@ -86,14 +84,11 @@ const FormFragenKatalog = () => {
             })
 
 
-            check_Nummerierung();
-            var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
-            return r;
+
 
 
 
     }
-
 
     if (questionarr == "") {
         getData();
@@ -119,8 +114,6 @@ const FormFragenKatalog = () => {
                 var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
 
-                setUseseitenanzahl(useseitenanzahl + 1);
-
                 return r, r1;
 
             }
@@ -141,11 +134,9 @@ const FormFragenKatalog = () => {
         }
 
         const button_zurück = () => {
-            if (useseitenanzahl - 1 < 1) {
+            if (useseitenanzahl - 1 < 0) {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
-                setUseseitenanzahl(useseitenanzahl - 1);
-
                 return r, r1;
             }
             else {

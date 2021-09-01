@@ -39,7 +39,7 @@ const FormFragenKatalog = () => {
                
             }
             else {
-                var r = document.getElementById(i).style.fontWeight = "normal";
+                var r = document.getElementById(i).style.fontWeight.bold;
                 var r = document.getElementById(i).style.color = "red";
 
                 

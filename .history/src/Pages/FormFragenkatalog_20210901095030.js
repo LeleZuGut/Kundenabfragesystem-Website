@@ -88,6 +88,7 @@ const FormFragenKatalog = () => {
 
             check_Nummerierung();
             var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
+            var r = document.getElementById(2).style.color = "blue";
             return r;
 
 

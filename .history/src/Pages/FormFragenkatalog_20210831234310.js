@@ -18,7 +18,7 @@ const FormFragenKatalog = () => {
 
     const [questionarr, setQuestionarr] = useState([""]);
     const [answerarr, setAnswerarr] = useState([""]);
-
+    
     const WandernURL = "/fragen/Wandern";
     const SkiURL = "/fragen/Ski";
     const KletternURL = "/fragen/Klettern";
@@ -29,39 +29,18 @@ const FormFragenKatalog = () => {
     const showSidebar = () => setSidebar(!sidebar);
 
 
-    const check_Nummerierung = () => {
 
-        for (var i = 1; i < questionarr.length; i++) {
-            if (questionarr[useseitenanzahl].id == i) {
-                var r = document.getElementById(i).style.fontWeight.bold;
-                var r = document.getElementById(i).style.color = "blue";
-
-               
-            }
-            else {
-                var r = document.getElementById(i).style.fontWeight = "normal";
-                var r = document.getElementById(i).style.color = "red";
-
-                
-            }
-
-            return r;
-
-        }
-
-
-    }
 
 
     const getData = async () => {
 
         await axios.get("http://localhost:8080/api/Questions/all"
-            , {
-                auth: {
-                    username: "admin",
-                    password: "adminpassword"
-                }
-            })
+        ,{
+            auth:{
+                username:"admin",
+                password:"adminpassword"
+              }
+        })
             .then(result => {
                 setQuestionarr(result.data);
 
@@ -70,13 +49,13 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-        await axios.get("http://localhost:8080/api/Answer/all"
-            , {
-                auth: {
-                    username: "admin",
-                    password: "adminpassword"
-                }
-            })
+         await axios.get("http://localhost:8080/api/Answer/all"
+         ,{
+             auth:{
+                username:"admin",
+                password:"adminpassword"
+              }
+         })
             .then(result => {
                 setAnswerarr(result.data);
 
@@ -86,22 +65,6 @@ const FormFragenKatalog = () => {
             })
 
 
-            check_Nummerierung();
-            var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
-            return r;
-
-
-
-    }
-
-
-    if (questionarr == "") {
-        getData();
-
-
-
-    }
-    else {
     }
 
 
@@ -109,59 +72,57 @@ const FormFragenKatalog = () => {
 
     if (currentURL == WandernURL) {
 
-       
+        if (questionarr == "") {
+            getData();
+
+
+
+
+        }
+        else {
+
+        }
 
         
 
 
         const button_weiter = () => {
-            if (questionarr.length == questionarr[useseitenanzahl].id + 1) {
+            if (questionarr.length == useseitenanzahl + 1) {
                 var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
 
-                setUseseitenanzahl(useseitenanzahl + 1);
-
-                return r, r1;
+                return r,r1;
 
             }
             else {
-
                 var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
-                var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
-
                 setUseseitenanzahl(useseitenanzahl + 1);
-                return r, r1;
+                return r;
 
             }
 
-
+            
 
 
 
         }
 
         const button_zurück = () => {
-            if (useseitenanzahl - 1 < 1) {
+            if (useseitenanzahl - 1 < 0) {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
-                var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
-                setUseseitenanzahl(useseitenanzahl - 1);
-
-                return r, r1;
+                return r;
             }
             else {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
-                var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
-
                 setUseseitenanzahl(useseitenanzahl - 1);
-                return r, r1;
+                return r;
 
             }
 
         }
 
-        //check_Nummerierung();
-
-
+        console.log(questionarr);
+        console.log(answerarr);
         return (
             <>
                 <IconContext.Provider value={{ color: '#fff' }}>

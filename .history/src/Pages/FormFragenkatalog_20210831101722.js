@@ -17,8 +17,7 @@ import axios from 'axios';
 const FormFragenKatalog = () => {
 
     const [questionarr, setQuestionarr] = useState([""]);
-    const [answerarr, setAnswerarr] = useState([""]);
-
+    const[answerarr, setAnswerarr] = useState([""]);
     const WandernURL = "/fragen/Wandern";
     const SkiURL = "/fragen/Ski";
     const KletternURL = "/fragen/Klettern";
@@ -29,39 +28,12 @@ const FormFragenKatalog = () => {
     const showSidebar = () => setSidebar(!sidebar);
 
 
-    const check_Nummerierung = () => {
 
-        for (var i = 1; i < questionarr.length; i++) {
-            if (questionarr[useseitenanzahl].id == i) {
-                var r = document.getElementById(i).style.fontWeight.bold;
-                var r = document.getElementById(i).style.color = "blue";
-
-               
-            }
-            else {
-                var r = document.getElementById(i).style.fontWeight = "normal";
-                var r = document.getElementById(i).style.color = "red";
-
-                
-            }
-
-            return r;
-
-        }
-
-
-    }
 
 
     const getData = async () => {
 
-        await axios.get("http://localhost:8080/api/Questions/all"
-            , {
-                auth: {
-                    username: "admin",
-                    password: "adminpassword"
-                }
-            })
+        let response = await axios.get("http://localhost:8080/api/Questions/all")
             .then(result => {
                 setQuestionarr(result.data);
 
@@ -70,13 +42,7 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-        await axios.get("http://localhost:8080/api/Answer/all"
-            , {
-                auth: {
-                    username: "admin",
-                    password: "adminpassword"
-                }
-            })
+            let response2 = await axios.get("http://localhost:8080/api/Answer/all")
             .then(result => {
                 setAnswerarr(result.data);
 
@@ -86,22 +52,6 @@ const FormFragenKatalog = () => {
             })
 
 
-            check_Nummerierung();
-            var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
-            return r;
-
-
-
-    }
-
-
-    if (questionarr == "") {
-        getData();
-
-
-
-    }
-    else {
     }
 
 
@@ -109,57 +59,47 @@ const FormFragenKatalog = () => {
 
     if (currentURL == WandernURL) {
 
-       
+        if (questionarr == "") {
+            getData();
 
-        
+            
 
 
+        }
+        else {
+
+        }
+
+        for(var i = 0; i < answerarr.length; i++)
+            {
+               console.log(answerarr[i].answers);
+            }
+      
         const button_weiter = () => {
-            if (questionarr.length == questionarr[useseitenanzahl].id + 1) {
-                var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "hidden";
-                var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
-
+            if(questionarr.length == useseitenanzahl+1)
+            {
+                alert("kannst nicht mehr weitergehen");
+            }
+            else
+            {
                 setUseseitenanzahl(useseitenanzahl + 1);
 
-                return r, r1;
-
             }
-            else {
-
-                var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
-                var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
-
-                setUseseitenanzahl(useseitenanzahl + 1);
-                return r, r1;
-
-            }
-
-
-
-
 
         }
 
         const button_zurück = () => {
-            if (useseitenanzahl - 1 < 1) {
-                var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
-                var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
-                setUseseitenanzahl(useseitenanzahl - 1);
-
-                return r, r1;
+            if(useseitenanzahl-1 < 0)
+            {
+                alert("kannst nicht mehr zurückgehen");
             }
-            else {
-                var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
-                var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
-
+            else
+            {
                 setUseseitenanzahl(useseitenanzahl - 1);
-                return r, r1;
 
             }
 
         }
-
-        //check_Nummerierung();
 
 
         return (
@@ -198,7 +138,7 @@ const FormFragenKatalog = () => {
                         <div key={index}>
                             <div>
 
-                                <span id={usear.id}>{usear.id}</span>
+                                <span id={index + 1}>{index + 1}</span>
 
 
 
@@ -228,7 +168,7 @@ const FormFragenKatalog = () => {
 
 
                     <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück">
+                        <button className="Wandern_main_button_zurück" onClick={button_zurück}>
                             <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
                             Bergab
 
@@ -237,7 +177,7 @@ const FormFragenKatalog = () => {
 
                     </div>
                     <div className="Wandern_main_button">
-                        <button className="Wandern_main_button_weiter" onClick={button_weiter} id="Wandern_main_button_weiter">
+                        <button className="Wandern_main_button_weiter" onClick={button_weiter}>
                             Bergauf
                             <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
 
