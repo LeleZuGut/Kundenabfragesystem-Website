@@ -11,6 +11,9 @@ import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
 
 
+
+
+
 const FormFragenKatalog = () => {
 
     const [questionarr, setQuestionarr] = useState([""]);
@@ -29,31 +32,22 @@ const FormFragenKatalog = () => {
     const check_Nummerierung = () => {
 
         for (var i = 1; i <= questionarr.length; i++) {
+            if (questionarr[useseitenanzahl].id == i) {
+                var r = document.getElementById(i).style.fontWeight.bold;
+                var r = document.getElementById(i).style.color = "blue";
 
-            if(document.getElementById(i) == null)
-            {
 
             }
-            else
-            {
+            else {
+                var r = document.getElementById(i).style.fontWeight = "normal";
+                var r = document.getElementById(i).style.color = "black";
 
-                if (questionarr[useseitenanzahl].id == i) {
-                    var r = document.getElementById(i).style.fontWeight.bold;
-                    var r = document.getElementById(i).style.color = "blue";
-    
-                }
-                else {
-                    var r = document.getElementById(i).style.fontWeight = "normal";
-                    var r = document.getElementById(i).style.color = "black";
-    
-                }
+
             }
+
+
 
         }
-
-        
-
-        
 
         return r;
     }
@@ -92,19 +86,35 @@ const FormFragenKatalog = () => {
             })
 
 
+
+
+
+
+
     }
 
 
     if (questionarr == "") {
         getData();
 
+
+
+
     }
     else {
 
 
+
     }
 
+
+
+
     if (currentURL == WandernURL) {
+
+
+
+
 
 
         const button_weiter = () => {
@@ -114,6 +124,9 @@ const FormFragenKatalog = () => {
 
                 setUseseitenanzahl(useseitenanzahl + 1);
 
+
+
+
             }
             else {
 
@@ -121,6 +134,9 @@ const FormFragenKatalog = () => {
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
 
                 setUseseitenanzahl(useseitenanzahl + 1);
+
+
+
             }
 
             check_Nummerierung();
@@ -135,12 +151,14 @@ const FormFragenKatalog = () => {
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
                 setUseseitenanzahl(useseitenanzahl - 1);
 
+
             }
             else {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
 
                 setUseseitenanzahl(useseitenanzahl - 1);
+
 
             }
 
@@ -149,10 +167,13 @@ const FormFragenKatalog = () => {
 
         }
 
-     
+        window.onload = function(){
+            check_Nummerierung();
+            var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
+            return r;
+        }
 
-        window.onchange = check_Nummerierung();
-        
+
 
         return (
             <>
@@ -220,7 +241,7 @@ const FormFragenKatalog = () => {
 
 
                     <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" style={{visibility: "hidden"}}>
+                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück">
                             <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
                             Bergab
 
@@ -248,166 +269,162 @@ const FormFragenKatalog = () => {
 
                 </div>
 
-
+              
             </>
 
 
-
+  
         );
 
-
+         
     } else if (currentURL == SkiURL) {
 
-        return (
-            <>
-                <IconContext.Provider value={{ color: '#fff' }}>
-                    <div className='navbar'>
-                        <Link to='#' className='menu-bars'>
-                            <FaIcons.FaBars onClick={showSidebar} />
-                        </Link>
-                    </div>
-                    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                        <ul className='nav-menu-items' onClick={showSidebar}>
-                            <li className='navbar-toggle'>
-                                <Link to='#' className='menu-bars'>
-                                    <AiIcons.AiOutlineClose />
-                                </Link>
-                            </li>
-                            {SidebarData.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </nav>
-                </IconContext.Provider>
+    return (
+        <>
+            <IconContext.Provider value={{ color: '#fff' }}>
+                <div className='navbar'>
+                    <Link to='#' className='menu-bars'>
+                        <FaIcons.FaBars onClick={showSidebar} />
+                    </Link>
+                </div>
+                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                    <ul className='nav-menu-items' onClick={showSidebar}>
+                        <li className='navbar-toggle'>
+                            <Link to='#' className='menu-bars'>
+                                <AiIcons.AiOutlineClose />
+                            </Link>
+                        </li>
+                        {SidebarData.map((item, index) => {
+                            return (
+                                <li key={index} className={item.cName}>
+                                    <Link to={item.path}>
+                                        {item.icon}
+                                        <span>{item.title}</span>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </nav>
+            </IconContext.Provider>
 
-                <div className="Ski_main_Strich">
+            <div className="Ski_main_Strich">
 
 
 
-                    <h1 className="Ski_main_heading"></h1>
+                <h1 className="Ski_main_heading"></h1>
+
+            </div>
+
+            <div className="Ski_Fragen-Selection">
+
+
+
+                <div className="Ski_main_button_z">
+                    <button className="Ski_main_button_zurück">
+                        <HiIcons.HiArrowCircleLeft className="Ski_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
+
+                        Bergab
+
+
+                    </button>
 
                 </div>
-
-                <div className="Ski_Fragen-Selection">
-
-
-
-                    <div className="Ski_main_button_z">
-                        <button className="Ski_main_button_zurück">
-                            <HiIcons.HiArrowCircleLeft className="Ski_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
-
-                            Bergab
+                <div className="Ski_main_button">
+                    <button className="Ski_main_button_weiter">
+                        Bergauf
+                        <HiIcons.HiArrowCircleRight className="Ski_main_button_icon"></HiIcons.HiArrowCircleRight>
 
 
-                        </button>
-
-                    </div>
-                    <div className="Ski_main_button">
-                        <button className="Ski_main_button_weiter">
-                            Bergauf
-                            <HiIcons.HiArrowCircleRight className="Ski_main_button_icon"></HiIcons.HiArrowCircleRight>
-
-
-                        </button>
-                    </div>
-
-
+                    </button>
                 </div>
 
 
-                <div className="Ski_main_logo">
-                    <img className='Ski_main_logobild' src={Logo_MainPage} alt='' />
+            </div>
 
+
+            <div className="Ski_main_logo">
+                <img className='Ski_main_logobild' src={Logo_MainPage} alt='' />
+
+            </div>
+
+
+        </>
+    );
+} else if (currentURL == KletternURL) {
+    return (
+        <>
+            <IconContext.Provider value={{ color: '#fff' }}>
+                <div className='navbar'>
+                    <Link to='#' className='menu-bars'>
+                        <FaIcons.FaBars onClick={showSidebar} />
+                    </Link>
+                </div>
+                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                    <ul className='nav-menu-items' onClick={showSidebar}>
+                        <li className='navbar-toggle'>
+                            <Link to='#' className='menu-bars'>
+                                <AiIcons.AiOutlineClose />
+                            </Link>
+                        </li>
+                        {SidebarData.map((item, index) => {
+                            return (
+                                <li key={index} className={item.cName}>
+                                    <Link to={item.path}>
+                                        {item.icon}
+                                        <span>{item.title}</span>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </nav>
+            </IconContext.Provider>
+
+
+            <div className="Klettern_main_Strich">
+
+
+
+                <h1 className="Klettern_main_heading"></h1>
+
+            </div>
+
+            <div className="Klettern_Fragen-Selection">
+
+
+
+                <div className="Klettern_main_button_z">
+                    <button className="Klettern_main_button_zurück">
+                        <HiIcons.HiArrowCircleLeft className="Klettern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
+                        Bergab
+
+
+                    </button>
+
+                </div>
+                <div className="Klettern_main_button">
+                    <button className="Klettern_main_button_weiter">
+                        Bergauf
+                        <HiIcons.HiArrowCircleRight className="Klettern_main_button_icon"></HiIcons.HiArrowCircleRight>
+
+
+                    </button>
                 </div>
 
 
-            </>
-        );
-    } else if (currentURL == KletternURL) {
-        return (
-            <>
-                <IconContext.Provider value={{ color: '#fff' }}>
-                    <div className='navbar'>
-                        <Link to='#' className='menu-bars'>
-                            <FaIcons.FaBars onClick={showSidebar} />
-                        </Link>
-                    </div>
-                    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                        <ul className='nav-menu-items' onClick={showSidebar}>
-                            <li className='navbar-toggle'>
-                                <Link to='#' className='menu-bars'>
-                                    <AiIcons.AiOutlineClose />
-                                </Link>
-                            </li>
-                            {SidebarData.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </nav>
-                </IconContext.Provider>
+            </div>
 
 
-                <div className="Klettern_main_Strich">
+            <div className="Klettern_main_logo">
+                <img className='Klettern_main_logobild' src={Logo_MainPage} alt='' />
+
+            </div>
 
 
-
-                    <h1 className="Klettern_main_heading"></h1>
-
-                </div>
-
-                <div className="Klettern_Fragen-Selection">
-
-
-
-                    <div className="Klettern_main_button_z">
-                        <button className="Klettern_main_button_zurück">
-                            <HiIcons.HiArrowCircleLeft className="Klettern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
-                            Bergab
-
-
-                        </button>
-
-                    </div>
-                    <div className="Klettern_main_button">
-                        <button className="Klettern_main_button_weiter">
-                            Bergauf
-                            <HiIcons.HiArrowCircleRight className="Klettern_main_button_icon"></HiIcons.HiArrowCircleRight>
-
-
-                        </button>
-                    </div>
-
-
-                </div>
-
-
-                <div className="Klettern_main_logo">
-                    <img className='Klettern_main_logobild' src={Logo_MainPage} alt='' />
-
-                </div>
-
-
-            </>
-        );
-
-
-    }
-
-
+        </>
+    );
+}
 
 
 }

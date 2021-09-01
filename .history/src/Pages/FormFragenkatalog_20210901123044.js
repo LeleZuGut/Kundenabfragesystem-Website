@@ -49,11 +49,9 @@ const FormFragenKatalog = () => {
                 }
             }
 
+            
+
         }
-
-        
-
-        
 
         return r;
     }
@@ -220,7 +218,7 @@ const FormFragenKatalog = () => {
 
 
                     <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" style={{visibility: "hidden"}}>
+                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" visibility="hidden">
                             <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
                             Bergab
 
@@ -229,7 +227,7 @@ const FormFragenKatalog = () => {
 
                     </div>
                     <div className="Wandern_main_button">
-                        <button className="Wandern_main_button_weiter" onClick={button_weiter} id="Wandern_main_button_weiter">
+                        <button visibility="hidden" className="Wandern_main_button_weiter" onClick={button_weiter} id="Wandern_main_button_weiter">
                             Bergauf
                             <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
 

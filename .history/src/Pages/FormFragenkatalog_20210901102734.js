@@ -11,6 +11,9 @@ import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
 
 
+
+
+
 const FormFragenKatalog = () => {
 
     const [questionarr, setQuestionarr] = useState([""]);
@@ -29,31 +32,22 @@ const FormFragenKatalog = () => {
     const check_Nummerierung = () => {
 
         for (var i = 1; i <= questionarr.length; i++) {
+            if (questionarr[useseitenanzahl].id == i) {
+                var r = document.getElementById(i).style.fontWeight.bold;
+                var r = document.getElementById(i).style.color = "blue";
 
-            if(document.getElementById(i) == null)
-            {
-
+                
             }
-            else
-            {
+            else {
+                var r = document.getElementById(i).style.fontWeight = "normal";
+                var r = document.getElementById(i).style.color = "black";
 
-                if (questionarr[useseitenanzahl].id == i) {
-                    var r = document.getElementById(i).style.fontWeight.bold;
-                    var r = document.getElementById(i).style.color = "blue";
-    
-                }
-                else {
-                    var r = document.getElementById(i).style.fontWeight = "normal";
-                    var r = document.getElementById(i).style.color = "black";
-    
-                }
+               
             }
+            
+            
 
         }
-
-        
-
-        
 
         return r;
     }
@@ -92,19 +86,37 @@ const FormFragenKatalog = () => {
             })
 
 
+            
+
+
+
+
     }
 
 
     if (questionarr == "") {
         getData();
 
+
+
+
     }
     else {
 
+        //check_Nummerierung();
+        var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
+        return r;
 
     }
 
+
+
+
     if (currentURL == WandernURL) {
+
+       
+
+        
 
 
         const button_weiter = () => {
@@ -114,6 +126,9 @@ const FormFragenKatalog = () => {
 
                 setUseseitenanzahl(useseitenanzahl + 1);
 
+
+                
+
             }
             else {
 
@@ -121,10 +136,13 @@ const FormFragenKatalog = () => {
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
 
                 setUseseitenanzahl(useseitenanzahl + 1);
+
+                
+
             }
 
             check_Nummerierung();
-            return r, r1;
+            return r,r1;
 
 
         }
@@ -135,12 +153,14 @@ const FormFragenKatalog = () => {
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
                 setUseseitenanzahl(useseitenanzahl - 1);
 
+
             }
             else {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
 
                 setUseseitenanzahl(useseitenanzahl - 1);
+
 
             }
 
@@ -149,10 +169,7 @@ const FormFragenKatalog = () => {
 
         }
 
-     
 
-        window.onchange = check_Nummerierung();
-        
 
         return (
             <>
@@ -220,7 +237,7 @@ const FormFragenKatalog = () => {
 
 
                     <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" style={{visibility: "hidden"}}>
+                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück">
                             <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
                             Bergab
 
@@ -247,14 +264,11 @@ const FormFragenKatalog = () => {
                     <img className='Wandern_main_logobild' src={Logo_MainPage} alt='' />
 
                 </div>
-
-
             </>
 
 
 
         );
-
 
     } else if (currentURL == SkiURL) {
 
@@ -403,11 +417,7 @@ const FormFragenKatalog = () => {
 
             </>
         );
-
-
     }
-
-
 
 
 }

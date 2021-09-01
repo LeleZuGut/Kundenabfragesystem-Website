@@ -49,11 +49,10 @@ const FormFragenKatalog = () => {
                 }
             }
 
+            
+            var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
+
         }
-
-        
-
-        
 
         return r;
     }
@@ -149,10 +148,13 @@ const FormFragenKatalog = () => {
 
         }
 
-     
+        /*window.onunload = function () {
+            check_Nummerierung();
+            var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
+            return r;
+        }*/
 
         window.onchange = check_Nummerierung();
-        
 
         return (
             <>
@@ -220,7 +222,7 @@ const FormFragenKatalog = () => {
 
 
                     <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" style={{visibility: "hidden"}}>
+                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück">
                             <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
                             Bergab
 
