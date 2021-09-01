@@ -31,7 +31,7 @@ const FormFragenKatalog = () => {
 
     const check_Nummerierung = () => {
 
-        for (var i = 1; i <= questionarr.length; i++) {
+        for (var i = 1; i < questionarr.length; i++) {
             if (questionarr[useseitenanzahl].id == i) {
                 var r = document.getElementById(i).style.fontWeight.bold;
                 var r = document.getElementById(i).style.color = "blue";
@@ -40,7 +40,7 @@ const FormFragenKatalog = () => {
             }
             else {
                 var r = document.getElementById(i).style.fontWeight = "normal";
-                var r = document.getElementById(i).style.color = "black";
+                var r = document.getElementById(i).style.color = "red";
 
                
             }
@@ -91,7 +91,6 @@ const FormFragenKatalog = () => {
 
 
 
-
     }
 
 
@@ -104,7 +103,6 @@ const FormFragenKatalog = () => {
     }
     else {
 
-        check_Nummerierung();
 
     }
 
@@ -114,6 +112,7 @@ const FormFragenKatalog = () => {
     if (currentURL == WandernURL) {
 
        
+        check_Nummerierung();
 
         
 
@@ -199,7 +198,7 @@ const FormFragenKatalog = () => {
                     </nav>
                 </IconContext.Provider>
 
-                <div className="liste_seitennummerierung" >
+                <div className="liste_seitennummerierung">
 
                     {questionarr.map((usear, index) =>
                     (
@@ -216,7 +215,7 @@ const FormFragenKatalog = () => {
                     )}
                 </div>
 
-                <div className="Wandern_main_Strich">
+                <div className="Wandern_main_Strich" onLoad={check_Nummerierung}>
                     <h1 className="Wandern_main_heading">{questionarr[useseitenanzahl].question}</h1>
 
 

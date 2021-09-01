@@ -31,7 +31,7 @@ const FormFragenKatalog = () => {
 
     const check_Nummerierung = () => {
 
-        for (var i = 1; i <= questionarr.length; i++) {
+        for (var i = 1; i < questionarr.length; i++) {
             if (questionarr[useseitenanzahl].id == i) {
                 var r = document.getElementById(i).style.fontWeight.bold;
                 var r = document.getElementById(i).style.color = "blue";
@@ -40,7 +40,7 @@ const FormFragenKatalog = () => {
             }
             else {
                 var r = document.getElementById(i).style.fontWeight = "normal";
-                var r = document.getElementById(i).style.color = "black";
+                var r = document.getElementById(i).style.color = "red";
 
                
             }
@@ -87,8 +87,8 @@ const FormFragenKatalog = () => {
 
 
             var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
+            check_Nummerierung();
             return r;
-
 
 
 
@@ -104,7 +104,6 @@ const FormFragenKatalog = () => {
     }
     else {
 
-        check_Nummerierung();
 
     }
 

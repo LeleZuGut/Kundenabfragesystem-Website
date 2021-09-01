@@ -31,25 +31,25 @@ const FormFragenKatalog = () => {
 
     const check_Nummerierung = () => {
 
-        for (var i = 1; i <= questionarr.length; i++) {
+        for (var i = 1; i < questionarr.length; i++) {
             if (questionarr[useseitenanzahl].id == i) {
                 var r = document.getElementById(i).style.fontWeight.bold;
                 var r = document.getElementById(i).style.color = "blue";
 
-                
+                return r;
             }
             else {
                 var r = document.getElementById(i).style.fontWeight = "normal";
-                var r = document.getElementById(i).style.color = "black";
+                var r = document.getElementById(i).style.color = "red";
 
-               
+                return r;
             }
-            
+
             
 
         }
 
-        return r;
+
     }
 
 
@@ -91,7 +91,6 @@ const FormFragenKatalog = () => {
 
 
 
-
     }
 
 
@@ -125,8 +124,7 @@ const FormFragenKatalog = () => {
 
                 setUseseitenanzahl(useseitenanzahl + 1);
 
-
-                
+                return r, r1;
 
             }
             else {
@@ -135,13 +133,12 @@ const FormFragenKatalog = () => {
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
 
                 setUseseitenanzahl(useseitenanzahl + 1);
-
-                
+                return r, r1;
 
             }
 
-            check_Nummerierung();
-            return r,r1;
+
+
 
 
         }
@@ -152,22 +149,20 @@ const FormFragenKatalog = () => {
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
                 setUseseitenanzahl(useseitenanzahl - 1);
 
-
+                return r, r1;
             }
             else {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
 
                 setUseseitenanzahl(useseitenanzahl - 1);
-
+                return r, r1;
 
             }
 
-            check_Nummerierung();
-            return r, r1;
-
         }
 
+        //check_Nummerierung();
 
 
         return (
@@ -199,7 +194,7 @@ const FormFragenKatalog = () => {
                     </nav>
                 </IconContext.Provider>
 
-                <div className="liste_seitennummerierung" >
+                <div className="liste_seitennummerierung">
 
                     {questionarr.map((usear, index) =>
                     (
