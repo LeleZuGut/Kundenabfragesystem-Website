@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as HiIcons from 'react-icons/hi';
+
 
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
@@ -9,6 +10,9 @@ import { SidebarData } from '../SidebarData';
 import Logo_MainPage from '../Images/Main-FragenPageLogo.PNG';
 import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
+import Switch from "react-switch";
+
+
 
 
 const FormFragenKatalog = () => {
@@ -16,47 +20,32 @@ const FormFragenKatalog = () => {
     const [questionarr, setQuestionarr] = useState([""]);
     const [answerarr, setAnswerarr] = useState([""]);
 
+    const [checked, setchecked] = useState(false);
+    const[answmulti, setanswmulti] = useState([]);
     const WandernURL = "/fragen/Wandern";
     const SkiURL = "/fragen/Ski";
     const KletternURL = "/fragen/Klettern";
     const currentURL = window.location.pathname;
     const [sidebar, setSidebar] = useState(false);
     const [useseitenanzahl, setUseseitenanzahl] = useState(0);
+    const [daten, setdaten] = useState("");
+
 
     const showSidebar = () => setSidebar(!sidebar);
 
 
-    const check_Nummerierung = () => {
+    useEffect(() => {
+        getData()
+    }, [])
 
-        for (let i = 1; i <= questionarr.length; i++) {
+    useEffect(() => {
+        antworten_sort()
+    }, [questionarr,answerarr])
 
-            if(document.getElementById(i) == null)
-            {
 
-            }
-            else
-            {
+   
 
-                if (questionarr[useseitenanzahl].id == i) {
-                    var r = document.getElementById(i).style.fontWeight.bold;
-                    var r = document.getElementById(i).style.color = "blue";
     
-                }
-                else {
-                    var r = document.getElementById(i).style.fontWeight = "normal";
-                    var r = document.getElementById(i).style.color = "black";
-    
-                }
-            }
-
-        }
-
-        
-
-        
-
-        return r;
-    }
 
 
     const getData = async () => {
@@ -91,17 +80,81 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
+            
 
     }
 
+    const antworten_sort = () => {
 
-    if (questionarr == "") {
-        getData();
+        for (let index = 0; index < answerarr.length; index++) {
 
+            if (answerarr[index].fkQuestionId == questionarr[useseitenanzahl].id) {
+                if (answerarr[index].typ == 3) {
+                    var r1 = document.getElementById("Wandern_Freitext").style.visibility = "visible";
+
+                    console.log("Freitext");
+
+
+
+                }
+                else if (answerarr[index].typ == 2) {
+                    var r1 = document.getElementById("Wandern_Freitext").style.visibility = "hidden";
+                    console.log("single choice");
+
+                }
+                else if (answerarr[index].typ == 1) {
+                    var r1 = document.getElementById("Wandern_Freitext").style.visibility = "hidden";
+
+                    
+                       
+                        setanswmulti (answerarr[index].answers.split(";").map((item, index) => 
+
+                            <div>
+                                <Switch ></Switch>
+                                <label key={index} >
+                                    {item}
+                                </label>
+
+                            </div>
+
+                        ))
+                    
+
+                    console.log("multiplechoice");
+                }
+                return r1;
+            }
+            else {
+
+            }
+
+        }
     }
-    else {
 
+    
+    const check_Nummerierung = () => {
 
+        for (let i = 1; i <= questionarr.length; i++) {
+
+            if (document.getElementById(i) == null) {
+
+            }
+            else {
+
+                if (questionarr[useseitenanzahl].id == i) {
+                    var r = document.getElementById(i).style.fontWeight.bold;
+                    var r = document.getElementById(i).style.color = "blue";
+
+                }
+                else {
+                    var r = document.getElementById(i).style.fontWeight = "normal";
+                    var r = document.getElementById(i).style.color = "black";
+
+                }
+            }
+
+        }
+        return r;
     }
 
     if (currentURL == WandernURL) {
@@ -111,6 +164,8 @@ const FormFragenKatalog = () => {
             if (questionarr.length == questionarr[useseitenanzahl].id + 1) {
                 var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
+                var r1 = document.getElementById("Wandern_main_button_fertig").style.visibility = "visible";
+
 
                 setUseseitenanzahl(useseitenanzahl + 1);
 
@@ -124,8 +179,11 @@ const FormFragenKatalog = () => {
             }
 
             check_Nummerierung();
-            return r, r1;
+            antworten_sort();
 
+            var l = document.getElementById("Wandern_Freitext").value = "";
+
+            return r, r1, l;
 
         }
 
@@ -133,301 +191,143 @@ const FormFragenKatalog = () => {
             if (useseitenanzahl - 1 < 1) {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
+                var r1 = document.getElementById("Wandern_main_button_fertig").style.visibility = "hidden";
+
                 setUseseitenanzahl(useseitenanzahl - 1);
 
             }
             else {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
+                var r1 = document.getElementById("Wandern_main_button_fertig").style.visibility = "hidden";
+
 
                 setUseseitenanzahl(useseitenanzahl - 1);
 
             }
 
             check_Nummerierung();
-            return r, r1;
+            antworten_sort();
+            var l = document.getElementById("Wandern_Freitext").value = "";
+
+            return r, r1, l;
 
         }
 
-        const antworten_sort = () =>{
+        const button_fertig = () => {
 
-            for (let index = 0; index < answerarr.length; index++) {
-                
-               if(answerarr[index].fkQuestionId == questionarr[useseitenanzahl].id)
-               {
-                   if (answerarr[index].typ == 3) {
-                    let frt = document.createElement("textarea");
-                    document.body.appendChild(frt);
-                   }
-                   else if (answerarr[index].typ == 2) {
-                       alert("single choice");
-                       
-                   }
-                   else if (answerarr[index].typ == 1) {
-                       alert("multiplechoice");
-                   }
-                   
-               }
-               else
-               {
-
-               }
-            }
         }
 
-     
+        window.onchange=check_Nummerierung();
 
-        window.onchange = check_Nummerierung();
-        //window.onchange = antworten_sort();
+
+        
 
         return (
-            <>
-                <IconContext.Provider value={{ color: '#fff' }}>
-                    <div className='navbar'>
-                        <Link to='#' className='menu-bars'>
-                            <FaIcons.FaBars onClick={showSidebar} />
-                        </Link>
-                    </div>
-                    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                        <ul className='nav-menu-items' onClick={showSidebar}>
-                            <li className='navbar-toggle'>
-                                <Link to='#' className='menu-bars'>
-                                    <AiIcons.AiOutlineClose />
-                                </Link>
-                            </li>
-                            {SidebarData.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </nav>
-                </IconContext.Provider>
+            questionarr.length != 1 && answerarr.length != 1 ?
 
-                <div className="liste_seitennummerierung" >
-
-                    {questionarr.map((usear, index) =>
-                    (
-                        <div key={index}>
-                            <div>
-
-                                <span id={usear.id}>{usear.id}</span>
-
-
-
-                            </div>
+                <>
+                    <IconContext.Provider value={{ color: '#fff' }}>
+                        <div className='navbar'>
+                            <Link to='#' className='menu-bars'>
+                                <FaIcons.FaBars onClick={showSidebar} />
+                            </Link>
                         </div>
-                    )
-                    )}
-                </div>
+                        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                            <ul className='nav-menu-items' onClick={showSidebar}>
+                                <li className='navbar-toggle'>
+                                    <Link to='#' className='menu-bars'>
+                                        <AiIcons.AiOutlineClose />
+                                    </Link>
+                                </li>
+                                {SidebarData.map((item, index) => {
+                                    return (
+                                        <li key={index} className={item.cName}>
+                                            <Link to={item.path}>
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </nav>
+                    </IconContext.Provider>
 
-                <div className="Wandern_main_Strich">
-                    <h1 className="Wandern_main_heading">{questionarr[useseitenanzahl].question}</h1>
+                    <div className="liste_seitennummerierung" >
 
+                        {questionarr.map((usear, index) =>
+                        (
+                            <div key={index}>
+                                <div>
+                                    <span id={usear.id}>{usear.id}</span>
 
-                </div>
-
-                <div className="Wandern_main_Answer">
-
-
-                </div>
-
-
-
-
-
-                <div className="Fragen-Selection">
-
-
-
-                    <div className="Wandern_main_button_z">
-                        <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" style={{visibility: "hidden"}}>
-                            <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
-                            Bergab
-
-
-                        </button>
-
-                    </div>
-                    <div className="Wandern_main_button">
-                        <button className="Wandern_main_button_weiter" onClick={button_weiter} id="Wandern_main_button_weiter">
-                            Bergauf
-                            <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
-
-
-                        </button>
+                                </div>
+                            </div>
+                        )
+                        )}
                     </div>
 
-
-                </div>
-
-
-
-
-                <div className="Wandern_main_logo">
-                    <img className='Wandern_main_logobild' src={Logo_MainPage} alt='' />
-
-                </div>
-
-
-            </>
-
-
-
-        );
-
-
-    } else if (currentURL == SkiURL) {
-
-        return (
-            <>
-                <IconContext.Provider value={{ color: '#fff' }}>
-                    <div className='navbar'>
-                        <Link to='#' className='menu-bars'>
-                            <FaIcons.FaBars onClick={showSidebar} />
-                        </Link>
+                    <div className="Wandern_main_Strich">
+                        <h1 className="Wandern_main_heading">{questionarr[useseitenanzahl].question}</h1>
                     </div>
-                    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                        <ul className='nav-menu-items' onClick={showSidebar}>
-                            <li className='navbar-toggle'>
-                                <Link to='#' className='menu-bars'>
-                                    <AiIcons.AiOutlineClose />
-                                </Link>
-                            </li>
-                            {SidebarData.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </nav>
-                </IconContext.Provider>
 
-                <div className="Ski_main_Strich">
+                    <div className="Wandern_main_Answer">
+                        <textarea
+                            className="Wandern_main_Answer_textarea"
+                            id="Wandern_Freitext"
+                            type="textarea"
+                            rows="15"
+                            cols="160"
+                            style={{ visibility: "hidden" }}
+                            onChange={event => setdaten(event.target.value)} />
+
+                        {answmulti}
+                    </div>
+
+                    <div className="Fragen-Selection">
 
 
 
-                    <h1 className="Ski_main_heading"></h1>
-
-                </div>
-
-                <div className="Ski_Fragen-Selection">
-
+                        <div className="Wandern_main_button_z">
+                            <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" style={{ visibility: "hidden" }}>
+                                <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
+                                Bergab
 
 
-                    <div className="Ski_main_button_z">
-                        <button className="Ski_main_button_zurück">
-                            <HiIcons.HiArrowCircleLeft className="Ski_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
+                            </button>
 
-                            Bergab
+                        </div>
+                        <div className="Wandern_main_button">
+                            <button className="Wandern_main_button_weiter" onClick={button_weiter} id="Wandern_main_button_weiter">
+                                Bergauf
+                                <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
 
 
-                        </button>
+                            </button>
+                        </div>
+
+                        <div className="Wandern_main_button_f">
+                            <button className="Wandern_main_button_fertig" onClick={button_fertig} id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}>
+                                Fertig
+                                <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
+
+
+                            </button>
+                        </div>
 
                     </div>
-                    <div className="Ski_main_button">
-                        <button className="Ski_main_button_weiter">
-                            Bergauf
-                            <HiIcons.HiArrowCircleRight className="Ski_main_button_icon"></HiIcons.HiArrowCircleRight>
 
+                    <div className="Wandern_main_logo">
+                        <img className='Wandern_main_logobild' src={Logo_MainPage} alt='' />
 
-                        </button>
                     </div>
 
 
-                </div>
+                </>
 
+                : <p>Loading...</p>
 
-                <div className="Ski_main_logo">
-                    <img className='Ski_main_logobild' src={Logo_MainPage} alt='' />
-
-                </div>
-
-
-            </>
-        );
-    } else if (currentURL == KletternURL) {
-        return (
-            <>
-                <IconContext.Provider value={{ color: '#fff' }}>
-                    <div className='navbar'>
-                        <Link to='#' className='menu-bars'>
-                            <FaIcons.FaBars onClick={showSidebar} />
-                        </Link>
-                    </div>
-                    <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                        <ul className='nav-menu-items' onClick={showSidebar}>
-                            <li className='navbar-toggle'>
-                                <Link to='#' className='menu-bars'>
-                                    <AiIcons.AiOutlineClose />
-                                </Link>
-                            </li>
-                            {SidebarData.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </nav>
-                </IconContext.Provider>
-
-
-                <div className="Klettern_main_Strich">
-
-
-
-                    <h1 className="Klettern_main_heading"></h1>
-
-                </div>
-
-                <div className="Klettern_Fragen-Selection">
-
-
-
-                    <div className="Klettern_main_button_z">
-                        <button className="Klettern_main_button_zurück">
-                            <HiIcons.HiArrowCircleLeft className="Klettern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
-                            Bergab
-
-
-                        </button>
-
-                    </div>
-                    <div className="Klettern_main_button">
-                        <button className="Klettern_main_button_weiter">
-                            Bergauf
-                            <HiIcons.HiArrowCircleRight className="Klettern_main_button_icon"></HiIcons.HiArrowCircleRight>
-
-
-                        </button>
-                    </div>
-
-
-                </div>
-
-
-                <div className="Klettern_main_logo">
-                    <img className='Klettern_main_logobild' src={Logo_MainPage} alt='' />
-
-                </div>
-
-
-            </>
         );
 
 

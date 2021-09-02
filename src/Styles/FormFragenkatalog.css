@@ -5,9 +5,14 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    margin-top: 4.51%;
+    margin-top: 1.51%;
     
 }
+
+.switch{
+    margin-left: 30%;
+}
+
 
 .Wandern_main_Strich{
 
@@ -15,12 +20,20 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 3.8%;
+    margin-top: 1.4%;
     margin-left: 5%;
     height: 8px;
     width: 80%;
 }
+.Wandern_main_Answer_textarea{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 15%;
+    resize: none;
+    margin-top: 5%;
 
+}
 .liste_seitennummerierung{
     
     display: flex;
@@ -33,7 +46,7 @@
 
 .Wandern_main_heading{
     
-    margin-bottom: 8%;
+    margin-bottom: 5%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -42,9 +55,9 @@
 
 .Fragen-Selection{
     display: flex;
-    margin-top: 18%;
     align-items: center;
     justify-content: end;
+    margin-top: 1.4%;
 }
 
 .Wandern_main_button{
@@ -52,6 +65,7 @@
     align-items: center;
     justify-content: end;
     margin-left: 65.5%;
+    margin-bottom: 2%;
     
 }
 .Wandern_main_button_weiter{
@@ -65,15 +79,39 @@
     border: 2px solid #C0C0C0;
     color:black;
     font-size: 1.25rem;
+    margin-top: 0%;
+}
+
+.Wandern_main_button_fertig{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 140px;
+    height: 69px;
+    background-color: white;
+    outline: none;
+    border: 2px solid #C0C0C0;
+    color:black;
+    font-size: 1.25rem;
+    margin-top: 0%;
 }
 
 .Wandern_main_button_z{
     display: flex;
     align-items: center;
     justify-content: end;
-    margin-left: 5%;
+    margin-right: 8%;
+    margin-bottom: 2%;
     
 
+}
+
+.Wandern_main_button_f{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 2%;
+    margin-right: 2%;
 }
 
 .Wandern_main_button_zurück{
