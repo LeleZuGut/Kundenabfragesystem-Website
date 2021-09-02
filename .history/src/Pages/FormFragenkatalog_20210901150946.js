@@ -28,7 +28,7 @@ const FormFragenKatalog = () => {
 
     const check_Nummerierung = () => {
 
-        for (let i = 1; i <= questionarr.length; i++) {
+        for (var i = 1; i <= questionarr.length; i++) {
 
             if(document.getElementById(i) == null)
             {
@@ -149,36 +149,10 @@ const FormFragenKatalog = () => {
 
         }
 
-        const antworten_sort = () =>{
-
-            for (let index = 0; index < answerarr.length; index++) {
-                
-               if(answerarr[index].fkQuestionId == questionarr[useseitenanzahl].id)
-               {
-                   if (answerarr[index].typ == 3) {
-                    let frt = document.createElement("textarea");
-                    document.body.appendChild(frt);
-                   }
-                   else if (answerarr[index].typ == 2) {
-                       alert("single choice");
-                       
-                   }
-                   else if (answerarr[index].typ == 1) {
-                       alert("multiplechoice");
-                   }
-                   
-               }
-               else
-               {
-
-               }
-            }
-        }
-
      
 
         window.onchange = check_Nummerierung();
-        //window.onchange = antworten_sort();
+        console.log(answerarr);
 
         return (
             <>

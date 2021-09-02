@@ -1,69 +1,40 @@
+import React, { useState } from 'react';
 import '../Styles/FormLogin.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import React, { useState } from 'react';
 
 
 
 const FormLogin = ({ submitForm }) => {
-  const [useremail, setuseremail] = useState("");
-  const [userpassword, setuserpassword] = useState("");
-  const [userarr, setuserarr] = useState([""]);
-  const[error,seterror] = useState("");
+const [useremail, setuseremail] = useState("");
+const [userpassword, setuserpassword] = useState("");
+const[userarr, setuserarr] = useState([""]);
 
 
   const history = useHistory();
 
-
-
-
-  const getData = async () => {
-    await axios.get("http://localhost:8080/api/Customer/all"
-      , {
+  const check_Data = async() => {
+    await axios.get("http://localhost:8080/api/Questions/all"
+    , {
         auth: {
-          username: "admin",
-          password: "adminpassword"
+            username: "admin",
+            password: "adminpassword"
         }
-      })
-      .then(result => {
-        setuserarr(result.data);
+    })
+    .then(result => {
+        setQuestionarr(result.data);
 
-      })
-      .catch(error => {
+    })
+    .catch(error => {
         console.log(error)
-      })
-  }
-  if (userarr == "") {
-
-    getData();
-
-  }
-  else {
-  }
-
-
-  const check_Data = (e) => {
-
-    for (let i = 0; i < userarr.length; i++) {
-
-      if (userarr[i].email == useremail && userarr[i].password == userpassword) {
-
-        history.push("/main");
-      }
-      else {
-        seterror("Falsche Eingabe");
-        e.preventDefault();
-
-      }
-
-    }
+    })
 
   }
 
 
   return (
     <div className='Login-form-content-right'>
-      <form className='Login-form' onSubmit={check_Data}>
+      <form className='Login-form' onSubmit={() => history.push("/main")}>
         <h1>
           Melden Sie sich an oder man wird älter!
         </h1>
@@ -89,15 +60,14 @@ const FormLogin = ({ submitForm }) => {
             placeholder='Enter your password'
             onChange={event => setuserpassword(event.target.value)}
             required
-
+            
 
           />
         </div>
 
-        <button className='Login-form-input-btn' type='submit'>
+        <button className='Login-form-input-btn' type='submit' onSubmit="">
           Sign up
         </button>
-        <p className="errorvalidation">{error}</p>
         <span className='Login-form-input-login'>
           Möchten Sie ein Konto erstellen? Zur Registrierung <a href='/'>hier</a>
         </span>

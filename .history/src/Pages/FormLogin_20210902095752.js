@@ -9,13 +9,9 @@ const FormLogin = ({ submitForm }) => {
   const [useremail, setuseremail] = useState("");
   const [userpassword, setuserpassword] = useState("");
   const [userarr, setuserarr] = useState([""]);
-  const[error,seterror] = useState("");
 
 
   const history = useHistory();
-
-
-
 
   const getData = async () => {
     await axios.get("http://localhost:8080/api/Customer/all"
@@ -33,37 +29,36 @@ const FormLogin = ({ submitForm }) => {
         console.log(error)
       })
   }
-  if (userarr == "") {
 
-    getData();
+  const check_Data = async () => {
 
-  }
-  else {
-  }
+    if (userarr == "") {
 
-
-  const check_Data = (e) => {
-
-    for (let i = 0; i < userarr.length; i++) {
-
-      if (userarr[i].email == useremail && userarr[i].password == userpassword) {
-
-        history.push("/main");
-      }
-      else {
-        seterror("Falsche Eingabe");
-        e.preventDefault();
-
-      }
+      getData();
 
     }
+    else {
 
+
+
+      for (let i = 0; i < userarr.length; i++) {
+
+        if (userarr[i].email == useremail && userarr[i].password == userpassword) {
+
+          history.push("/main");
+        }
+        else {
+          alert("falsch");
+        }
+
+      }
+    }
   }
 
 
   return (
     <div className='Login-form-content-right'>
-      <form className='Login-form' onSubmit={check_Data}>
+      <form className='Login-form'>
         <h1>
           Melden Sie sich an oder man wird älter!
         </h1>
@@ -94,10 +89,9 @@ const FormLogin = ({ submitForm }) => {
           />
         </div>
 
-        <button className='Login-form-input-btn' type='submit'>
+        <button className='Login-form-input-btn' type='submit' onSubmit={check_Data}>
           Sign up
         </button>
-        <p className="errorvalidation">{error}</p>
         <span className='Login-form-input-login'>
           Möchten Sie ein Konto erstellen? Zur Registrierung <a href='/'>hier</a>
         </span>

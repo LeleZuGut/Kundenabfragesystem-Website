@@ -9,12 +9,11 @@ const FormLogin = ({ submitForm }) => {
   const [useremail, setuseremail] = useState("");
   const [userpassword, setuserpassword] = useState("");
   const [userarr, setuserarr] = useState([""]);
-  const[error,seterror] = useState("");
 
 
   const history = useHistory();
 
-
+ 
 
 
   const getData = async () => {
@@ -40,9 +39,18 @@ const FormLogin = ({ submitForm }) => {
   }
   else {
   }
-
+  
 
   const check_Data = (e) => {
+
+    if (userarr == "") {
+
+      getData();
+
+    }
+    else {
+    }
+
 
     for (let i = 0; i < userarr.length; i++) {
 
@@ -51,7 +59,7 @@ const FormLogin = ({ submitForm }) => {
         history.push("/main");
       }
       else {
-        seterror("Falsche Eingabe");
+        
         e.preventDefault();
 
       }
@@ -97,7 +105,6 @@ const FormLogin = ({ submitForm }) => {
         <button className='Login-form-input-btn' type='submit'>
           Sign up
         </button>
-        <p className="errorvalidation">{error}</p>
         <span className='Login-form-input-login'>
           Möchten Sie ein Konto erstellen? Zur Registrierung <a href='/'>hier</a>
         </span>

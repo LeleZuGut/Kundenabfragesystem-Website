@@ -155,22 +155,7 @@ const FormFragenKatalog = () => {
                 
                if(answerarr[index].fkQuestionId == questionarr[useseitenanzahl].id)
                {
-                   if (answerarr[index].typ == 3) {
-                    let frt = document.createElement("textarea");
-                    document.body.appendChild(frt);
-                   }
-                   else if (answerarr[index].typ == 2) {
-                       alert("single choice");
-                       
-                   }
-                   else if (answerarr[index].typ == 1) {
-                       alert("multiplechoice");
-                   }
-                   
-               }
-               else
-               {
-
+                   console.log(answerarr[index].answers);
                }
             }
         }
@@ -178,7 +163,8 @@ const FormFragenKatalog = () => {
      
 
         window.onchange = check_Nummerierung();
-        //window.onchange = antworten_sort();
+        window.onchange = antworten_sort();
+        console.log(answerarr);
 
         return (
             <>

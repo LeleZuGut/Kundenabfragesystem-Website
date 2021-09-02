@@ -51,7 +51,7 @@ const FormLogin = ({ submitForm }) => {
         history.push("/main");
       }
       else {
-        seterror("Falsche Eingabe");
+
         e.preventDefault();
 
       }
@@ -97,7 +97,7 @@ const FormLogin = ({ submitForm }) => {
         <button className='Login-form-input-btn' type='submit'>
           Sign up
         </button>
-        <p className="errorvalidation">{error}</p>
+        <p></p>
         <span className='Login-form-input-login'>
           Möchten Sie ein Konto erstellen? Zur Registrierung <a href='/'>hier</a>
         </span>

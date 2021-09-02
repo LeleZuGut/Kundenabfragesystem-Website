@@ -178,7 +178,7 @@ const FormFragenKatalog = () => {
      
 
         window.onchange = check_Nummerierung();
-        //window.onchange = antworten_sort();
+        window.onchange = antworten_sort();
 
         return (
             <>

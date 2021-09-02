@@ -124,6 +124,7 @@ const FormFragenKatalog = () => {
             }
 
             check_Nummerierung();
+            antworten_sort();
             return r, r1;
 
 
@@ -145,6 +146,7 @@ const FormFragenKatalog = () => {
             }
 
             check_Nummerierung();
+            antworten_sort();
             return r, r1;
 
         }
