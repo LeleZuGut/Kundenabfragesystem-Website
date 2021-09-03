@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../Styles/FormSignup.css';
 import { useHistory } from 'react-router-dom';
 import Recaptcha from 'react-recaptcha';
+import { Switch } from '@material-ui/core';
+
 
 
 
@@ -100,6 +102,8 @@ const FormSignup = ({ submitForm }) => {
 
   return (
 
+    
+
     <div className='form-content-right'>
       <form action="" method="" className='form' onSubmit={submitHandler}>
         <h1>
@@ -189,8 +193,15 @@ const FormSignup = ({ submitForm }) => {
 
           />
         </div>
+
         <p className="errorvalidation">{captcha}</p>
       </form>
+
+      <div>
+      <Switch/>
+    </div>
+
+      
     </div>
   );
 };

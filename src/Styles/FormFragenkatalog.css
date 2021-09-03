@@ -1,18 +1,14 @@
 .Wandern_main_logo{
     background:black;
-    height: 194px;
+    height: 180px;
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: end;
     align-items: center;
-    margin-top: 1.51%;
+    margin-top: 0.3%;
     
 }
-
-.switch{
-    margin-left: 30%;
-}
-
 
 .Wandern_main_Strich{
 
@@ -20,18 +16,25 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 1.4%;
+    margin-top: 1%;
     margin-left: 5%;
     height: 8px;
     width: 80%;
+}
+.Wandern_main_Answer{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 3.5%;
+    
 }
 .Wandern_main_Answer_textarea{
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-left: 15%;
+    margin-left: 10%;
     resize: none;
-    margin-top: 5%;
+    margin-top: 1.95%;
 
 }
 .liste_seitennummerierung{
@@ -43,10 +46,24 @@
     margin-top: 2%;
     font-size: 35px;
 }
+.Wandern_Switch_Antworten{
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    margin-top: 3.64%;
+    margin-left: 12%;
+    margin-bottom: 4.26%;
+    
+}
+
+
+
 
 .Wandern_main_heading{
     
-    margin-bottom: 5%;
+    margin-bottom: 4%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -57,7 +74,7 @@
     display: flex;
     align-items: center;
     justify-content: end;
-    margin-top: 1.4%;
+    margin-top: 0%;
 }
 
 .Wandern_main_button{
@@ -101,7 +118,8 @@
     align-items: center;
     justify-content: end;
     margin-right: 8%;
-    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-bottom: 4%;
     
 
 }
@@ -111,7 +129,7 @@
     align-items: center;
     justify-content: end;
     margin-bottom: 2%;
-    margin-right: 2%;
+    margin-right: 3.2%;
 }
 
 .Wandern_main_button_zurück{

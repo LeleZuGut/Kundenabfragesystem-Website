@@ -10,7 +10,7 @@ import { SidebarData } from '../SidebarData';
 import Logo_MainPage from '../Images/Main-FragenPageLogo.PNG';
 import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
-import Switch from "react-switch";
+import {Switch} from '@material-ui/core';
 
 
 
@@ -19,12 +19,10 @@ const FormFragenKatalog = () => {
 
     const [questionarr, setQuestionarr] = useState([""]);
     const [answerarr, setAnswerarr] = useState([""]);
-
-    const [checked, setchecked] = useState(false);
-    const[answmulti, setanswmulti] = useState([]);
+    const [answmulti, setanswmulti] = useState([]);
+    const [answfrei, setanswfrei] = useState([]);
+    const [checked, setchecked] = useState([]);
     const WandernURL = "/fragen/Wandern";
-    const SkiURL = "/fragen/Ski";
-    const KletternURL = "/fragen/Klettern";
     const currentURL = window.location.pathname;
     const [sidebar, setSidebar] = useState(false);
     const [useseitenanzahl, setUseseitenanzahl] = useState(0);
@@ -40,12 +38,16 @@ const FormFragenKatalog = () => {
 
     useEffect(() => {
         antworten_sort()
-    }, [questionarr,answerarr])
+    }, [answerarr])
+
+    useEffect(() => {
+        antworten_sort()
+    }, [useseitenanzahl])
 
 
-   
 
-    
+
+
 
 
     const getData = async () => {
@@ -80,7 +82,7 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-            
+
 
     }
 
@@ -90,39 +92,53 @@ const FormFragenKatalog = () => {
 
             if (answerarr[index].fkQuestionId == questionarr[useseitenanzahl].id) {
                 if (answerarr[index].typ == 3) {
-                    var r1 = document.getElementById("Wandern_Freitext").style.visibility = "visible";
+                    setanswfrei(<div className="Wandern_main_Answer">
+                        <textarea
+                            className="Wandern_main_Answer_textarea"
+                            id="Wandern_Freitext"
+                            type="textarea"
+                            rows="15"
+                            cols="160"
+                            onChange={event => setdaten(event.target.value)} />
 
+
+                    </div>
+                    )
+                    setanswmulti();
                     console.log("Freitext");
 
 
 
                 }
                 else if (answerarr[index].typ == 2) {
-                    var r1 = document.getElementById("Wandern_Freitext").style.visibility = "hidden";
+                    setanswmulti();
+                    setanswfrei("");
                     console.log("single choice");
 
                 }
                 else if (answerarr[index].typ == 1) {
-                    var r1 = document.getElementById("Wandern_Freitext").style.visibility = "hidden";
+                    setanswfrei("");
 
-                    
-                       
-                        setanswmulti (answerarr[index].answers.split(";").map((item, index) => 
 
-                            <div>
-                                <Switch ></Switch>
-                                <label key={index} >
-                                    {item}
-                                </label>
+                    setanswmulti(answerarr[index].answers.split(";").map((item, index) =>
 
-                            </div>
+                        <div key={index} className="Wandern_Switch_Antworten">
+                            <label className="Wandern_Label" key={index} >
 
-                        ))
-                    
+                                <Switch name="switch_1" onChange={(e) => e.target.checked} checked={false}/>
+                                
 
+                                {item}
+                            </label>
+
+                        </div>
+
+                    ))
+
+                    console.log(checked);
                     console.log("multiplechoice");
                 }
-                return r1;
+
             }
             else {
 
@@ -131,7 +147,7 @@ const FormFragenKatalog = () => {
         }
     }
 
-    
+
     const check_Nummerierung = () => {
 
         for (let i = 1; i <= questionarr.length; i++) {
@@ -181,9 +197,9 @@ const FormFragenKatalog = () => {
             check_Nummerierung();
             antworten_sort();
 
-            var l = document.getElementById("Wandern_Freitext").value = "";
+            //var l = document.getElementById("Wandern_Freitext").value = "";
 
-            return r, r1, l;
+            return r, r1;
 
         }
 
@@ -208,9 +224,8 @@ const FormFragenKatalog = () => {
 
             check_Nummerierung();
             antworten_sort();
-            var l = document.getElementById("Wandern_Freitext").value = "";
 
-            return r, r1, l;
+            return r, r1;
 
         }
 
@@ -218,10 +233,10 @@ const FormFragenKatalog = () => {
 
         }
 
-        window.onchange=check_Nummerierung();
+        window.onchange = check_Nummerierung();
 
 
-        
+
 
         return (
             questionarr.length != 1 && answerarr.length != 1 ?
@@ -254,6 +269,8 @@ const FormFragenKatalog = () => {
                         </nav>
                     </IconContext.Provider>
 
+                            
+
                     <div className="liste_seitennummerierung" >
 
                         {questionarr.map((usear, index) =>
@@ -270,20 +287,15 @@ const FormFragenKatalog = () => {
 
                     <div className="Wandern_main_Strich">
                         <h1 className="Wandern_main_heading">{questionarr[useseitenanzahl].question}</h1>
-                    </div>
 
-                    <div className="Wandern_main_Answer">
-                        <textarea
-                            className="Wandern_main_Answer_textarea"
-                            id="Wandern_Freitext"
-                            type="textarea"
-                            rows="15"
-                            cols="160"
-                            style={{ visibility: "hidden" }}
-                            onChange={event => setdaten(event.target.value)} />
 
-                        {answmulti}
+
+                       
                     </div>
+                    {answmulti}
+                    {answfrei}
+
+
 
                     <div className="Fragen-Selection">
 

@@ -1,25 +1,25 @@
 .navbar {
-    background-color: black;
-    height: 80px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-  }
+  background-color: black;
+  height: 67px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
 
-  .Main-Fragen-Heading{
-    justify-content: start;
-    align-items: center;
-    margin-top: 2%;
-    margin-left: 33%;
+.Main-Fragen-Heading{
+  justify-content: start;
+  align-items: center;
+  margin-top: 3.6%;
+  margin-left: 33%;
 
-  }
+}
 
-  .Main-Fragen-Img{
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      margin-top: 172px;
-  }
+.Main-Fragen-Img{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-top: 172px;
+}
 
   .Wandern-Img{
     width: 15%;
@@ -121,17 +121,13 @@
     align-items: center;
   }
   
-  span {
-    margin-left: 16px;
-  }
+  
 
 
 
   @media only screen and (max-width: 1024px){
 
-    body{
-      background-color: white;
-    }
+    
 
     .Main-Fragen-Heading{
       justify-content: start;

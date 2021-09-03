@@ -162,9 +162,7 @@
   
     @media only screen and (max-width: 1024px){
   
-      body{
-        background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
-      }
+      
   
       .Login-form-container {
         width: 100%;
