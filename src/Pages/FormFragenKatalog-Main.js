@@ -15,6 +15,7 @@ function Navbar() {
   const history = useHistory();
   
   const showSidebar = () => setSidebar(!sidebar);
+  const { realuser } = useContext(LoginContext);
 
   return (
     <>
