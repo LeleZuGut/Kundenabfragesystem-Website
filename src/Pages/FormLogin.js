@@ -1,7 +1,11 @@
 import '../Styles/FormLogin.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import LoginContext from '../Contexts/LoginContext';
+import AuthenticatedContext from '../Contexts/AuthenticatedContext';
+import auth from '../Route/auth';
+
 
 
 
@@ -11,10 +15,14 @@ const FormLogin = ({ submitForm }) => {
   const [userarr, setuserarr] = useState([""]);
   const[error,seterror] = useState("");
 
+  const{setrealuser} = useContext(LoginContext);
+  const{setisAuthenticated} = useContext(AuthenticatedContext);
 
   const history = useHistory();
 
-
+  useEffect(() => {
+    getData()
+}, [])
 
 
   const getData = async () => {
@@ -44,10 +52,14 @@ const FormLogin = ({ submitForm }) => {
 
   const check_Data = (e) => {
 
+
     for (let i = 0; i < userarr.length; i++) {
 
       if (userarr[i].email == useremail && userarr[i].password == userpassword) {
 
+        setrealuser(userarr[i].email + ";" + userarr[i].password + ";"+ userarr[i].id);
+        
+        setisAuthenticated(true);
         history.push("/main");
       }
       else {
@@ -62,6 +74,9 @@ const FormLogin = ({ submitForm }) => {
 
 
   return (
+
+    userarr.length != 1 ?
+
     <div className='Login-form-content-right'>
       <form className='Login-form' onSubmit={check_Data}>
         <h1>
@@ -105,6 +120,9 @@ const FormLogin = ({ submitForm }) => {
 
 
     </div>
+
+:   <p>Loading...</p>
+
   );
 };
 

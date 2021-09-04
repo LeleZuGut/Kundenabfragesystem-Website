@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as HiIcons from 'react-icons/hi';
@@ -10,7 +10,9 @@ import { SidebarData } from '../SidebarData';
 import Logo_MainPage from '../Images/Main-FragenPageLogo.PNG';
 import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
-import {Switch} from '@material-ui/core';
+import { Switch } from '@material-ui/core';
+import LoginContext from '../Contexts/LoginContext';
+
 
 
 
@@ -27,9 +29,17 @@ const FormFragenKatalog = () => {
     const [sidebar, setSidebar] = useState(false);
     const [useseitenanzahl, setUseseitenanzahl] = useState(0);
     const [daten, setdaten] = useState("");
-
+    const { realuser } = useContext(LoginContext);
+    const [endresult, setendresult] = useState([]);
 
     const showSidebar = () => setSidebar(!sidebar);
+    let singleresult = {
+        FkCustomerId: "",
+        FkQuestionId: "",
+        FkAnswerId: "",
+        AText: ""
+
+    }
 
 
     useEffect(() => {
@@ -86,12 +96,17 @@ const FormFragenKatalog = () => {
 
     }
 
+    const handleSwitchChange = (index, checkstatus, item, answerid) => {
+       
+
+    }
+
     const antworten_sort = () => {
 
-        for (let index = 0; index < answerarr.length; index++) {
+        for (let i = 0; i < answerarr.length; i++) {
 
-            if (answerarr[index].fkQuestionId == questionarr[useseitenanzahl].id) {
-                if (answerarr[index].typ == 3) {
+            if (answerarr[i].fkQuestionId == questionarr[useseitenanzahl].id) {
+                if (answerarr[i].typ == 3) {
                     setanswfrei(<div className="Wandern_main_Answer">
                         <textarea
                             className="Wandern_main_Answer_textarea"
@@ -110,23 +125,23 @@ const FormFragenKatalog = () => {
 
 
                 }
-                else if (answerarr[index].typ == 2) {
+                else if (answerarr[i].typ == 2) {
                     setanswmulti();
                     setanswfrei("");
                     console.log("single choice");
 
                 }
-                else if (answerarr[index].typ == 1) {
+                else if (answerarr[i].typ == 1) {
                     setanswfrei("");
 
 
-                    setanswmulti(answerarr[index].answers.split(";").map((item, index) =>
+                    setanswmulti(answerarr[i].answers.split(";").map((item, index) =>
 
                         <div key={index} className="Wandern_Switch_Antworten">
                             <label className="Wandern_Label" key={index} >
 
-                                <Switch name="switch_1" onChange={(e) => e.target.checked} checked={false}/>
-                                
+                                <Switch onChange={(e) => { handleSwitchChange({ index }, e.target.checked, { item }, answerarr[i].id) }} />
+
 
                                 {item}
                             </label>
@@ -135,7 +150,6 @@ const FormFragenKatalog = () => {
 
                     ))
 
-                    console.log(checked);
                     console.log("multiplechoice");
                 }
 
@@ -269,7 +283,7 @@ const FormFragenKatalog = () => {
                         </nav>
                     </IconContext.Provider>
 
-                            
+
 
                     <div className="liste_seitennummerierung" >
 
@@ -290,7 +304,6 @@ const FormFragenKatalog = () => {
 
 
 
-                       
                     </div>
                     {answmulti}
                     {answfrei}

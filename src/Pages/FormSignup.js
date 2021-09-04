@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect,useContext} from 'react';
 import axios from 'axios';
 import '../Styles/FormSignup.css';
 import { useHistory } from 'react-router-dom';
 import Recaptcha from 'react-recaptcha';
+import AuthenticatedContext from '../Contexts/AuthenticatedContext';
 import { Switch } from '@material-ui/core';
+import auth from '../Route/auth';
 
 
 
@@ -20,6 +22,11 @@ const FormSignup = ({ submitForm }) => {
   const [confirmpassword, setConfirmpassword] = useState("");
   const [error, setError] = useState("");
   const [captcha, setCaptcha] = useState("");
+  const{setisAuthenticated} = useContext(AuthenticatedContext);
+  const{setrealuser} = useContext(LoginContext);
+
+
+
 
 
 
@@ -51,6 +58,8 @@ const FormSignup = ({ submitForm }) => {
     }
   }
   const history = useHistory();
+
+  
 
   const postData = async() =>{
     let user = {
@@ -86,6 +95,8 @@ const FormSignup = ({ submitForm }) => {
         postData();
       }
 
+      setisAuthenticated(true);
+      setrealuser(username +";"+ email + ";" + password);
       history.push("/main");
     } else {
       e.preventDefault();
@@ -102,7 +113,7 @@ const FormSignup = ({ submitForm }) => {
 
   return (
 
-    
+
 
     <div className='form-content-right'>
       <form action="" method="" className='form' onSubmit={submitHandler}>
@@ -198,7 +209,6 @@ const FormSignup = ({ submitForm }) => {
       </form>
 
       <div>
-      <Switch/>
     </div>
 
       
