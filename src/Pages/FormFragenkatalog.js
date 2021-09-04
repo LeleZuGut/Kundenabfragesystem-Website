@@ -12,8 +12,8 @@ import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
 import { Switch } from '@material-ui/core';
 import LoginContext from '../Contexts/LoginContext';
-
-
+import AuthenticatedContext from '../Contexts/AuthenticatedContext';
+import Cookies from 'js-cookie'
 
 
 
@@ -31,6 +31,7 @@ const FormFragenKatalog = () => {
     const [daten, setdaten] = useState("");
     const { realuser } = useContext(LoginContext);
     const [endresult, setendresult] = useState([]);
+    const{setisAuthenticated} = useContext(AuthenticatedContext);
 
     const showSidebar = () => setSidebar(!sidebar);
     let singleresult = {
@@ -40,6 +41,23 @@ const FormFragenKatalog = () => {
         AText: ""
 
     }
+
+    useEffect(() => {
+        handleCookies()
+      }, []);
+    
+    
+    
+      const handleCookies = () => {
+        const user = Cookies.get("user");
+        if(user){
+          setisAuthenticated(true);
+        }
+        else
+        {
+            setisAuthenticated(false);
+        }
+      }
 
 
     useEffect(() => {
@@ -92,12 +110,12 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-
+            console.log(Cookies.get('user'));
 
     }
 
     const handleSwitchChange = (index, checkstatus, item, answerid) => {
-       
+
 
     }
 
@@ -355,11 +373,7 @@ const FormFragenKatalog = () => {
 
         );
 
-
     }
-
-
-
 
 }
 

@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
+import * as BiIcons from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { SidebarData } from '../SidebarData';
 import '../Styles/FormFragenKatalog-Main.css';
 import { IconContext } from 'react-icons';
 import { useHistory } from 'react-router-dom';
 import Logo_MainPage from '../Images/Main-FragenPageLogo.PNG';
+import AuthenticatedContext from '../Contexts/AuthenticatedContext';
+import LoginContext from '../Contexts/LoginContext';
+import { useCookies, withCookies } from 'react-cookie';
+import FormFragenKatalog from './FormFragenkatalog';
+import Cookies from 'js-cookie'
+
 
 
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const history = useHistory();
-  
+  const{setisAuthenticated} = useContext(AuthenticatedContext);
+
+
   const showSidebar = () => setSidebar(!sidebar);
   const { realuser } = useContext(LoginContext);
 
+  
+  const handleLogout = ()=> {
+    Cookies.remove("user");
+    setisAuthenticated(false);
+   
+
+  }
+
+ 
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -42,6 +60,13 @@ function Navbar() {
                 </li>
               );
             })}
+
+            <li className= "nav-text">
+              <Link to ="/">
+              <BiIcons.BiLogOut/>
+                <span onClick={ () => handleLogout()}>Abmelden</span>
+              </Link>
+            </li>
           </ul>
         </nav>
       </IconContext.Provider>
@@ -50,10 +75,10 @@ function Navbar() {
         <h1>Herzlich willkommen in deinem Basecamp</h1>
         <p>Bitte wähle eine Kategorie</p>
         <div className="Main-Fragen-Img">
-          <FaIcons.FaHiking className="Wandern-Img" onClick={() => history.push("/fragen/Wandern")}/>
-          
+          <FaIcons.FaHiking className="Wandern-Img" onClick={() => history.push("/fragen/Wandern")} />
+
           <FaIcons.FaSkiingNordic className="Ski-Img" onClick={() => history.push("/fragen/Ski")} />
-          <FaIcons.FaMountain className="Klettern-Img" onClick={() => history.push("/fragen/Klettern")}/>
+          <FaIcons.FaMountain className="Klettern-Img" onClick={() => history.push("/fragen/Klettern")} />
 
         </div>
       </div>

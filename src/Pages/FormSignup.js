@@ -4,8 +4,8 @@ import '../Styles/FormSignup.css';
 import { useHistory } from 'react-router-dom';
 import Recaptcha from 'react-recaptcha';
 import AuthenticatedContext from '../Contexts/AuthenticatedContext';
+import LoginContext from '../Contexts/LoginContext';
 import { Switch } from '@material-ui/core';
-import auth from '../Route/auth';
 
 
 
@@ -24,6 +24,7 @@ const FormSignup = ({ submitForm }) => {
   const [captcha, setCaptcha] = useState("");
   const{setisAuthenticated} = useContext(AuthenticatedContext);
   const{setrealuser} = useContext(LoginContext);
+
 
 
 
@@ -96,7 +97,7 @@ const FormSignup = ({ submitForm }) => {
       }
 
       setisAuthenticated(true);
-      setrealuser(username +";"+ email + ";" + password);
+      setrealuser(email + ";" + password);
       history.push("/main");
     } else {
       e.preventDefault();

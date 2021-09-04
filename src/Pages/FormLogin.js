@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import LoginContext from '../Contexts/LoginContext';
 import AuthenticatedContext from '../Contexts/AuthenticatedContext';
-import auth from '../Route/auth';
+import Cookies from 'js-cookie';
 
 
 
@@ -58,7 +58,7 @@ const FormLogin = ({ submitForm }) => {
       if (userarr[i].email == useremail && userarr[i].password == userpassword) {
 
         setrealuser(userarr[i].email + ";" + userarr[i].password + ";"+ userarr[i].id);
-        
+        Cookies.set('user', userarr[i], {expires: 1});
         setisAuthenticated(true);
         history.push("/main");
       }
