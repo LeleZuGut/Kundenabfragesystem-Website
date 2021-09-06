@@ -46,6 +46,22 @@
     margin-top: 2%;
     font-size: 35px;
 }
+
+.Wandern_main_combobox{
+    width: 25%;
+    margin-top: 10%;
+}
+
+.Wandern_main_Single{
+
+display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    margin-top: 2.64%;
+    margin-left: 12%;
+    margin-bottom: 7%;
+}
 .Wandern_Switch_Antworten{
 
     display: flex;

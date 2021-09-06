@@ -42,7 +42,9 @@ const App = () => {
 
                 </div>
                 : isAuthenticated !== undefined&&
-                <Redirect to = {"/login"} />}
+                <Redirect to = {"/login"}/>}
+                
+
 
 
               <Route exact path="/fragen/Ski" component={FormFragenkatalog} />

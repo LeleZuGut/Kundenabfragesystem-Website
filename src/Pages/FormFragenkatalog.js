@@ -11,9 +11,10 @@ import Logo_MainPage from '../Images/Main-FragenPageLogo.PNG';
 import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
 import { Switch } from '@material-ui/core';
-import LoginContext from '../Contexts/LoginContext';
 import AuthenticatedContext from '../Contexts/AuthenticatedContext';
 import Cookies from 'js-cookie'
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
 
@@ -23,15 +24,18 @@ const FormFragenKatalog = () => {
     const [answerarr, setAnswerarr] = useState([""]);
     const [answmulti, setanswmulti] = useState([]);
     const [answfrei, setanswfrei] = useState([]);
+    const [answsingle, setanswsingle] = useState([]);
     const [checked, setchecked] = useState([]);
     const WandernURL = "/fragen/Wandern";
     const currentURL = window.location.pathname;
     const [sidebar, setSidebar] = useState(false);
     const [useseitenanzahl, setUseseitenanzahl] = useState(0);
     const [daten, setdaten] = useState("");
-    const { realuser } = useContext(LoginContext);
+    const [status, setstatus] = useState();
     const [endresult, setendresult] = useState([]);
-    const{setisAuthenticated} = useContext(AuthenticatedContext);
+    const { setisAuthenticated } = useContext(AuthenticatedContext);
+    const result = [];
+
 
     const showSidebar = () => setSidebar(!sidebar);
     let singleresult = {
@@ -44,20 +48,19 @@ const FormFragenKatalog = () => {
 
     useEffect(() => {
         handleCookies()
-      }, []);
-    
-    
-    
-      const handleCookies = () => {
+    }, []);
+
+
+
+    const handleCookies = () => {
         const user = Cookies.get("user");
-        if(user){
-          setisAuthenticated(true);
+        if (user) {
+            setisAuthenticated(true);
         }
-        else
-        {
+        else {
             setisAuthenticated(false);
         }
-      }
+    }
 
 
     useEffect(() => {
@@ -110,13 +113,32 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-            console.log(Cookies.get('user'));
 
     }
 
     const handleSwitchChange = (index, checkstatus, item, answerid) => {
+        const user = Cookies.get("user");
 
 
+        if (checkstatus == true) {
+
+
+
+            result.push({
+                "AText": item,
+                "FkAnswerId": answerid,
+                "FkQuestionId": questionarr[useseitenanzahl].id,
+                "FkCustomerId": user
+
+            });
+        }
+        else {
+
+            result.pop(index);
+        }
+
+
+        console.log(result)
     }
 
     const antworten_sort = () => {
@@ -138,19 +160,31 @@ const FormFragenKatalog = () => {
                     </div>
                     )
                     setanswmulti();
+                    setanswsingle();
                     console.log("Freitext");
 
 
 
                 }
                 else if (answerarr[i].typ == 2) {
+                    const singleantw = answerarr[i].answers.split(";");
+
+                    setanswsingle(<div className="Wandern_main_Single">
+                        <Autocomplete
+                            options={singleantw}
+                            className="Wandern_main_combobox" 
+                            renderInput={(params) =>
+                                <TextField {...params} label="auswählen" variant="outlined" />}
+                    />
+                    </div>)
                     setanswmulti();
                     setanswfrei("");
                     console.log("single choice");
 
                 }
                 else if (answerarr[i].typ == 1) {
-                    setanswfrei("");
+                    setanswfrei();
+                    setanswsingle();
 
 
                     setanswmulti(answerarr[i].answers.split(";").map((item, index) =>
@@ -158,7 +192,7 @@ const FormFragenKatalog = () => {
                         <div key={index} className="Wandern_Switch_Antworten">
                             <label className="Wandern_Label" key={index} >
 
-                                <Switch onChange={(e) => { handleSwitchChange({ index }, e.target.checked, { item }, answerarr[i].id) }} />
+                                <Switch onChange={(e) => { handleSwitchChange({ index }, e.target.checked, { item }, answerarr[i].id) }} id={index} />
 
 
                                 {item}
@@ -227,6 +261,7 @@ const FormFragenKatalog = () => {
             }
 
             check_Nummerierung();
+            setstatus(true);
             antworten_sort();
 
             //var l = document.getElementById("Wandern_Freitext").value = "";
@@ -324,6 +359,7 @@ const FormFragenKatalog = () => {
 
                     </div>
                     {answmulti}
+                    {answsingle}
                     {answfrei}
 
 

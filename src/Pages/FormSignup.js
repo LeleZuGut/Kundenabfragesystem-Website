@@ -6,6 +6,8 @@ import Recaptcha from 'react-recaptcha';
 import AuthenticatedContext from '../Contexts/AuthenticatedContext';
 import LoginContext from '../Contexts/LoginContext';
 import { Switch } from '@material-ui/core';
+import Cookies from 'js-cookie';
+
 
 
 
@@ -85,6 +87,7 @@ const FormSignup = ({ submitForm }) => {
   
 
   const submitHandler = (e) => {
+    setisAuthenticated(false);
 
     if (error == "" & captcha == " ") {
       
@@ -96,7 +99,16 @@ const FormSignup = ({ submitForm }) => {
         postData();
       }
 
-      setisAuthenticated(true);
+      const user = Cookies.get("user");
+        if (user) {
+          Cookies.remove("user");
+          Cookies.set('user', username, {expires: 1});
+          setisAuthenticated(true);
+        }
+        else {
+          Cookies.set('user', username, {expires: 1});
+            setisAuthenticated(true);
+        }
       setrealuser(email + ";" + password);
       history.push("/main");
     } else {

@@ -58,7 +58,7 @@ const FormLogin = ({ submitForm }) => {
       if (userarr[i].email == useremail && userarr[i].password == userpassword) {
 
         setrealuser(userarr[i].email + ";" + userarr[i].password + ";"+ userarr[i].id);
-        Cookies.set('user', userarr[i], {expires: 1});
+        Cookies.set('user', userarr[i].id, {expires: 1});
         setisAuthenticated(true);
         history.push("/main");
       }
@@ -69,6 +69,11 @@ const FormLogin = ({ submitForm }) => {
       }
 
     }
+
+  }
+
+  const handlebuttonregister = (e) =>{
+    setisAuthenticated(true);
 
   }
 
@@ -113,7 +118,7 @@ const FormLogin = ({ submitForm }) => {
           Sign up
         </button>
         <p className="errorvalidation">{error}</p>
-        <span className='Login-form-input-login'>
+        <span className='Login-form-input-login' onClick= {handlebuttonregister}>
           Möchten Sie ein Konto erstellen? Zur Registrierung <a href='/'>hier</a>
         </span>
       </form>
