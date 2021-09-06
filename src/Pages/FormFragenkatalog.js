@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as HiIcons from 'react-icons/hi';
-
-
+import * as BiIcons from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { SidebarData } from '../SidebarData';
@@ -172,10 +171,10 @@ const FormFragenKatalog = () => {
                     setanswsingle(<div className="Wandern_main_Single">
                         <Autocomplete
                             options={singleantw}
-                            className="Wandern_main_combobox" 
+                            className="Wandern_main_combobox"
                             renderInput={(params) =>
                                 <TextField {...params} label="auswählen" variant="outlined" />}
-                    />
+                        />
                     </div>)
                     setanswmulti();
                     setanswfrei("");
@@ -302,7 +301,12 @@ const FormFragenKatalog = () => {
 
         window.onchange = check_Nummerierung();
 
-
+        const handleLogout = ()=> {
+            Cookies.remove("user");
+            setisAuthenticated(false);
+           
+        
+          }
 
 
         return (
@@ -332,6 +336,13 @@ const FormFragenKatalog = () => {
                                         </li>
                                     );
                                 })}
+                                <li className="nav-text">
+                                    <Link to="/" onClick={() => handleLogout()}>
+                                        <BiIcons.BiLogOut />
+                                        <span >Abmelden</span>
+                                    </Link>
+                                </li>
+
                             </ul>
                         </nav>
                     </IconContext.Provider>
