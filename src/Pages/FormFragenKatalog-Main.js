@@ -62,9 +62,9 @@ function Navbar() {
             })}
 
             <li className= "nav-text">
-              <Link to ="/">
+              <Link to ="/" onClick={ () => handleLogout()}>
               <BiIcons.BiLogOut/>
-                <span onClick={ () => handleLogout()}>Abmelden</span>
+                <span >Abmelden</span>
               </Link>
             </li>
           </ul>

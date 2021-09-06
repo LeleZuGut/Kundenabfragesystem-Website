@@ -38,23 +38,33 @@ const App = () => {
 
 
 
-              <PrivateRoute 
-              exact path="/main" 
-              component={Navbar} 
-              isAuthenticated= {isAuthenticated || undefined === isAuthenticated}
+              {isAuthenticated? 
+              <Switch>
+                < Route
+                exact path="/main"
+              component={Navbar}
               />
               <Route exact path="/fragen/Wandern" component={FormFragenkatalog} />
-
-              <Route exact path="/" component={Form} />
-              <Route exact path="/login" component={Form_Log} />
-
-
-
-
-
-
               <Route exact path="/fragen/Ski" component={FormFragenkatalog} />
               <Route exact path="/fragen/Klettern" component={FormFragenkatalog} />
+              <Route  render={()=> <Redirect to={{pathname:"/main"}}/>}></Route>
+
+              </Switch>
+              :
+              <Switch>
+              <Route exact path="/" component={Form} />
+              <Route exact path="/login" component={Form_Log} />
+              <Route  render={()=> <Redirect to={{pathname:"/login"}}/>}></Route>
+
+              </Switch>
+
+
+
+
+
+              
+
+              }
 
 
             </LoginContext.Provider>
