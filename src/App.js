@@ -8,6 +8,7 @@ import FormFragenkatalog from './Pages/FormFragenkatalog';
 import LoginContext from './Contexts/LoginContext';
 import AuthenticatedContext from './Contexts/AuthenticatedContext';
 import Cookies from 'js-cookie'
+import PrivateRoute from './Route/PrivateRoute';
 
 
 const App = () => {
@@ -32,18 +33,23 @@ const App = () => {
         <Switch>
           <AuthenticatedContext.Provider value={{ isAuthenticated, setisAuthenticated }}>
             <LoginContext.Provider value={{ realuser, setrealuser }}>
+
+
+
+
+
+              <PrivateRoute 
+              exact path="/main" 
+              component={Navbar} 
+              isAuthenticated= {isAuthenticated || undefined === isAuthenticated}
+              />
+              <Route exact path="/fragen/Wandern" component={FormFragenkatalog} />
+
               <Route exact path="/" component={Form} />
               <Route exact path="/login" component={Form_Log} />
 
-              {isAuthenticated ?
-                <div>
-                  <Route exact path="/main" component={Navbar} />
-                  <Route exact path="/fragen/Wandern" component={FormFragenkatalog} />
 
-                </div>
-                : isAuthenticated !== undefined&&
-                <Redirect to = {"/login"}/>}
-                
+
 
 
 
