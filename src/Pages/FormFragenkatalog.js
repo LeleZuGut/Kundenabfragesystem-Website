@@ -33,8 +33,10 @@ const FormFragenKatalog = () => {
     const [status, setstatus] = useState();
     const [endresult, setendresult] = useState([]);
     const { setisAuthenticated } = useContext(AuthenticatedContext);
-    const result = [];
+    let result = [];
+    const map1 = new Map();
 
+    
 
     const showSidebar = () => setSidebar(!sidebar);
     let singleresult = {
@@ -82,6 +84,7 @@ const FormFragenKatalog = () => {
 
     const getData = async () => {
 
+
         await axios.get("http://localhost:8080/api/Questions/all"
             , {
                 auth: {
@@ -91,6 +94,8 @@ const FormFragenKatalog = () => {
             })
             .then(result => {
                 setQuestionarr(result.data);
+               
+
 
             })
             .catch(error => {
@@ -106,6 +111,9 @@ const FormFragenKatalog = () => {
             })
             .then(result => {
                 setAnswerarr(result.data);
+                result.data.forEach(element => {
+                    map1.set(element.id, "");
+                });
 
             })
             .catch(error => {
@@ -113,6 +121,36 @@ const FormFragenKatalog = () => {
             })
 
 
+    }
+
+
+
+    const handleSwitchSpeichern = () => {
+        for (let i = 0; i < answerarr.length; i++) {
+
+            if (answerarr[i].fkQuestionId == questionarr[useseitenanzahl].id - 1) {
+                if (answerarr[i].typ == 1) {
+                    if (endresult.length !== 0) {
+
+                        for (let i = 0; i < endresult.length; i++) {
+                            var r = document.getElementsById(endresult[i].AText).checked = true;
+
+
+                        }
+
+                    }
+                    else {
+                        console.log("nd drin");
+
+
+
+                    }
+
+                }
+            }
+        }
+
+        return r;
     }
 
     const handleSwitchChange = (index, checkstatus, item, answerid) => {
@@ -136,8 +174,7 @@ const FormFragenKatalog = () => {
             result.pop(index);
         }
 
-
-        console.log(result)
+        setendresult(result);
     }
 
     const antworten_sort = () => {
@@ -177,7 +214,7 @@ const FormFragenKatalog = () => {
                         />
                     </div>)
                     setanswmulti();
-                    setanswfrei("");
+                    setanswfrei();
                     console.log("single choice");
 
                 }
@@ -191,10 +228,12 @@ const FormFragenKatalog = () => {
                         <div key={index} className="Wandern_Switch_Antworten">
                             <label className="Wandern_Label" key={index} >
 
-                                <Switch onChange={(e) => { handleSwitchChange({ index }, e.target.checked, { item }, answerarr[i].id) }} id={index} />
+                                <Switch îd={item} name={item} onChange={(e) => { handleSwitchChange({ index }, e.target.checked, { item }, answerarr[i].id) }}
+                                />
 
 
                                 {item}
+
                             </label>
 
                         </div>
@@ -241,7 +280,9 @@ const FormFragenKatalog = () => {
     if (currentURL == WandernURL) {
 
 
+
         const button_weiter = () => {
+
             if (questionarr.length == questionarr[useseitenanzahl].id + 1) {
                 var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
@@ -263,13 +304,15 @@ const FormFragenKatalog = () => {
             setstatus(true);
             antworten_sort();
 
-            //var l = document.getElementById("Wandern_Freitext").value = "";
 
             return r, r1;
 
         }
 
         const button_zurück = () => {
+
+            console.log(endresult);
+
             if (useseitenanzahl - 1 < 1) {
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
@@ -290,6 +333,7 @@ const FormFragenKatalog = () => {
 
             check_Nummerierung();
             antworten_sort();
+            handleSwitchSpeichern();
 
             return r, r1;
 
@@ -301,12 +345,12 @@ const FormFragenKatalog = () => {
 
         window.onchange = check_Nummerierung();
 
-        const handleLogout = ()=> {
+        const handleLogout = () => {
             Cookies.remove("user");
             setisAuthenticated(false);
-           
-        
-          }
+
+
+        }
 
 
         return (
