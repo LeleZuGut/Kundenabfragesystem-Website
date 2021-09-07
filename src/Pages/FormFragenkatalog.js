@@ -29,14 +29,13 @@ const FormFragenKatalog = () => {
     const currentURL = window.location.pathname;
     const [sidebar, setSidebar] = useState(false);
     const [useseitenanzahl, setUseseitenanzahl] = useState(0);
-    const [daten, setdaten] = useState("");
+    const [daten, setdaten] = useState(new Map);
     const [status, setstatus] = useState();
     const [endresult, setendresult] = useState([]);
     const { setisAuthenticated } = useContext(AuthenticatedContext);
     let result = [];
-    const map1 = new Map();
 
-    
+
 
     const showSidebar = () => setSidebar(!sidebar);
     let singleresult = {
@@ -84,7 +83,6 @@ const FormFragenKatalog = () => {
 
     const getData = async () => {
 
-
         await axios.get("http://localhost:8080/api/Questions/all"
             , {
                 auth: {
@@ -94,7 +92,7 @@ const FormFragenKatalog = () => {
             })
             .then(result => {
                 setQuestionarr(result.data);
-               
+
 
 
             })
@@ -112,7 +110,7 @@ const FormFragenKatalog = () => {
             .then(result => {
                 setAnswerarr(result.data);
                 result.data.forEach(element => {
-                    map1.set(element.id, "");
+                    daten.set(element.id,element.typ ==1?{}: "");
                 });
 
             })
@@ -153,28 +151,14 @@ const FormFragenKatalog = () => {
         return r;
     }
 
-    const handleSwitchChange = (index, checkstatus, item, answerid) => {
-        const user = Cookies.get("user");
+    const handleSwitchChange = (answerid,statuscheck, item ) => {
 
+       
+        
+        let dat = daten.get(answerid);
+        dat[item] = statuscheck;
 
-        if (checkstatus == true) {
-
-
-
-            result.push({
-                "AText": item,
-                "FkAnswerId": answerid,
-                "FkQuestionId": questionarr[useseitenanzahl].id,
-                "FkCustomerId": user
-
-            });
-        }
-        else {
-
-            result.pop(index);
-        }
-
-        setendresult(result);
+        
     }
 
     const antworten_sort = () => {
@@ -187,11 +171,13 @@ const FormFragenKatalog = () => {
                         <textarea
                             className="Wandern_main_Answer_textarea"
                             id="Wandern_Freitext"
+                            
                             type="textarea"
                             rows="15"
                             cols="160"
-                            onChange={event => setdaten(event.target.value)} />
-
+                            onChange={event => daten.set(answerarr[i].id, event.target.value)} > 
+                            
+                            {daten.get(answerarr[i].id)}</textarea>
 
                     </div>
                     )
@@ -207,8 +193,10 @@ const FormFragenKatalog = () => {
 
                     setanswsingle(<div className="Wandern_main_Single">
                         <Autocomplete
+                            defaultValue= {daten.get(answerarr[i].id)}
                             options={singleantw}
                             className="Wandern_main_combobox"
+                            onChange={(e,value) => daten.set(answerarr[i].id, value)}
                             renderInput={(params) =>
                                 <TextField {...params} label="auswählen" variant="outlined" />}
                         />
@@ -228,9 +216,9 @@ const FormFragenKatalog = () => {
                         <div key={index} className="Wandern_Switch_Antworten">
                             <label className="Wandern_Label" key={index} >
 
-                                <Switch îd={item} name={item} onChange={(e) => { handleSwitchChange({ index }, e.target.checked, { item }, answerarr[i].id) }}
+                                <Switch defaultChecked= {daten.get(answerarr[i].id)[item]} îd={item} name={item} 
+                                onChange={(e) => handleSwitchChange(answerarr[i].id, e.target.checked, item)}
                                 />
-
 
                                 {item}
 
@@ -251,6 +239,7 @@ const FormFragenKatalog = () => {
         }
     }
 
+    
 
     const check_Nummerierung = () => {
 
@@ -333,13 +322,21 @@ const FormFragenKatalog = () => {
 
             check_Nummerierung();
             antworten_sort();
-            handleSwitchSpeichern();
+            //handleSwitchSpeichern();
 
             return r, r1;
 
         }
 
         const button_fertig = () => {
+            console.log(daten);
+            let jsonObject = {};  
+            
+           daten.forEach((value, key) => {  
+            jsonObject[key] = value  
+        });  
+
+        console.log(jsonObject);
 
         }
 
