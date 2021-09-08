@@ -11,6 +11,7 @@ import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
 import { Switch } from '@material-ui/core';
 import AuthenticatedContext from '../Contexts/AuthenticatedContext';
+import LoginContext from '../Contexts/LoginContext';
 import Cookies from 'js-cookie'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -30,11 +31,12 @@ const FormFragenKatalog = () => {
     const [sidebar, setSidebar] = useState(false);
     const [useseitenanzahl, setUseseitenanzahl] = useState(0);
     const [daten, setdaten] = useState(new Map);
+    const [fkquestionidd, setquestionid] = useState(new Map);
+
     const [status, setstatus] = useState();
     const [endresult, setendresult] = useState([]);
     const { setisAuthenticated } = useContext(AuthenticatedContext);
-    let result = [];
-
+    const { realuser } = useContext(LoginContext);
 
 
     const showSidebar = () => setSidebar(!sidebar);
@@ -110,7 +112,7 @@ const FormFragenKatalog = () => {
             .then(result => {
                 setAnswerarr(result.data);
                 result.data.forEach(element => {
-                    daten.set(element.id,element.typ ==1?{}: "");
+                    daten.set(element.id, element.typ == 1 ? {} : "");
                 });
 
             })
@@ -122,43 +124,21 @@ const FormFragenKatalog = () => {
     }
 
 
+    const handleSwitchChange = (answerid, statuscheck, item) => {
 
-    const handleSwitchSpeichern = () => {
-        for (let i = 0; i < answerarr.length; i++) {
+        let dat = daten.get(answerid);
 
-            if (answerarr[i].fkQuestionId == questionarr[useseitenanzahl].id - 1) {
-                if (answerarr[i].typ == 1) {
-                    if (endresult.length !== 0) {
+        if(statuscheck)
+        {
+            dat[item] = statuscheck;
 
-                        for (let i = 0; i < endresult.length; i++) {
-                            var r = document.getElementsById(endresult[i].AText).checked = true;
-
-
-                        }
-
-                    }
-                    else {
-                        console.log("nd drin");
-
-
-
-                    }
-
-                }
-            }
+        }
+        else
+        {
+            delete dat[item];
         }
 
-        return r;
-    }
 
-    const handleSwitchChange = (answerid,statuscheck, item ) => {
-
-       
-        
-        let dat = daten.get(answerid);
-        dat[item] = statuscheck;
-
-        
     }
 
     const antworten_sort = () => {
@@ -171,16 +151,17 @@ const FormFragenKatalog = () => {
                         <textarea
                             className="Wandern_main_Answer_textarea"
                             id="Wandern_Freitext"
-                            
+
                             type="textarea"
                             rows="15"
                             cols="160"
-                            onChange={event => daten.set(answerarr[i].id, event.target.value)} > 
-                            
+                            onChange={event => daten.set(answerarr[i].id, event.target.value)} >
+
                             {daten.get(answerarr[i].id)}</textarea>
 
                     </div>
                     )
+                    fkquestionidd.set(answerarr[i].id, answerarr[i].fkQuestionId);
                     setanswmulti();
                     setanswsingle();
                     console.log("Freitext");
@@ -193,15 +174,16 @@ const FormFragenKatalog = () => {
 
                     setanswsingle(<div className="Wandern_main_Single">
                         <Autocomplete
-                            defaultValue= {daten.get(answerarr[i].id)}
+                            defaultValue={daten.get(answerarr[i].id)}
                             options={singleantw}
                             className="Wandern_main_combobox"
-                            onChange={(e,value) => daten.set(answerarr[i].id, value)}
+                            onChange={(e, value) => daten.set(answerarr[i].id, value)}
                             renderInput={(params) =>
                                 <TextField {...params} label="auswählen" variant="outlined" />}
                         />
                     </div>)
                     setanswmulti();
+                    fkquestionidd.set(answerarr[i].id, answerarr[i].fkQuestionId);
                     setanswfrei();
                     console.log("single choice");
 
@@ -216,8 +198,8 @@ const FormFragenKatalog = () => {
                         <div key={index} className="Wandern_Switch_Antworten">
                             <label className="Wandern_Label" key={index} >
 
-                                <Switch defaultChecked= {daten.get(answerarr[i].id)[item]} îd={item} name={item} 
-                                onChange={(e) => handleSwitchChange(answerarr[i].id, e.target.checked, item)}
+                                <Switch defaultChecked={daten.get(answerarr[i].id)[item]} îd={item} name={item}
+                                    onChange={(e) => handleSwitchChange(answerarr[i].id, e.target.checked, item)}
                                 />
 
                                 {item}
@@ -227,6 +209,7 @@ const FormFragenKatalog = () => {
                         </div>
 
                     ))
+                    fkquestionidd.set(answerarr[i].id, answerarr[i].fkQuestionId);
 
                     console.log("multiplechoice");
                 }
@@ -239,7 +222,7 @@ const FormFragenKatalog = () => {
         }
     }
 
-    
+
 
     const check_Nummerierung = () => {
 
@@ -329,17 +312,67 @@ const FormFragenKatalog = () => {
         }
 
         const button_fertig = () => {
-            console.log(daten);
-            let jsonObject = {};  
-            
-           daten.forEach((value, key) => {  
-            jsonObject[key] = value  
-        });  
+            let result = [];
+            let userid;
+            realuser == undefined ?
+                userid = Number(Cookies.get("user")):
+                userid = realuser.id;
 
-        console.log(jsonObject);
+
+
+            daten.forEach((value, key) => {
+                let obj = "";
+
+                for (var i = 0; i < answerarr.length; i++) {
+
+
+
+                    if (answerarr[i].id == key) {
+
+                        if (answerarr[i].typ == 1) {
+                            for (var schluessel in value) {
+                                obj += schluessel + ";"
+
+                            }
+                        }
+                        result.push({
+                            fkCustomerId: userid,
+                            fkQuestionId: answerarr[i].fkQuestionId,
+                            fkAnswerId: key,
+                            aText: obj?obj:value
+                        })
+                        break
+
+
+                    }
+                }
+
+
+            });
+
+            postData(result);
+            console.log(result);
+            console.log(daten);
+            console.log(fkquestionidd)
 
         }
 
+
+        const postData = async (res) => {
+
+            await axios.post('http://localhost:8080/api/Result/insert', res, {
+                auth: {
+                    username: "admin",
+                    password: "adminpassword"
+                }
+            })
+                .then(response => {
+                    console.log(response)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
         window.onchange = check_Nummerierung();
 
         const handleLogout = () => {
