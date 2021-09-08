@@ -69,6 +69,8 @@ const FormFragenKatalog = () => {
         getData()
     }, [])
 
+  
+
     useEffect(() => {
         antworten_sort()
     }, [answerarr])
@@ -142,6 +144,7 @@ const FormFragenKatalog = () => {
     }
 
     const antworten_sort = () => {
+
 
         for (let i = 0; i < answerarr.length; i++) {
 
@@ -220,6 +223,9 @@ const FormFragenKatalog = () => {
             }
 
         }
+
+
+
     }
 
 
@@ -360,7 +366,7 @@ const FormFragenKatalog = () => {
 
         const postData = async (res) => {
 
-            await axios.post('http://localhost:8080/api/Result/insert', res, {
+            await axios.post('http://localhost/api/Result/insert', res, {
                 auth: {
                     username: "admin",
                     password: "adminpassword"
