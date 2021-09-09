@@ -87,7 +87,7 @@ const FormFragenKatalog = () => {
 
     const getData = async () => {
 
-        await axios.get("http://localhost:8080/api/Questions/all"
+        await axios.get("http://localhost/api/Questions/all"
             , {
                 auth: {
                     username: "admin",
@@ -104,7 +104,7 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-        await axios.get("http://localhost:8080/api/Answer/all"
+        await axios.get("http://localhost/api/Answer/all"
             , {
                 auth: {
                     username: "admin",
@@ -320,6 +320,7 @@ const FormFragenKatalog = () => {
         const button_fertig = () => {
             let result = [];
             let userid;
+            let result2 = {};
             realuser == undefined ?
                 userid = Number(Cookies.get("user")):
                 userid = realuser.id;
@@ -341,12 +342,20 @@ const FormFragenKatalog = () => {
 
                             }
                         }
+                        result2 = {
+                            fkCustomerId: userid,
+                            fkQuestionId: answerarr[i].fkQuestionId,
+                            fkAnswerId: key,
+                            aText: obj?obj:value
+                        }
                         result.push({
                             fkCustomerId: userid,
                             fkQuestionId: answerarr[i].fkQuestionId,
                             fkAnswerId: key,
                             aText: obj?obj:value
                         })
+                        postData(result2);
+                        result.splice(0,1);
                         break
 
 
@@ -356,7 +365,6 @@ const FormFragenKatalog = () => {
 
             });
 
-            postData(result);
             console.log(result);
             console.log(daten);
             console.log(fkquestionidd)
@@ -379,6 +387,8 @@ const FormFragenKatalog = () => {
                     console.log(error)
                 })
         }
+
+
         window.onchange = check_Nummerierung();
 
         const handleLogout = () => {

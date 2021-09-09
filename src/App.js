@@ -56,6 +56,7 @@ const App = () => {
               <Route exact path="/login" component={Form_Log} />
               <Route  render={()=> <Redirect to={{pathname:"/login"}}/>}></Route>
 
+
               </Switch>
 
 

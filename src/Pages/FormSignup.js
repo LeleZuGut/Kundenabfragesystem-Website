@@ -71,12 +71,13 @@ const FormSignup = ({ submitForm }) => {
       Password: password
     }
     console.log("User", user);
-    await axios.post('http://localhost:8080/api/Customer/insert', user,{
+    await axios.post('http://localhost/api/Customer/insert', user,{
       auth:{
         username:"admin",
         password:"adminpassword"
       }
     })
+    
     .then(response => {
       console.log(response)
     })
