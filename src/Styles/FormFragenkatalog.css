@@ -1,13 +1,20 @@
 .Wandern_main_logo{
-    background:black;
-    height: 180px;
-    position: relative;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     display: flex;
-    justify-content: end;
-    align-items: center;
-    margin-top: 0.3%;
     
+}
+
+.liste_seitennummerierung_borderkreis{
+
+    border: 1px solid black;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    top: 50px;
+    left: 20px;
+    border-radius: 50%;
 }
 
 .Wandern_main_Strich{
@@ -16,7 +23,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-top: 1%;
+    margin-top: 1.2%;
     margin-left: 5%;
     height: 8px;
     width: 80%;
@@ -42,7 +49,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-left: 87%;
+    margin-left: 85%;
     margin-top: 2%;
     font-size: 35px;
 }
@@ -79,7 +86,7 @@ display: flex;
 
 .Wandern_main_heading{
     
-    margin-bottom: 4%;
+    margin-bottom: 7%;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -90,52 +97,60 @@ display: flex;
     display: flex;
     align-items: center;
     justify-content: end;
-    margin-top: 0%;
 }
 
 .Wandern_main_button{
     display: flex;
     align-items: center;
     justify-content: end;
-    margin-left: 65.5%;
-    margin-bottom: 2%;
+    margin-left: 60.5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
     
+}
+
+.Wandern_main_zusatztext{
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 2%;
+
 }
 .Wandern_main_button_weiter{
     display: flex;
     align-items: center;
     justify-content: end;
-    width: 140px;
+    width: 80%;
     height: 69px;
     background-color: white;
     outline: none;
     border: 2px solid #C0C0C0;
     color:black;
     font-size: 1.25rem;
-    margin-top: 0%;
 }
 
 .Wandern_main_button_fertig{
     display: flex;
     align-items: center;
     justify-content: end;
-    width: 140px;
+    width: 100%;
     height: 69px;
     background-color: white;
     outline: none;
     border: 2px solid #C0C0C0;
     color:black;
     font-size: 1.25rem;
-    margin-top: 0%;
 }
 
 .Wandern_main_button_z{
     display: flex;
     align-items: center;
     justify-content: end;
-    margin-right: 8%;
-    margin-top: 2%;
-    margin-bottom: 4%;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 0%;
+    margin-bottom: 5%;
     
 
 }
@@ -144,7 +159,7 @@ display: flex;
     display: flex;
     align-items: center;
     justify-content: end;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
     margin-right: 3.2%;
 }
 
@@ -152,7 +167,7 @@ display: flex;
     display: flex;
     align-items: center;
     justify-content: end;
-    width: 140px;
+    width: 100%;
     height: 69px;
     background-color: white;
     outline: none;
@@ -161,234 +176,19 @@ display: flex;
     font-size: 1.25rem;
 }
 
-.Wandern_main_button_icon_zurück{
-    margin-left: 5%;
-    width: 80%;
-    height: 60%; 
+.Wandern_main_zusatztext{
+
 }
 
-.Wandern_main_button_icon{
-    margin-left: 10%;
-    width: 80%;
-    height: 60%;
+.liste_seitennummerierung_kreise{
+    
+    margin-top: 20%;
+    margin: 10px;
+    z-index: -1;
 }
-
-
 
 .Wandern_main_logobild{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    margin-left: 75%;   
-    margin-bottom: 7%;
-    width: 20%;
-    height: 100%;
-}
-
-.Ski_main_logo{
-    background:black;
-    height: 194px;
     width: 100%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    margin-top: 5.5%;
-    
+    height: 18rem;
 }
 
-.Ski_main_Strich{
-
-    background: black;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-top: 7%;
-    margin-left: 5%;
-    height: 8px;
-    width: 80%;
-}
-
-.Ski_main_heading{
-    margin-bottom: 10%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-
-}
-
-.Ski_Fragen-Selection{
-    display: flex;
-    margin-top: 18%;
-    align-items: center;
-    justify-content: end;
-}
-
-.Ski_main_button{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    margin-left: 65.5%;
-    
-}
-.Ski_main_button_weiter{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    width: 140px;
-    height: 69px;
-    background-color: white;
-    outline: none;
-    border: 2px solid #C0C0C0;
-    color:black;
-    font-size: 1.25rem;
-}
-
-.Ski_main_button_z{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    margin-left: 5%;
-    
-
-}
-
-.Ski_main_button_zurück{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    width: 140px;
-    height: 69px;
-    background-color: white;
-    outline: none;
-    border: 2px solid #C0C0C0;
-    color:black;
-    font-size: 1.25rem;
-}
-
-.Ski_main_button_icon_zurück{
-    margin-left: 10%;
-    width: 80%;
-    height: 60%; 
-}
-
-.Ski_main_button_icon{
-    margin-left: 10%;
-    width: 80%;
-    height: 60%;
-}
-
-
-
-.Ski_main_logobild{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    margin-left: 75%;   
-    margin-bottom: 7%;
-    width: 20%;
-    height: 100%;
-}
-
-.Klettern_main_logo{
-    background:black;
-    height: 194px;
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    margin-top: 5.5%;
-    
-}
-
-.Klettern_main_Strich{
-
-    background: black;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    margin-top: 7%;
-    margin-left: 5%;
-    height: 8px;
-    width: 80%;
-}
-
-.Klettern_main_heading{
-    margin-bottom: 10%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-
-}
-
-.Klettern_Fragen-Selection{
-    display: flex;
-    margin-top: 18%;
-    align-items: center;
-    justify-content: end;
-}
-
-.Klettern_main_button{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    margin-left: 65.5%;
-    
-}
-.Klettern_main_button_weiter{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    width: 140px;
-    height: 69px;
-    background-color: white;
-    outline: none;
-    border: 2px solid #C0C0C0;
-    color:black;
-    font-size: 1.25rem;
-}
-
-.Klettern_main_button_z{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    margin-left: 5%;
-    
-
-}
-
-.Klettern_main_button_zurück{
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    width: 140px;
-    height: 69px;
-    background-color: white;
-    outline: none;
-    border: 2px solid #C0C0C0;
-    color:black;
-    font-size: 1.25rem;
-}
-
-.Klettern_main_button_icon_zurück{
-    margin-left: 10%;
-    width: 80%;
-    height: 60%; 
-}
-
-.Klettern_main_button_icon{
-    margin-left: 10%;
-    width: 80%;
-    height: 60%;
-}
-
-
-
-.Klettern_main_logobild{
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    margin-left: 75%;   
-    margin-bottom: 7%;
-    width: 20%;
-    height: 100%;
-}

@@ -3,10 +3,10 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as HiIcons from 'react-icons/hi';
 import * as BiIcons from 'react-icons/bi';
+import * as BsIcons from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { SidebarData } from '../SidebarData';
-import Logo_MainPage from '../Images/Main-FragenPageLogo.PNG';
 import '../Styles/FormFragenkatalog.css';
 import axios from 'axios';
 import { Switch } from '@material-ui/core';
@@ -15,6 +15,11 @@ import LoginContext from '../Contexts/LoginContext';
 import Cookies from 'js-cookie'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Logo_Fusszeile from '../Images/Logo-Fußzeile.png';
+import Logo_Bergauf from '../Images/Logo-Button-Bergauf.png';
+import Logo_Bergab from '../Images/Logo-Button-Bergab.png';
+import Logo_Kreis from '../Images/Logo-Kreis.png';
+
 
 
 
@@ -32,7 +37,7 @@ const FormFragenKatalog = () => {
     const [useseitenanzahl, setUseseitenanzahl] = useState(0);
     const [daten, setdaten] = useState(new Map);
     const [fkquestionidd, setquestionid] = useState(new Map);
-
+    const [index, setindex] = useState();
     const [status, setstatus] = useState();
     const [endresult, setendresult] = useState([]);
     const { setisAuthenticated } = useContext(AuthenticatedContext);
@@ -69,7 +74,7 @@ const FormFragenKatalog = () => {
         getData()
     }, [])
 
-  
+
 
     useEffect(() => {
         antworten_sort()
@@ -130,25 +135,29 @@ const FormFragenKatalog = () => {
 
         let dat = daten.get(answerid);
 
-        if(statuscheck)
-        {
+        if (statuscheck) {
             dat[item] = statuscheck;
 
         }
-        else
-        {
+        else {
             delete dat[item];
         }
 
 
     }
 
-    const antworten_sort = () => {
-
-
+    const antworten_sort = (seitenanz) => {
+        setanswfrei();
+        setanswsingle();
+        setanswmulti();
+        if(seitenanz == undefined)
+        {
+            seitenanz = useseitenanzahl;
+        }
         for (let i = 0; i < answerarr.length; i++) {
 
-            if (answerarr[i].fkQuestionId == questionarr[useseitenanzahl].id) {
+            if (answerarr[i].fkQuestionId == questionarr[seitenanz].id) {
+                
                 if (answerarr[i].typ == 3) {
                     setanswfrei(<div className="Wandern_main_Answer">
                         <textarea
@@ -156,8 +165,8 @@ const FormFragenKatalog = () => {
                             id="Wandern_Freitext"
 
                             type="textarea"
-                            rows="15"
-                            cols="160"
+                            rows="10"
+                            cols="120"
                             onChange={event => daten.set(answerarr[i].id, event.target.value)} >
 
                             {daten.get(answerarr[i].id)}</textarea>
@@ -169,10 +178,12 @@ const FormFragenKatalog = () => {
                     setanswsingle();
                     console.log("Freitext");
 
+                    break
 
 
                 }
                 else if (answerarr[i].typ == 2) {
+
                     const singleantw = answerarr[i].answers.split(";");
 
                     setanswsingle(<div className="Wandern_main_Single">
@@ -190,10 +201,11 @@ const FormFragenKatalog = () => {
                     setanswfrei();
                     console.log("single choice");
 
+                    break
+
                 }
                 else if (answerarr[i].typ == 1) {
-                    setanswfrei();
-                    setanswsingle();
+                    
 
 
                     setanswmulti(answerarr[i].answers.split(";").map((item, index) =>
@@ -215,10 +227,16 @@ const FormFragenKatalog = () => {
                     fkquestionidd.set(answerarr[i].id, answerarr[i].fkQuestionId);
 
                     console.log("multiplechoice");
+
+                    break
                 }
 
             }
             else {
+
+                setanswfrei();
+                setanswsingle();
+                setanswmulti();
 
             }
 
@@ -239,7 +257,7 @@ const FormFragenKatalog = () => {
             }
             else {
 
-                if (questionarr[useseitenanzahl].id == i) {
+                if (useseitenanzahl + 1 == i) {
                     var r = document.getElementById(i).style.fontWeight.bold;
                     var r = document.getElementById(i).style.color = "blue";
 
@@ -260,14 +278,18 @@ const FormFragenKatalog = () => {
 
 
         const button_weiter = () => {
+            let seitenanzahl;
 
-            if (questionarr.length == questionarr[useseitenanzahl].id + 1) {
+            seitenanzahl = useseitenanzahl;
+
+            if (questionarr.length == useseitenanzahl + 2) {
                 var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
                 var r1 = document.getElementById("Wandern_main_button_fertig").style.visibility = "visible";
 
 
                 setUseseitenanzahl(useseitenanzahl + 1);
+                seitenanzahl++;
 
             }
             else {
@@ -276,11 +298,13 @@ const FormFragenKatalog = () => {
                 var r1 = document.getElementById("Wandern_main_button_zurück").style.visibility = "visible";
 
                 setUseseitenanzahl(useseitenanzahl + 1);
+                seitenanzahl++;
+
             }
 
             check_Nummerierung();
             setstatus(true);
-            antworten_sort();
+            antworten_sort(seitenanzahl);
 
 
             return r, r1;
@@ -290,13 +314,19 @@ const FormFragenKatalog = () => {
         const button_zurück = () => {
 
             console.log(endresult);
+            let seitenanzahl;
+            seitenanzahl = useseitenanzahl;
 
             if (useseitenanzahl - 1 < 1) {
+
+
                 var r = document.getElementById("Wandern_main_button_zurück").style.visibility = "hidden";
                 var r1 = document.getElementById("Wandern_main_button_weiter").style.visibility = "visible";
                 var r1 = document.getElementById("Wandern_main_button_fertig").style.visibility = "hidden";
 
                 setUseseitenanzahl(useseitenanzahl - 1);
+                seitenanzahl--;
+
 
             }
             else {
@@ -306,11 +336,12 @@ const FormFragenKatalog = () => {
 
 
                 setUseseitenanzahl(useseitenanzahl - 1);
+                seitenanzahl--;
 
             }
 
             check_Nummerierung();
-            antworten_sort();
+            antworten_sort(seitenanzahl);
             //handleSwitchSpeichern();
 
             return r, r1;
@@ -322,7 +353,7 @@ const FormFragenKatalog = () => {
             let userid;
             let result2 = {};
             realuser == undefined ?
-                userid = Number(Cookies.get("user")):
+                userid = Number(Cookies.get("user")) :
                 userid = realuser.id;
 
 
@@ -346,16 +377,16 @@ const FormFragenKatalog = () => {
                             fkCustomerId: userid,
                             fkQuestionId: answerarr[i].fkQuestionId,
                             fkAnswerId: key,
-                            aText: obj?obj:value
+                            aText: obj ? obj : value
                         }
                         result.push({
                             fkCustomerId: userid,
                             fkQuestionId: answerarr[i].fkQuestionId,
                             fkAnswerId: key,
-                            aText: obj?obj:value
+                            aText: obj ? obj : value
                         })
                         postData(result2);
-                        result.splice(0,1);
+                        result.splice(0, 1);
                         break
 
 
@@ -445,8 +476,14 @@ const FormFragenKatalog = () => {
                         (
                             <div key={index}>
                                 <div>
-                                    <span id={usear.id}>{usear.id}</span>
+                                    <span id={index+1}>
+                                        <div className="liste_seitennummerierung_borderkreis">
+                                        <p>{index+1}</p>
+                                        </div>
+                                        
 
+
+                                    </span>
                                 </div>
                             </div>
                         )
@@ -455,10 +492,10 @@ const FormFragenKatalog = () => {
 
                     <div className="Wandern_main_Strich">
                         <h1 className="Wandern_main_heading">{questionarr[useseitenanzahl].question}</h1>
-
-
+                        <p className="Wandern_main_zusatztext">{questionarr[useseitenanzahl].text}</p>
 
                     </div>
+
                     {answmulti}
                     {answsingle}
                     {answfrei}
@@ -470,36 +507,29 @@ const FormFragenKatalog = () => {
 
 
                         <div className="Wandern_main_button_z">
-                            <button className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" style={{ visibility: "hidden" }}>
-                                <HiIcons.HiArrowCircleLeft className="Wandern_main_button_icon_zurück"></HiIcons.HiArrowCircleLeft>
-                                Bergab
+                            <img className="Wandern_main_button_zurück" onClick={button_zurück} id="Wandern_main_button_zurück" style={{ visibility: "hidden" }} src={Logo_Bergab} />
 
-
-                            </button>
 
                         </div>
                         <div className="Wandern_main_button">
-                            <button className="Wandern_main_button_weiter" onClick={button_weiter} id="Wandern_main_button_weiter">
-                                Bergauf
-                                <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
+                            <img className="Wandern_main_button_weiter" onClick={button_weiter} id="Wandern_main_button_weiter" src={Logo_Bergauf} />
 
-
-                            </button>
                         </div>
 
                         <div className="Wandern_main_button_f">
-                            <button className="Wandern_main_button_fertig" onClick={button_fertig} id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}>
-                                Fertig
-                                <HiIcons.HiArrowCircleRight className="Wandern_main_button_icon"></HiIcons.HiArrowCircleRight>
-
-
+                            <button className="Wandern_main_button_fertig" onClick={button_fertig} id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}> 
+                            Bergauf
                             </button>
+
+
+
+
                         </div>
 
                     </div>
 
                     <div className="Wandern_main_logo">
-                        <img className='Wandern_main_logobild' src={Logo_MainPage} alt='' />
+                        <img className='Wandern_main_logobild' src={Logo_Fusszeile} alt='' />
 
                     </div>
 
