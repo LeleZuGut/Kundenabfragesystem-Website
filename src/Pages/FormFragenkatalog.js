@@ -19,6 +19,7 @@ import Logo_Fusszeile from '../Images/Logo-Fußzeile.png';
 import Logo_Bergauf from '../Images/Logo-Button-Bergauf.png';
 import Logo_Bergab from '../Images/Logo-Button-Bergab.png';
 import Logo_Kreis from '../Images/Logo-Kreis.png';
+import { CircularProgress } from '@mui/material';
 
 
 
@@ -130,6 +131,9 @@ const FormFragenKatalog = () => {
 
     }
 
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     const handleSwitchChange = (answerid, statuscheck, item) => {
 
@@ -150,15 +154,16 @@ const FormFragenKatalog = () => {
         setanswfrei();
         setanswsingle();
         setanswmulti();
-        if(seitenanz == undefined)
-        {
+        if (seitenanz == undefined) {
             seitenanz = useseitenanzahl;
         }
         for (let i = 0; i < answerarr.length; i++) {
 
             if (answerarr[i].fkQuestionId == questionarr[seitenanz].id) {
-                
+
                 if (answerarr[i].typ == 3) {
+                    async function Timeout() {
+                        await sleep(1)
                     setanswfrei(<div className="Wandern_main_Answer">
                         <textarea
                             className="Wandern_main_Answer_textarea"
@@ -173,6 +178,8 @@ const FormFragenKatalog = () => {
 
                     </div>
                     )
+                    }
+                    Timeout()
                     fkquestionidd.set(answerarr[i].id, answerarr[i].fkQuestionId);
                     setanswmulti();
                     setanswsingle();
@@ -184,18 +191,23 @@ const FormFragenKatalog = () => {
                 }
                 else if (answerarr[i].typ == 2) {
 
-                    const singleantw = answerarr[i].answers.split(";");
 
-                    setanswsingle(<div className="Wandern_main_Single">
-                        <Autocomplete
-                            defaultValue={daten.get(answerarr[i].id)}
-                            options={singleantw}
-                            className="Wandern_main_combobox"
-                            onChange={(e, value) => daten.set(answerarr[i].id, value)}
-                            renderInput={(params) =>
-                                <TextField {...params} label="auswählen" variant="outlined" />}
-                        />
-                    </div>)
+                    const singleantw = answerarr[i].answers.split(";");
+                    async function Timeout() {
+                        await sleep(1)
+                        setanswsingle(<div className="Wandern_main_Single">
+                            <Autocomplete
+                                defaultValue={daten.get(answerarr[i].id)}
+                                options={singleantw}
+                                className="Wandern_main_combobox"
+                                onChange={(e, value) => daten.set(answerarr[i].id, value)}
+                                renderInput={(params) =>
+                                    <TextField {...params} label="auswählen" variant="outlined" />}
+                            />
+                        </div>)
+                    }
+                    Timeout()
+
                     setanswmulti();
                     fkquestionidd.set(answerarr[i].id, answerarr[i].fkQuestionId);
                     setanswfrei();
@@ -205,25 +217,29 @@ const FormFragenKatalog = () => {
 
                 }
                 else if (answerarr[i].typ == 1) {
-                    
 
 
-                    setanswmulti(answerarr[i].answers.split(";").map((item, index) =>
+                    async function Timeout() {
+                        await sleep(1);
 
-                        <div key={index} className="Wandern_Switch_Antworten">
-                            <label className="Wandern_Label" key={index} >
+                        setanswmulti(answerarr[i].answers.split(";").map((item, index) =>
 
-                                <Switch defaultChecked={daten.get(answerarr[i].id)[item]} îd={item} name={item}
-                                    onChange={(e) => handleSwitchChange(answerarr[i].id, e.target.checked, item)}
-                                />
+                            <div key={index} className="Wandern_Switch_Antworten">
+                                <label className="Wandern_Label" key={index} >
 
-                                {item}
+                                    <Switch defaultChecked={daten.get(answerarr[i].id)[item]} îd={item} name={item}
+                                        onChange={(e) => handleSwitchChange(answerarr[i].id, e.target.checked, item)}
+                                    />
 
-                            </label>
+                                    {item}
 
-                        </div>
+                                </label>
 
-                    ))
+                            </div>
+
+                        ))
+                    }
+                    Timeout()
                     fkquestionidd.set(answerarr[i].id, answerarr[i].fkQuestionId);
 
                     console.log("multiplechoice");
@@ -476,11 +492,11 @@ const FormFragenKatalog = () => {
                         (
                             <div key={index}>
                                 <div>
-                                    <span id={index+1}>
+                                    <span id={index + 1}>
                                         <div className="liste_seitennummerierung_borderkreis">
-                                        <p>{index+1}</p>
+                                            <p>{index + 1}</p>
                                         </div>
-                                        
+
 
 
                                     </span>
@@ -517,8 +533,8 @@ const FormFragenKatalog = () => {
                         </div>
 
                         <div className="Wandern_main_button_f">
-                            <button className="Wandern_main_button_fertig" onClick={button_fertig} id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}> 
-                            Bergauf
+                            <button className="Wandern_main_button_fertig" onClick={button_fertig} id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}>
+                                Bergauf
                             </button>
 
 
