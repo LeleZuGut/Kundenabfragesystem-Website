@@ -26,7 +26,7 @@ const FormLogin = ({ submitForm }) => {
 
 
   const getData = async () => {
-    await axios.get("http://localhost/api/Customer/all"
+    await axios.get("http://192.168.0.45/api/Customer/all"
       , {
         auth: {
           username: "admin",

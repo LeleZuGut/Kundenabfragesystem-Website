@@ -78,6 +78,8 @@ function Navbar() {
       <div className="Main-Fragen-Heading">
         <h1>Herzlich willkommen in deinem Basecamp</h1>
         <p>Bitte wähle eine Kategorie</p>
+        </div>
+
         <div className="Main-Fragen-Img">
           <FaIcons.FaHiking className="Wandern-Img" onClick={() => history.push("/fragen/Wandern")} />
 
@@ -90,7 +92,6 @@ function Navbar() {
                             
 
         </div>
-      </div>
 
       <div className="main_logo">
         <img className='logobild' src={Logo_Fusszeile} alt='' />

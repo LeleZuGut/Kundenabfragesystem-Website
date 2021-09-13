@@ -93,7 +93,7 @@ const FormFragenKatalog = () => {
 
     const getData = async () => {
 
-        await axios.get("http://localhost/api/Questions/all"
+        await axios.get("http://192.168.0.45/api/Questions/all"
             , {
                 auth: {
                     username: "admin",
@@ -110,7 +110,7 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-        await axios.get("http://localhost/api/Answer/all"
+        await axios.get("http://192.168.0.45/api/Answer/all"
             , {
                 auth: {
                     username: "admin",
@@ -170,8 +170,8 @@ const FormFragenKatalog = () => {
                             id="Wandern_Freitext"
 
                             type="textarea"
-                            rows="10"
-                            cols="120"
+                            rows="8"
+                            cols="100"
                             onChange={event => daten.set(answerarr[i].id, event.target.value)} >
 
                             {daten.get(answerarr[i].id)}</textarea>
@@ -421,7 +421,7 @@ const FormFragenKatalog = () => {
 
         const postData = async (res) => {
 
-            await axios.post('http://localhost/api/Result/insert', res, {
+            await axios.post('http://192.168.0.45/api/Result/insert', res, {
                 auth: {
                     username: "admin",
                     password: "adminpassword"
@@ -511,11 +511,11 @@ const FormFragenKatalog = () => {
                         <p className="Wandern_main_zusatztext">{questionarr[useseitenanzahl].text}</p>
 
                     </div>
-
+                    <div className="Wandern_main_alleantworten">
                     {answmulti}
                     {answsingle}
                     {answfrei}
-
+                    </div>
 
 
                     <div className="Fragen-Selection">
