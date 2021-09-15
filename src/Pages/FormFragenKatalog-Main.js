@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as BiIcons from 'react-icons/bi';
@@ -24,21 +24,38 @@ import Cookies from 'js-cookie'
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const history = useHistory();
-  const{setisAuthenticated} = useContext(AuthenticatedContext);
+  const { setisAuthenticated } = useContext(AuthenticatedContext);
 
 
   const showSidebar = () => setSidebar(!sidebar);
   const { realuser } = useContext(LoginContext);
 
-  
-  const handleLogout = ()=> {
+  useEffect(() => {
+    handleReload()
+  }, [])
+
+  const handleReload = () =>{
+    const reloadCount = sessionStorage.getItem('reloadCount');
+    if(reloadCount < 1) {
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('reloadCount');
+    }
+  }
+
+
+
+  const handleLogout = () => {
     Cookies.remove("user");
     setisAuthenticated(false);
-   
+
 
   }
 
- 
+
+
+
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -65,9 +82,9 @@ function Navbar() {
               );
             })}
 
-            <li className= "nav-text">
-              <Link to ="/" onClick={ () => handleLogout()}>
-              <BiIcons.BiLogOut/>
+            <li className="nav-text">
+              <Link to="/" onClick={() => handleLogout()}>
+                <BiIcons.BiLogOut />
                 <span >Abmelden</span>
               </Link>
             </li>
@@ -78,20 +95,20 @@ function Navbar() {
       <div className="Main-Fragen-Heading">
         <h1>Herzlich willkommen in deinem Basecamp</h1>
         <p>Bitte wähle eine Kategorie</p>
-        </div>
+      </div>
 
-        <div className="Main-Fragen-Img">
-          <FaIcons.FaHiking className="Wandern-Img" onClick={() => history.push("/fragen/Wandern")} />
+      <div className="Main-Fragen-Img">
+        <FaIcons.FaHiking className="Wandern-Img" onClick={() => history.push("/fragen/Wandern")} />
 
-          <FaIcons.FaSkiingNordic className="Ski-Img" onClick={() => history.push("/fragen/Ski")} />
-          <FaIcons.FaMountain className="Klettern-Img" onClick={() => history.push("/fragen/Klettern")} />
-
-
+        <FaIcons.FaSkiingNordic className="Ski-Img" onClick={() => history.push("/fragen/Ski")} />
+        <FaIcons.FaMountain className="Klettern-Img" onClick={() => history.push("/fragen/Klettern")} />
 
 
-                            
 
-        </div>
+
+
+
+      </div>
 
       <div className="main_logo">
         <img className='logobild' src={Logo_Fusszeile} alt='' />

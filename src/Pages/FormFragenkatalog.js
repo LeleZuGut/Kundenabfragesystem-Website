@@ -421,7 +421,10 @@ const FormFragenKatalog = () => {
 
         const postData = async (res) => {
 
+
             await axios.post('http://192.168.0.45/api/Result/insert', res, {
+                headers: { 'Content-Type': 'application/json'},
+
                 auth: {
                     username: "admin",
                     password: "adminpassword"
