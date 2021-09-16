@@ -14,12 +14,15 @@ import AuthenticatedContext from '../Contexts/AuthenticatedContext';
 import LoginContext from '../Contexts/LoginContext';
 import Cookies from 'js-cookie'
 import TextField from '@material-ui/core/TextField';
+import Button from '@mui/material/Button';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Logo_Fusszeile from '../Images/Logo-Fußzeile.png';
 import Logo_Bergauf from '../Images/Logo-Button-Bergauf.png';
 import Logo_Bergab from '../Images/Logo-Button-Bergab.png';
 import Logo_Kreis from '../Images/Logo-Kreis.png';
 import { CircularProgress } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+
 
 
 
@@ -43,6 +46,10 @@ const FormFragenKatalog = () => {
     const [endresult, setendresult] = useState([]);
     const { setisAuthenticated } = useContext(AuthenticatedContext);
     const { realuser } = useContext(LoginContext);
+
+
+    const history = useHistory();
+
 
 
     const showSidebar = () => setSidebar(!sidebar);
@@ -170,8 +177,8 @@ const FormFragenKatalog = () => {
                             id="Wandern_Freitext"
 
                             type="textarea"
-                            rows="8"
-                            cols="100"
+                            rows="5"
+                            cols="50"
                             onChange={event => daten.set(answerarr[i].id, event.target.value)} >
 
                             {daten.get(answerarr[i].id)}</textarea>
@@ -415,6 +422,22 @@ const FormFragenKatalog = () => {
             console.log(result);
             console.log(daten);
             console.log(fkquestionidd)
+            history.push("/login");
+            Cookies.remove("user");
+            setisAuthenticated(false);
+
+
+
+        }
+
+        const button_fertig_action = () =>{
+
+
+
+            history.push("/main");
+            Cookies.remove("user");
+            setisAuthenticated(false);
+
 
         }
 
@@ -536,9 +559,9 @@ const FormFragenKatalog = () => {
                         </div>
 
                         <div className="Wandern_main_button_f">
-                            <button className="Wandern_main_button_fertig" onClick={button_fertig} id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}>
-                                Bergauf
-                            </button>
+                            <Button variant="out" className="Wandern_main_button_fertig" onClick={button_fertig} id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}>
+                                  Fertig
+                            </Button>
 
 
 
