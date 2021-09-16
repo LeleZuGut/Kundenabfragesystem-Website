@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import LoginContext from '../Contexts/LoginContext';
 import AuthenticatedContext from '../Contexts/AuthenticatedContext';
 import Cookies from 'js-cookie';
+import { useHistory } from 'react-router';
 
 
 
