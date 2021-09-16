@@ -52,7 +52,9 @@ const FormLogin = ({ submitForm }) => {
 
 
   const check_Data = (e) => {
-
+    Cookies.remove("user");
+    Cookies.remove("email");
+    Cookies.remove("password");
 
     for (let i = 0; i < userarr.length; i++) {
 
@@ -60,6 +62,8 @@ const FormLogin = ({ submitForm }) => {
 
         setrealuser(userarr[i].email + ";" + userarr[i].password + ";" + userarr[i].id);
         Cookies.set('user', userarr[i].id, { expires: 1 });
+        Cookies.set("email",userarr[i].email, {expires:1});
+        Cookies.set("password",userarr[i].password, {expires:1});
         setisAuthenticated(true);
         history.push("/main");
       }

@@ -29,12 +29,26 @@ function Navbar() {
 
   const showSidebar = () => setSidebar(!sidebar);
   const { realuser } = useContext(LoginContext);
+  const{isAuthenticated} = useContext(AuthenticatedContext);
 
+
+  
   useEffect(() => {
-    handleReload()
-  }, [])
+    if (isAuthenticated) {
+      handleReload()
+    }
+  }, [isAuthenticated])
+  
 
+  const handleLogout = () => {
+    Cookies.remove("user");
+    setisAuthenticated(false);
+
+
+  }
+  
   const handleReload = () =>{
+
     const reloadCount = sessionStorage.getItem('reloadCount');
     if(reloadCount < 1) {
       sessionStorage.setItem('reloadCount', String(reloadCount + 1));
@@ -46,14 +60,12 @@ function Navbar() {
 
 
 
-  const handleLogout = () => {
-    Cookies.remove("user");
-    setisAuthenticated(false);
+  
 
 
-  }
 
 
+  
 
 
   return (

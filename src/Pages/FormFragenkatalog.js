@@ -46,6 +46,7 @@ const FormFragenKatalog = () => {
     const [endresult, setendresult] = useState([]);
     const { setisAuthenticated } = useContext(AuthenticatedContext);
     const { realuser } = useContext(LoginContext);
+    const [getUserId, setgetUserId] = useState([]);
 
 
     const history = useHistory();
@@ -371,17 +372,38 @@ const FormFragenKatalog = () => {
 
         }
 
-        const button_fertig = () => {
+        const getUserData = async (email,password) => {
+           const rest = await axios.get("http://192.168.0.45/api/Customer/getCurrentUser"
+              , {
+                auth: {
+                  username: email,
+                  password: password
+                }
+                
+              })
+              .then(result => {
+                return result.data ;
+        
+              })
+              .catch(error => {
+                console.log(error)
+              })
+
+              return rest;
+          }
+
+        const button_fertig = async () => {
             let result = [];
-            let userid;
+            let useremail = Cookies.get("email");
+            let userpassw = Cookies.get("password");
+            const ret = await getUserData(useremail,userpassw);
+
             let result2 = {};
-            realuser == undefined ?
-                userid = Number(Cookies.get("user")) :
-                userid = realuser.id;
+            
 
 
 
-            daten.forEach((value, key) => {
+            daten.forEach(async(value, key) => {
                 let obj = "";
 
                 for (var i = 0; i < answerarr.length; i++) {
@@ -397,18 +419,18 @@ const FormFragenKatalog = () => {
                             }
                         }
                         result2 = {
-                            fkCustomerId: userid,
+                            fkCustomerId: ret.id,
                             fkQuestionId: answerarr[i].fkQuestionId,
                             fkAnswerId: key,
                             aText: obj ? obj : value
                         }
                         result.push({
-                            fkCustomerId: userid,
+                            fkCustomerId: ret.id,
                             fkQuestionId: answerarr[i].fkQuestionId,
                             fkAnswerId: key,
                             aText: obj ? obj : value
                         })
-                        postData(result2);
+                        await postData(result2);
                         result.splice(0, 1);
                         break
 
@@ -419,12 +441,11 @@ const FormFragenKatalog = () => {
 
             });
 
-            console.log(result);
-            console.log(daten);
-            console.log(fkquestionidd)
-            history.push("/login");
+          
             Cookies.remove("user");
+            
             setisAuthenticated(false);
+            history.push("/login");
 
 
 
@@ -446,9 +467,7 @@ const FormFragenKatalog = () => {
 
 
             await axios.post('http://192.168.0.45/api/Result/insert', res, {
-                headers: { 'Content-Type': 'application/json'},
-
-                auth: {
+         auth: {
                     username: "admin",
                     password: "adminpassword"
                 }

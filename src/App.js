@@ -22,10 +22,6 @@ const App = () => {
 
 
 
-
-
-
-
   return (
     <div className="Main-App">
 
@@ -33,10 +29,6 @@ const App = () => {
         <Switch>
           <AuthenticatedContext.Provider value={{ isAuthenticated, setisAuthenticated }}>
             <LoginContext.Provider value={{ realuser, setrealuser }}>
-
-
-
-
 
               {isAuthenticated? 
               <Switch>

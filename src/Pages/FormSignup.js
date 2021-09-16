@@ -79,16 +79,20 @@ const FormSignup = ({ submitForm }) => {
     })
     
     .then(response => {
-      console.log(response)
     })
     .catch(error => {
-      console.log(error)
     })
+
   }
   
 
   const submitHandler = (e) => {
     setisAuthenticated(false);
+    Cookies.remove("user");
+    Cookies.remove("email");
+    Cookies.remove("password");
+
+
 
     if (error == "" & captcha == " ") {
       
@@ -97,19 +101,22 @@ const FormSignup = ({ submitForm }) => {
 
 
       } else {
-        postData();
+        Cookies.set("user","yallah",{expires:1});
+        Cookies.set("email",email, {expires:1});
+        Cookies.set("password",password, {expires:1});
+
+        const setvalidation = async() =>{
+          await postData();
+          setisAuthenticated(true);
+
+          history.push("/main");
+
+        }
+
+        setvalidation();
       }
 
-      const user = Cookies.get("user");
-        if (user) {
-          Cookies.remove("user");
-          Cookies.set('user', username, {expires: 1});
-          setisAuthenticated(true);
-        }
-        else {
-          Cookies.set('user', username, {expires: 1});
-            setisAuthenticated(true);
-        }
+     
       setrealuser(email + ";" + password);
       history.push("/main");
     } else {
