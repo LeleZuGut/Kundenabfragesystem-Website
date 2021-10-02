@@ -6,7 +6,12 @@
   
     
 }
-
+.Wandern_main_catalog{
+    margin-bottom: 6%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
 .liste_seitennummerierung_borderkreis{
 
     border: 1px solid black;
@@ -394,6 +399,27 @@ display: flex;
         align-items: center;
         justify-content: end;
         
+    }
+
+    .liste_seitennummerierung_borderkreis{
+
+        border: 1px solid black;
+        text-align: center;
+        width: 50px;
+        height: 50px;
+        top: 50px;
+        left: 50px;
+        border-radius: 50%;
+    }
+
+    .liste_seitennummerierung{
+    
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-left: 70%;
+        margin-top: 2%;
+        font-size: 35px;
     }
 
 }

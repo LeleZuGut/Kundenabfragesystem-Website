@@ -22,6 +22,7 @@ import Logo_Bergab from '../Images/Logo-Button-Bergab.png';
 import Logo_Kreis from '../Images/Logo-Kreis.png';
 import { CircularProgress } from '@mui/material';
 import { useHistory } from 'react-router-dom';
+import Modal from "../Modal";
 
 
 
@@ -42,11 +43,15 @@ const FormFragenKatalog = () => {
     const [daten, setdaten] = useState(new Map);
     const [fkquestionidd, setquestionid] = useState(new Map);
     const [index, setindex] = useState();
-    const [status, setstatus] = useState();
+    const [status, setstatus] = useState(false);
     const [endresult, setendresult] = useState([]);
     const { setisAuthenticated } = useContext(AuthenticatedContext);
     const { realuser } = useContext(LoginContext);
     const [getUserId, setgetUserId] = useState([]);
+    const [catalogid, setcatalogid] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+
+
 
 
     const history = useHistory();
@@ -83,7 +88,9 @@ const FormFragenKatalog = () => {
         getData()
     }, [])
 
-
+    useEffect(() => {
+        check_Nummerierung()
+    }, [catalogid, questionarr])
 
     useEffect(() => {
         antworten_sort()
@@ -137,6 +144,24 @@ const FormFragenKatalog = () => {
             })
 
 
+
+        await axios.get("http://192.168.0.45/api/Catalog/all"
+            , {
+                auth: {
+                    username: "admin",
+                    password: "adminpassword"
+                }
+            })
+            .then(result => {
+                setcatalogid(result.data);
+
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+
     }
 
     function sleep(ms) {
@@ -172,20 +197,20 @@ const FormFragenKatalog = () => {
                 if (answerarr[i].typ == 3) {
                     async function Timeout() {
                         await sleep(1)
-                    setanswfrei(<div className="Wandern_main_Answer">
-                        <textarea
-                            className="Wandern_main_Answer_textarea"
-                            id="Wandern_Freitext"
+                        setanswfrei(<div className="Wandern_main_Answer">
+                            <textarea
+                                className="Wandern_main_Answer_textarea"
+                                id="Wandern_Freitext"
 
-                            type="textarea"
-                            rows="5"
-                            cols="50"
-                            onChange={event => daten.set(answerarr[i].id, event.target.value)} >
+                                type="textarea"
+                                rows="5"
+                                cols="50"
+                                onChange={event => daten.set(answerarr[i].id, event.target.value)} >
 
-                            {daten.get(answerarr[i].id)}</textarea>
+                                {daten.get(answerarr[i].id)}</textarea>
 
-                    </div>
-                    )
+                        </div>
+                        )
                     }
                     Timeout()
                     fkquestionidd.set(answerarr[i].id, answerarr[i].fkQuestionId);
@@ -274,14 +299,14 @@ const FormFragenKatalog = () => {
 
     const check_Nummerierung = () => {
 
-        for (let i = 1; i <= questionarr.length; i++) {
+        for (let i = 0; i <= catalogid.length; i++) {
 
             if (document.getElementById(i) == null) {
 
             }
             else {
 
-                if (useseitenanzahl + 1 == i) {
+                if (catalogid[i].id == questionarr[useseitenanzahl].fkCatalogId) {
                     var r = document.getElementById(i).style.fontWeight.bold;
                     var r = document.getElementById(i).style.color = "blue";
 
@@ -294,6 +319,7 @@ const FormFragenKatalog = () => {
             }
 
         }
+        console.log(catalogid);
         return r;
     }
 
@@ -305,6 +331,7 @@ const FormFragenKatalog = () => {
             let seitenanzahl;
 
             seitenanzahl = useseitenanzahl;
+
 
             if (questionarr.length == useseitenanzahl + 2) {
                 var r = document.getElementById("Wandern_main_button_weiter").style.visibility = "hidden";
@@ -327,7 +354,6 @@ const FormFragenKatalog = () => {
             }
 
             check_Nummerierung();
-            setstatus(true);
             antworten_sort(seitenanzahl);
 
 
@@ -372,38 +398,43 @@ const FormFragenKatalog = () => {
 
         }
 
-        const getUserData = async (email,password) => {
-           const rest = await axios.get("http://192.168.0.45/api/Customer/getCurrentUser"
-              , {
-                auth: {
-                  username: email,
-                  password: password
-                }
-                
-              })
-              .then(result => {
-                return result.data ;
-        
-              })
-              .catch(error => {
-                console.log(error)
-              })
+        const getUserData = async (email, password) => {
+            const rest = await axios.get("http://192.168.0.45/api/Customer/getCurrentUser"
+                , {
+                    auth: {
+                        username: email,
+                        password: password
+                    }
 
-              return rest;
-          }
+                })
+                .then(result => {
+                    return result.data;
+
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+            return rest;
+        }
+
+       
 
         const button_fertig = async () => {
+
+            if(status == true)
+            {
             let result = [];
             let useremail = Cookies.get("email");
             let userpassw = Cookies.get("password");
-            const ret = await getUserData(useremail,userpassw);
+            const ret = await getUserData(useremail, userpassw);
 
             let result2 = {};
-            
 
 
 
-            daten.forEach(async(value, key) => {
+
+            daten.forEach(async (value, key) => {
                 let obj = "";
 
                 for (var i = 0; i < answerarr.length; i++) {
@@ -441,33 +472,34 @@ const FormFragenKatalog = () => {
 
             });
 
-          
             Cookies.remove("user");
-            
+
             setisAuthenticated(false);
             history.push("/login");
 
-
-
         }
+        else
+    {
+        setModalOpen(true); 
 
-        const button_fertig_action = () =>{
+    }
+    }
+    
+
+           
 
 
 
-            history.push("/main");
-            Cookies.remove("user");
-            setisAuthenticated(false);
+        
 
-
-        }
+        
 
 
         const postData = async (res) => {
 
 
             await axios.post('http://192.168.0.45/api/Result/insert', res, {
-         auth: {
+                auth: {
                     username: "admin",
                     password: "adminpassword"
                 }
@@ -488,11 +520,23 @@ const FormFragenKatalog = () => {
             setisAuthenticated(false);
 
 
+
+
+        }
+
+        const handleCatalogtitle = () => {
+
+            for (var i = 0; i < catalogid.length; i++) {
+                if (catalogid[i].id == questionarr[useseitenanzahl].fkCatalogId) {
+
+                    return catalogid[i].category;
+                }
+            }
         }
 
 
         return (
-            questionarr.length != 1 && answerarr.length != 1 ?
+            questionarr.length != 1 && answerarr.length != 1 && catalogid.length != 0 ?
 
                 <>
                     <IconContext.Provider value={{ color: '#fff' }}>
@@ -533,11 +577,11 @@ const FormFragenKatalog = () => {
 
                     <div className="liste_seitennummerierung" >
 
-                        {questionarr.map((usear, index) =>
+                        {catalogid.map((usear, index) =>
                         (
                             <div key={index}>
                                 <div>
-                                    <span id={index + 1}>
+                                    <span id={index}>
                                         <div className="liste_seitennummerierung_borderkreis">
                                             <p>{index + 1}</p>
                                         </div>
@@ -552,15 +596,21 @@ const FormFragenKatalog = () => {
                     </div>
 
                     <div className="Wandern_main_Strich">
-                        <h1 className="Wandern_main_heading">{questionarr[useseitenanzahl].question}</h1>
+                        <h1 className="Wandern_main_catalog">{handleCatalogtitle()}</h1>
+                        <h1 className="Wandern_main_heading">{": " + questionarr[useseitenanzahl].question}</h1>
                         <p className="Wandern_main_zusatztext">{questionarr[useseitenanzahl].text}</p>
 
                     </div>
                     <div className="Wandern_main_alleantworten">
-                    {answmulti}
-                    {answsingle}
-                    {answfrei}
+                        {answmulti}
+                        {answsingle}
+                        {answfrei}
                     </div>
+
+
+
+
+
 
 
                     <div className="Fragen-Selection">
@@ -578,14 +628,16 @@ const FormFragenKatalog = () => {
                         </div>
 
                         <div className="Wandern_main_button_f">
-                            <Button variant="out" className="Wandern_main_button_fertig" onClick={button_fertig} id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}>
-                                  Fertig
+                            <Button variant="out" className="Wandern_main_button_fertig" onClick={button_fertig}
+                          
+                                id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}>
+                                Fertig
                             </Button>
 
 
-
-
                         </div>
+                        {modalOpen&&<Modal setOpenModal={setModalOpen} setStatus={setstatus}/>}
+                        {status?button_fertig:""}
 
                     </div>
 

@@ -218,7 +218,7 @@ const FormSignup = ({ submitForm }) => {
         <div className="recaptcha" required>
           <Recaptcha
             required
-            sitekey="6LegDPMbAAAAANZWpLaRCJ1dgTG9wC2bplGQz9xy"
+            sitekey="6LdpNHMcAAAAANYGYQRyYWeqy8hjXIDC_93dDQ-g"
             render="explicit"
             onloadCallback={recaptchaloaded}
             verifyCallback={(e) => setCaptcha(" ")}
