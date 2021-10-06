@@ -422,8 +422,6 @@ const FormFragenKatalog = () => {
 
         const button_fertig = async () => {
 
-            if(status == true)
-            {
             let result = [];
             let useremail = Cookies.get("email");
             let userpassw = Cookies.get("password");
@@ -478,12 +476,8 @@ const FormFragenKatalog = () => {
             history.push("/login");
 
         }
-        else
-    {
-        setModalOpen(true); 
-
-    }
-    }
+        
+    
     
 
            
@@ -628,7 +622,7 @@ const FormFragenKatalog = () => {
                         </div>
 
                         <div className="Wandern_main_button_f">
-                            <Button variant="out" className="Wandern_main_button_fertig" onClick={button_fertig}
+                            <Button variant="out" className="Wandern_main_button_fertig" onClick={()=> setModalOpen(true)}
                           
                                 id="Wandern_main_button_fertig" style={{ visibility: "hidden" }}>
                                 Fertig
@@ -636,8 +630,7 @@ const FormFragenKatalog = () => {
 
 
                         </div>
-                        {modalOpen&&<Modal setOpenModal={setModalOpen} setStatus={setstatus}/>}
-                        {status?button_fertig:""}
+                        {modalOpen&&<Modal setOpenModal={setModalOpen} buttonfertig={button_fertig}/>}
 
                     </div>
 

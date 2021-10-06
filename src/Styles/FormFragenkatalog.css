@@ -203,6 +203,13 @@ display: flex;
 @media only screen and (max-width: 1300px)
 {
 
+    .Wandern_main_catalog{
+        margin-bottom: 10%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
     .Wandern_main_alleantworten{
 
         position: relative;

@@ -1,7 +1,8 @@
 import React from "react";
+import FormFragenKatalog from "./Pages/FormFragenkatalog";
 import "./Styles/Modal.css";
 
-function Modal({ setOpenModal, setStatus}) {
+function Modal({ setOpenModal, buttonfertig}) {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -15,10 +16,12 @@ function Modal({ setOpenModal, setStatus}) {
           </button>
         </div>
         <div className="title">
-          <h1>Sie müssen noch kurz die AGBS akueptieren?</h1>
+          <h1>Bevor Sie beenden, bitte noch diese Informationen bestätigen?</h1>
         </div>
         <div className="body">
-          <p>The next page looks amazing. Hope you want to go there!</p>
+          <input type="checkbox"/>
+          <label>Ich akzeptiere die AGB´s</label>
+
         </div>
         <div className="footer">
           <button
@@ -31,7 +34,8 @@ function Modal({ setOpenModal, setStatus}) {
           </button>
           <button onClick={() => {
               setOpenModal(false);
-              setStatus(true);
+              buttonfertig();
+              
             }}>Continue</button>
         </div>
       </div>
