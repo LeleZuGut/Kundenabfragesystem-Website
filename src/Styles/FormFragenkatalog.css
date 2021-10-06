@@ -1,0 +1,446 @@
+.Wandern_main_logo{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+  
+    
+}
+.Wandern_main_catalog{
+    margin-bottom: 6%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.liste_seitennummerierung_borderkreis{
+
+    border: 1px solid black;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    top: 50px;
+    left: 20px;
+    border-radius: 50%;
+}
+
+.Wandern_main_Strich{
+
+    background: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 1.2%;
+    margin-left: 5%;
+    height: 8px;
+    width: 80%;
+}
+.Wandern_main_Answer{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 3.5%;
+    
+}
+.Wandern_main_Answer_textarea{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 10%;
+    resize: none;
+    margin-top: 1.95%;
+
+}
+.liste_seitennummerierung{
+    
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 80%;
+    margin-top: 2%;
+    font-size: 35px;
+}
+
+.Wandern_main_combobox{
+    width: 25%;
+    margin-top: 10%;
+}
+
+.Wandern_main_Single{
+
+display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    margin-top: 2.64%;
+    margin-left: 12%;
+    margin-bottom: 7%;
+}
+.Wandern_Switch_Antworten{
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    margin-top: 2.64%;
+    margin-left: 12%;
+    margin-bottom: 2.26%;
+    
+}
+
+
+
+
+.Wandern_main_heading{
+    
+    margin-bottom: 6%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+
+.Fragen-Selection{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    bottom: 250px;
+    position: absolute;
+}
+
+.Wandern_main_button{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-left: 60.5%;
+    margin-right: 5%;
+    margin-bottom: 4%;
+    
+    
+}
+
+.Wandern_main_zusatztext{
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 2%;
+
+}
+.Wandern_main_button_weiter{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 80%;
+    height: 69px;
+    background-color: white;
+    outline: none;
+    border: 2px solid #C0C0C0;
+    color:black;
+    font-size: 1.25rem;
+}
+
+.Wandern_main_button_fertig{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: 69px;
+    background-color: white;
+    outline: none;
+    border: 2px solid #C0C0C0;
+    color:black;
+    font-size: 1.25rem;
+}
+
+.Wandern_main_button_z{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-top: 0%;
+    margin-bottom: 5%;
+    
+
+}
+
+.Wandern_main_button_f{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-bottom: 5%;
+    margin-right: 3.2%;
+}
+
+.Wandern_main_button_zurück{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: 69px;
+    background-color: white;
+    outline: none;
+    border: 2px solid #C0C0C0;
+    color:black;
+    font-size: 1.25rem;
+}
+
+
+
+.liste_seitennummerierung_kreise{
+    
+    margin-top: 20%;
+    margin: 10px;
+    z-index: -1;
+}
+
+.Wandern_main_logobild{
+    width: 100%;
+    height: 18rem;
+}
+
+@media only screen and (max-width: 1300px)
+{
+
+    .Wandern_main_catalog{
+        margin-bottom: 10%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .Wandern_main_alleantworten{
+
+        position: relative;
+        bottom: 20px;
+    }
+
+    .Wandern_Switch_Antworten{
+
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        position: relative;
+        margin-top: 2.64%;
+        margin-left: 35%;
+        margin-bottom: 2.26%;
+        
+    }
+    .Wandern_main_Strich{
+
+        background: black;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-top: 3.2%;
+        margin-left: 5%;
+        height: 8px;
+        width: 80%;
+    }
+    .Wandern_main_zusatztext{
+
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        position: relative;
+        right: 230px;
+    
+    }
+
+    .Wandern_main_heading{
+    
+        margin-bottom: 10%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    
+    }
+
+
+    .Wandern_main_combobox{
+        width: 25%;
+        margin-top: 5.7%;
+    }
+
+    .Wandern_main_Answer_textarea{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-left: 10%;
+        resize: none;
+        margin-top: 9.15%;
+        position: relative;
+        bottom:100px;
+    
+    }
+
+    .Wandern_main_button{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        margin-left: 60.5%;
+        margin-right: 5%;
+        margin-bottom: 4%;
+        position: absolute;
+        right: 132px;
+        
+    }
+
+    .Wandern_main_logo{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+      
+        
+    }
+
+    .Wandern_main_button_z{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        position: absolute;
+        right: 1000px;
+    
+    }
+    .Wandern_main_button_f{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        margin-bottom: 5%;
+        position: absolute;
+        right: 630px;
+    }
+
+    .Wandern_main_button_fertig{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 100%;
+        height: 69px;
+        background-color: white;
+        outline: none;
+        border: 2px solid #C0C0C0;
+        color:black;
+        font-size: 1.25rem;
+    }
+
+    .liste_seitennummerierung{
+    
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-left: 65%;
+        margin-top: 1%;
+        font-size: 35px;
+    }
+    .Wandern_main_Answer{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+     
+        
+    }
+
+    .Wandern_main_Single{
+
+        display: flex;
+            justify-content: start;
+            align-items: center;
+            position: relative;
+            margin-left: 12%;
+        }
+
+    .Wandern_main_button_zurück{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 150%;
+        height: 69px;
+        background-color: white;
+        outline: none;
+        border: 2px solid #C0C0C0;
+        color:black;
+        font-size: 1.25rem;
+    }
+
+    .Wandern_main_button_weiter{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 150%;
+        height: 69px;
+        background-color: white;
+        outline: none;
+        border: 2px solid #C0C0C0;
+        color:black;
+        font-size: 1.25rem;
+    }
+    .Wandern_main_logobild{
+        width: 100%;
+        height: 13rem;
+    }
+
+    .Fragen-Selection{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 100%;
+        bottom: 235px;
+        position: absolute;
+    }
+
+
+    .Wandern_main_button_z{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        margin-top: 0%;
+        
+    
+    }
+
+    .Wandern_main_button{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        
+    }
+
+    .liste_seitennummerierung_borderkreis{
+
+        border: 1px solid black;
+        text-align: center;
+        width: 50px;
+        height: 50px;
+        top: 50px;
+        left: 50px;
+        border-radius: 50%;
+    }
+
+    .liste_seitennummerierung{
+    
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin-left: 70%;
+        margin-top: 2%;
+        font-size: 35px;
+    }
+
+}
+
+@media only screen and (max-height: 500px)
+{
+    .Wandern_main_logo{
+        visibility: hidden;
+
+      
+        
+    }
+
+   
+}
+
+
