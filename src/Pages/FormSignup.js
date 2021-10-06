@@ -71,7 +71,7 @@ const FormSignup = ({ submitForm }) => {
       Password: password
     }
     console.log("User", user);
-    await axios.post('http://192.168.0.45/api/Customer/insert', user,{
+    await axios.post('http://192.168.0.4/api/Customer/insert', user,{
       auth:{
         username:"admin",
         password:"adminpassword"

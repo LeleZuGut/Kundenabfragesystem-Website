@@ -108,7 +108,7 @@ const FormFragenKatalog = () => {
 
     const getData = async () => {
 
-        await axios.get("http://192.168.0.45/api/Questions/all"
+        await axios.get("http://192.168.0.4/api/Questions/all"
             , {
                 auth: {
                     username: "admin",
@@ -125,7 +125,7 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-        await axios.get("http://192.168.0.45/api/Answer/all"
+        await axios.get("http://192.168.0.4/api/Answer/all"
             , {
                 auth: {
                     username: "admin",
@@ -145,7 +145,7 @@ const FormFragenKatalog = () => {
 
 
 
-        await axios.get("http://192.168.0.45/api/Catalog/all"
+        await axios.get("http://192.168.0.4/api/Catalog/all"
             , {
                 auth: {
                     username: "admin",
@@ -399,7 +399,7 @@ const FormFragenKatalog = () => {
         }
 
         const getUserData = async (email, password) => {
-            const rest = await axios.get("http://192.168.0.45/api/Customer/getCurrentUser"
+            const rest = await axios.get("http://192.168.0.4/api/Customer/getCurrentUser"
                 , {
                     auth: {
                         username: email,
@@ -492,7 +492,7 @@ const FormFragenKatalog = () => {
         const postData = async (res) => {
 
 
-            await axios.post('http://192.168.0.45/api/Result/insert', res, {
+            await axios.post('http://192.168.0.4/api/Result/insert', res, {
                 auth: {
                     username: "admin",
                     password: "adminpassword"
