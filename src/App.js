@@ -8,7 +8,6 @@ import FormFragenkatalog from './Pages/FormFragenkatalog';
 import LoginContext from './Contexts/LoginContext';
 import AuthenticatedContext from './Contexts/AuthenticatedContext';
 import Cookies from 'js-cookie'
-import PrivateRoute from './Route/PrivateRoute';
 
 
 const App = () => {
@@ -50,27 +49,13 @@ const App = () => {
 
 
               </Switch>
-
-
-
-
-
-              
-
+ 
               }
-
 
             </LoginContext.Provider>
           </AuthenticatedContext.Provider>
 
-
-
-
-
-
-
         </Switch>
-
 
       </BrowserRouter>
     </div >

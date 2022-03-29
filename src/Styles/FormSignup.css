@@ -2,7 +2,7 @@
 .form-container {
   width: 100%;
   position: flex;
-  height: 937px;
+  height: 947px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }

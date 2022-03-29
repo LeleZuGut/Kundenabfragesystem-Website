@@ -69,11 +69,9 @@ const FormSignup = ({ submitForm }) => {
 
 
 
-    if (password == confirmpassword && captcha == " ") {
+    if (password == confirmpassword && captcha == " ") {  
       
-
-      
-        Cookies.set("user","yallah",{expires:1});
+        Cookies.set("user","",{expires:1});
         Cookies.set("email",email, {expires:1});
         Cookies.set("password",password, {expires:1});
 
@@ -84,12 +82,7 @@ const FormSignup = ({ submitForm }) => {
           history.push("/main");
 
         }
-
-        setvalidation();
-      
-
-     
-      setrealuser(email + ";" + password);
+        setvalidation(); 
       history.push("/main");
     } else {
       e.preventDefault();
@@ -124,7 +117,7 @@ const FormSignup = ({ submitForm }) => {
             type='text'
             name='username'
             placeholder='Enter your username'
-            required="Lele du brauchst des"
+            required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           >
