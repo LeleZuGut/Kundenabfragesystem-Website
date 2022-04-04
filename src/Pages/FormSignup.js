@@ -34,32 +34,7 @@ const FormSignup = ({ submitForm }) => {
 
 
 
-  function onSubmitChange() {
 
-
-
-    if (captcha == " ") {
-      setCaptcha(" ");
-
-    } else {
-      setCaptcha("Bitte das auch noch bestätigen");
-
-
-    }
-
-
-
-  }
-
-  const checkValidation = (e) => {
-    setConfirmpassword(e.target.value);
-    if (password !== e.target.value) {
-      setError("Bitte das richtige Passwort bestätigen");
-    }
-    else {
-      setError("");
-    }
-  }
   const history = useHistory();
 
   
@@ -71,7 +46,7 @@ const FormSignup = ({ submitForm }) => {
       Password: password
     }
     console.log("User", user);
-    await axios.post('http://192.168.0.4/api/Customer/insert', user,{
+    await axios.post('http://192.168.0.45/api/Customer/insert', user,{
       auth:{
         username:"admin",
         password:"adminpassword"
@@ -94,14 +69,9 @@ const FormSignup = ({ submitForm }) => {
 
 
 
-    if (error == "" & captcha == " ") {
+    if (password == confirmpassword && captcha == " ") {  
       
-
-      if (username == "" || email == "" || password == "" || confirmpassword == "" || password != confirmpassword) {
-
-
-      } else {
-        Cookies.set("user","yallah",{expires:1});
+        Cookies.set("user","",{expires:1});
         Cookies.set("email",email, {expires:1});
         Cookies.set("password",password, {expires:1});
 
@@ -112,15 +82,12 @@ const FormSignup = ({ submitForm }) => {
           history.push("/main");
 
         }
-
-        setvalidation();
-      }
-
-     
-      setrealuser(email + ";" + password);
+        setvalidation(); 
       history.push("/main");
     } else {
       e.preventDefault();
+      setError("Bitte alles ausfüllen oder bestätigen");
+
     }
   }
 
@@ -150,7 +117,7 @@ const FormSignup = ({ submitForm }) => {
             type='text'
             name='username'
             placeholder='Enter your username'
-            required="Lele du brauchst des"
+            required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           >
@@ -197,14 +164,14 @@ const FormSignup = ({ submitForm }) => {
             placeholder='Confirm your password'
             required
             value={confirmpassword}
-            onChange={checkValidation}
+            onChange={(e) => setConfirmpassword(e.target.value)}
 
 
           />
 
           <p>{error}</p>
         </div>
-        <button className='form-input-btn' type='submit' onClick={onSubmitChange}>
+        <button className='form-input-btn' type='submit'>
           Sign up
         </button>
         <span className='form-input-login'>
@@ -222,6 +189,7 @@ const FormSignup = ({ submitForm }) => {
             render="explicit"
             onloadCallback={recaptchaloaded}
             verifyCallback={(e) => setCaptcha(" ")}
+            
 
           />
         </div>

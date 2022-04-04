@@ -7,14 +7,11 @@ import { SidebarData } from '../SidebarData';
 import '../Styles/FormFragenKatalog-Main.css';
 import { IconContext } from 'react-icons';
 import { useHistory } from 'react-router-dom';
-import Logo_MainPage from '../Images/Main-FragenPageLogo.PNG';
 import Logo_Fusszeile from '../Images/Logo-Fußzeile.png';
 
 import AuthenticatedContext from '../Contexts/AuthenticatedContext';
 import LoginContext from '../Contexts/LoginContext';
-import { useCookies, withCookies } from 'react-cookie';
-import FormFragenKatalog from './FormFragenkatalog';
-import Logo_Bergauf from '../Images/Logo-Button-Bergauf.png';
+
 
 import Cookies from 'js-cookie'
 
@@ -111,9 +108,9 @@ function Navbar() {
 
       <div className="Main-Fragen-Img">
         <FaIcons.FaHiking className="Wandern-Img" onClick={() => history.push("/fragen/Wandern")} />
-
         <FaIcons.FaSkiingNordic className="Ski-Img" onClick={() => history.push("/fragen/Ski")} />
         <FaIcons.FaMountain className="Klettern-Img" onClick={() => history.push("/fragen/Klettern")} />
+
 
 
 

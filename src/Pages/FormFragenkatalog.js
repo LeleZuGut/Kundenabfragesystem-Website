@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import * as HiIcons from 'react-icons/hi';
 import * as BiIcons from 'react-icons/bi';
-import * as BsIcons from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons';
 import { SidebarData } from '../SidebarData';
@@ -19,8 +17,6 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Logo_Fusszeile from '../Images/Logo-Fußzeile.png';
 import Logo_Bergauf from '../Images/Logo-Button-Bergauf.png';
 import Logo_Bergab from '../Images/Logo-Button-Bergab.png';
-import Logo_Kreis from '../Images/Logo-Kreis.png';
-import { CircularProgress } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import Modal from "../Modal";
 
@@ -108,7 +104,7 @@ const FormFragenKatalog = () => {
 
     const getData = async () => {
 
-        await axios.get("http://192.168.0.4/api/Questions/all"
+        await axios.get("http://192.168.0.45/api/Questions/all"
             , {
                 auth: {
                     username: "admin",
@@ -125,7 +121,7 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-        await axios.get("http://192.168.0.4/api/Answer/all"
+        await axios.get("http://192.168.0.45/api/Answer/all"
             , {
                 auth: {
                     username: "admin",
@@ -143,9 +139,7 @@ const FormFragenKatalog = () => {
                 console.log(error)
             })
 
-
-
-        await axios.get("http://192.168.0.4/api/Catalog/all"
+        await axios.get("http://192.168.0.45/api/Catalog/all"
             , {
                 auth: {
                     username: "admin",
@@ -250,8 +244,6 @@ const FormFragenKatalog = () => {
 
                 }
                 else if (answerarr[i].typ == 1) {
-
-
                     async function Timeout() {
                         await sleep(1);
 
@@ -263,13 +255,9 @@ const FormFragenKatalog = () => {
                                     <Switch defaultChecked={daten.get(answerarr[i].id)[item]} îd={item} name={item}
                                         onChange={(e) => handleSwitchChange(answerarr[i].id, e.target.checked, item)}
                                     />
-
                                     {item}
-
                                 </label>
-
                             </div>
-
                         ))
                     }
                     Timeout()
@@ -399,7 +387,7 @@ const FormFragenKatalog = () => {
         }
 
         const getUserData = async (email, password) => {
-            const rest = await axios.get("http://192.168.0.4/api/Customer/getCurrentUser"
+            const rest = await axios.get("http://192.168.0.45/api/Customer/getCurrentUser"
                 , {
                     auth: {
                         username: email,
@@ -426,25 +414,16 @@ const FormFragenKatalog = () => {
             let useremail = Cookies.get("email");
             let userpassw = Cookies.get("password");
             const ret = await getUserData(useremail, userpassw);
-
             let result2 = {};
-
-
-
-
             daten.forEach(async (value, key) => {
                 let obj = "";
 
                 for (var i = 0; i < answerarr.length; i++) {
-
-
-
                     if (answerarr[i].id == key) {
 
                         if (answerarr[i].typ == 1) {
                             for (var schluessel in value) {
                                 obj += schluessel + ";"
-
                             }
                         }
                         result2 = {
@@ -462,14 +441,9 @@ const FormFragenKatalog = () => {
                         await postData(result2);
                         result.splice(0, 1);
                         break
-
-
                     }
                 }
-
-
             });
-
             Cookies.remove("user");
 
             setisAuthenticated(false);
@@ -492,7 +466,7 @@ const FormFragenKatalog = () => {
         const postData = async (res) => {
 
 
-            await axios.post('http://192.168.0.4/api/Result/insert', res, {
+            await axios.post('http://192.168.0.45/api/Result/insert', res, {
                 auth: {
                     username: "admin",
                     password: "adminpassword"
